@@ -1,0 +1,1 @@
+json.array! @grownups, partial: 'grownups/grownup', as: :grownup

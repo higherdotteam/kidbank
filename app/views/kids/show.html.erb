@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fname:</strong>
+  <%= @kid.fname %>
+</p>
+
+<p>
+  <strong>Lname:</strong>
+  <%= @kid.lname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @kid.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @kid.password %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @kid.dob %>
+</p>
+
+<%= link_to 'Edit', edit_kid_path(@kid) %> |
+<%= link_to 'Back', kids_path %>

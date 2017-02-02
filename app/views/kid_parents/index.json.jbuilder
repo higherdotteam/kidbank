@@ -1,0 +1,1 @@
+json.array! @kid_parents, partial: 'kid_parents/kid_parent', as: :kid_parent

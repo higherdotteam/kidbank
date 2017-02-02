@@ -1,0 +1,37 @@
+<%= form_for(@grownup) do |f| %>
+  <% if @grownup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grownup.errors.count, "error") %> prohibited this grownup from being saved:</h2>
+
+      <ul>
+      <% @grownup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fname %><br>
+    <%= f.text_field :fname %>
+  </div>
+  <div class="field">
+    <%= f.label :lname %><br>
+    <%= f.text_field :lname %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :admin_level %><br>
+    <%= f.number_field :admin_level %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Kid:</strong>
+  <%= @kid_parent.kid %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @kid_parent.parent %>
+</p>
+
+<%= link_to 'Edit', edit_kid_parent_path(@kid_parent) %> |
+<%= link_to 'Back', kid_parents_path %>

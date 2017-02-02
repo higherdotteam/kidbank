@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fname:</strong>
+  <%= @grownup.fname %>
+</p>
+
+<p>
+  <strong>Lname:</strong>
+  <%= @grownup.lname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @grownup.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @grownup.password %>
+</p>
+
+<p>
+  <strong>Admin level:</strong>
+  <%= @grownup.admin_level %>
+</p>
+
+<%= link_to 'Edit', edit_grownup_path(@grownup) %> |
+<%= link_to 'Back', grownups_path %>

@@ -1,0 +1,1 @@
+json.partial! "kid_parents/kid_parent", kid_parent: @kid_parent

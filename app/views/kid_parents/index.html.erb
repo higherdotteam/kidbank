@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Kid Parents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Kid</th>
+      <th>Parent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @kid_parents.each do |kid_parent| %>
+      <tr>
+        <td><%= kid_parent.kid %></td>
+        <td><%= kid_parent.parent %></td>
+        <td><%= link_to 'Show', kid_parent %></td>
+        <td><%= link_to 'Edit', edit_kid_parent_path(kid_parent) %></td>
+        <td><%= link_to 'Destroy', kid_parent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Kid parent', new_kid_parent_path %>

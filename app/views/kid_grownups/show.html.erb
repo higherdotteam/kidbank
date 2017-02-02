@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Kid:</strong>
+  <%= @kid_grownup.kid %>
+</p>
+
+<p>
+  <strong>Grownup:</strong>
+  <%= @kid_grownup.grownup %>
+</p>
+
+<%= link_to 'Edit', edit_kid_grownup_path(@kid_grownup) %> |
+<%= link_to 'Back', kid_grownups_path %>

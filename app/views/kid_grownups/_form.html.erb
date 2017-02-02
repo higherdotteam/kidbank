@@ -1,0 +1,25 @@
+<%= form_for(@kid_grownup) do |f| %>
+  <% if @kid_grownup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kid_grownup.errors.count, "error") %> prohibited this kid_grownup from being saved:</h2>
+
+      <ul>
+      <% @kid_grownup.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kid_id %><br>
+    <%= f.text_field :kid_id %>
+  </div>
+  <div class="field">
+    <%= f.label :grownup_id %><br>
+    <%= f.text_field :grownup_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

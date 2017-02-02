@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Kid Grownups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Kid</th>
+      <th>Grownup</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @kid_grownups.each do |kid_grownup| %>
+      <tr>
+        <td><%= kid_grownup.kid %></td>
+        <td><%= kid_grownup.grownup %></td>
+        <td><%= link_to 'Show', kid_grownup %></td>
+        <td><%= link_to 'Edit', edit_kid_grownup_path(kid_grownup) %></td>
+        <td><%= link_to 'Destroy', kid_grownup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Kid grownup', new_kid_grownup_path %>

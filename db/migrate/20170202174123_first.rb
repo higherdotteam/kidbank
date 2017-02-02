@@ -3,21 +3,26 @@ class First < ActiveRecord::Migration
     create_table :kids do |t|
       t.string :fname
       t.string :lname
-      t.string :email
+      t.string :email, limit: 50
       t.string :password
       t.datetime :dob
     end
 
-    create_table :parents do |t|
+    add_index :kids, :email, unique: true
+
+    create_table :grownups do |t|
       t.string :fname
       t.string :lname
+      t.string :email, limit: 50
       t.string :password
-      t.string :email
+      t.integer :admin_level, default: 1
     end
 
-    create_table :kid_parents do |t|
+    add_index :grownups, :email, unique: true
+
+    create_table :kid_grownups do |t|
       t.integer :kid_id
-      t.integer :parent_id
+      t.integer :grownup_id
     end
 
     create_table :accounts do |t|
@@ -32,12 +37,5 @@ class First < ActiveRecord::Migration
       t.string :action
     end
 
-    create_table :admins do |t|
-      t.string :fname
-      t.string :lname
-      t.string :email
-      t.string :password
-      t.integer :level, default: 1
-    end
   end
 end

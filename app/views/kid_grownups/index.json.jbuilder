@@ -1,0 +1,1 @@
+json.array! @kid_grownups, partial: 'kid_grownups/kid_grownup', as: :kid_grownup

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Grownups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fname</th>
+      <th>Lname</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Admin level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grownups.each do |grownup| %>
+      <tr>
+        <td><%= grownup.fname %></td>
+        <td><%= grownup.lname %></td>
+        <td><%= grownup.email %></td>
+        <td><%= grownup.password %></td>
+        <td><%= grownup.admin_level %></td>
+        <td><%= link_to 'Show', grownup %></td>
+        <td><%= link_to 'Edit', edit_grownup_path(grownup) %></td>
+        <td><%= link_to 'Destroy', grownup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Grownup', new_grownup_path %>
