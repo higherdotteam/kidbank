@@ -28,12 +28,12 @@ class First < ActiveRecord::Migration
     create_table :accounts do |t|
       t.integer :kid_id
       t.string :flavor
-      t.integer :balance
+      t.float :balance
     end
 
     create_table :activities do |t|
       t.integer :account_id
-      t.integer :amount
+      t.float :amount
       t.string :action
     end
 

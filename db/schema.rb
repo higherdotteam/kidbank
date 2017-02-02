@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 20170202174123) do
   create_table "accounts", force: :cascade do |t|
     t.integer "kid_id"
     t.string  "flavor"
-    t.integer "balance"
+    t.float   "balance"
   end
 
   create_table "activities", force: :cascade do |t|
     t.integer "account_id"
-    t.integer "amount"
+    t.float   "amount"
     t.string  "action"
   end
 
