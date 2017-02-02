@@ -4,12 +4,14 @@ class First < ActiveRecord::Migration
       t.string :fname
       t.string :lname
       t.string :email
+      t.string :password
       t.datetime :dob
     end
 
     create_table :parents do |t|
       t.string :fname
       t.string :lname
+      t.string :password
       t.string :email
     end
 
@@ -34,6 +36,7 @@ class First < ActiveRecord::Migration
       t.string :fname
       t.string :lname
       t.string :email
+      t.string :password
       t.integer :level, default: 1
     end
   end
