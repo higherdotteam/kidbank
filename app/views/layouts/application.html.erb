@@ -12,23 +12,34 @@
 </head>
 <body>
 
+  <br/>
   <div class="container">
-  <a href="/"><img src="/images/logo.png" width="110" height="61"/></a>
+    <div class="row">
+      <div class="col-lg-3">
+        <a href="/"><img src="/images/logo.png" width="110" height="61"/></a>
+      </div>
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-3">
+      </div>
 <% if current_user %>
-    <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= current_user.name %> <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a href="/kids/<%= current_user.id %>/edit">Settings</a></li>
-        <li><a href="#">Something</a></li>
-        <li><a href="#">Else</a></li>
-        <li><a href="#">Here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><%= link_to 'Log out', session_path(current_user), :method => :delete %></li>
-      </ul>
+    <div class="col-lg-3">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= current_user.name %> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="/kids/<%= current_user.id %>/edit">Settings</a></li>
+          <li><a href="#">Something</a></li>
+          <li><a href="#">Else</a></li>
+          <li><a href="#">Here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><%= link_to 'Log out', session_path(current_user), :method => :delete %></li>
+        </ul>
+      </div>
     </div>
   <% end %>
+  </div>
 <%= yield %>
 
     <div style="text-align: center;">
