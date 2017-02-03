@@ -13,3 +13,5 @@ Customer.create(fname: 'Athena', lname: 'Arrow', dob: 1.years.ago, email: 'aarro
 Account.delete_all
 Account.create(flavor: 'checkings', balance: 100.00, kid_id: Kid.first.id)
 Account.create(flavor: 'savings', balance: 1000.00, kid_id: Kid.first.id)
+
+Customer.create(fname: 'Andrew', lname: 'Arrow', dob: 40.years.ago, email: 'andrew@higher.team', password: '123')
