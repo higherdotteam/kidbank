@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :sessions
 
   namespace "api" do
+    root 'api#welcome'
     namespace "v1" do
       get 'accounts', :to => "api#accounts"
       get 'kids', :to => "api#kids"
