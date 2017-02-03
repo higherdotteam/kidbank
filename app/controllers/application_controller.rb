@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   def current_user
     pid = session[:person_id]
     return nil if pid == nil
-    @current_user ||= Kid.find_by_id(pid)
+    @current_user ||= Customer.find_by_id(pid)
   end
 end
