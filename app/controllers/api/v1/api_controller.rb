@@ -3,7 +3,12 @@ class Api::V1::ApiController < ApplicationController
   before_action :check_token
 
   def check_token
-    token = request.headers['Authorization'].split(" ").last
+    raw = request.headers['Authorization']
+    unless raw
+      render :text => 'token missing', status: 403
+      return false
+    end
+    token = raw.split(" ").last
     t=Token.where(token: token).first
     unless t
       render :text => 'token missing', status: 403
