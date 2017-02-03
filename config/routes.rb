@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :accounts
   root 'welcome#index'
 
+  resources :sessions
+
 end
