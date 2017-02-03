@@ -2,7 +2,11 @@ class SessionsController < ApplicationController
   def new
   end
   def create
-    session[:person_id] = Customer.last.id
+    if params[:kid]
+      session[:person_id] = Customer.first.id
+    else
+      session[:person_id] = Customer.last.id
+    end
     redirect_to '/'
   end
 
