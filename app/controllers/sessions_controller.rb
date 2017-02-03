@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    session[:person_id] = Kid.first.id
+    session[:person_id] = Customer.first.id
     redirect_to '/'
   end
 
