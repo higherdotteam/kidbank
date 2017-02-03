@@ -2,9 +2,14 @@
 
 <h1>Welcome Back Kid</h1>
 
+<table class="table">
 <% current_user.accounts.each do |a| %>
-<%= a.flavor %>
+  <tr>
+    <td> <%= a.flavor %></td>
+    <td> <%= number_to_currency(a.balance, :unit => "ϟ") %></td>
+  </tr>
 <% end %>
+</table>
 
 
 <% else %>
