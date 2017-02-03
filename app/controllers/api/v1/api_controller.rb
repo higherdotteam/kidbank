@@ -18,7 +18,7 @@ class Api::V1::ApiController < ApplicationController
   end
   
   def accounts
-    render :json => {"results": [1,2,3]}
+    render :json => @user.accounts.as_json
   end
   def kids
     render :json => {"results": [1,2,3]}
