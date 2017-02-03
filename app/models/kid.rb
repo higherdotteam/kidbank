@@ -1,8 +1,5 @@
-class Kid < ActiveRecord::Base
+class Kid < Customer
 
   has_many :accounts
 
-  def name
-    fname + ' ' + lname
-  end
 end

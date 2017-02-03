@@ -1,24 +1,15 @@
 class First < ActiveRecord::Migration
   def change
-    create_table :kids do |t|
+    create_table :customers do |t|
       t.string :fname
       t.string :lname
       t.string :email, limit: 50
       t.string :password
       t.datetime :dob
-    end
-
-    add_index :kids, :email, unique: true
-
-    create_table :grownups do |t|
-      t.string :fname
-      t.string :lname
-      t.string :email, limit: 50
-      t.string :password
       t.integer :admin_level, default: 1
     end
 
-    add_index :grownups, :email, unique: true
+    add_index :customers, :email, unique: true
 
     create_table :kid_grownups do |t|
       t.integer :kid_id
