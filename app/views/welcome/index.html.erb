@@ -14,8 +14,8 @@
       </tr>
   <% a.last_few.each do |a| %>
       <tr>
-        <td><%=a.happened_at.to_s(:db) %></td>
-        <td><%=time_ago_in_words(a.happened_at) %></td>
+        <td><%=a.happened_at.strftime("%a, %b %e") %></td>
+        <td><%=time_ago_in_words(a.happened_at) %> ago</td>
         <td><%=a.action %></td>
         <td><%=a.amount %></td>
       </tr>
