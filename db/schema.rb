@@ -25,29 +25,20 @@ ActiveRecord::Schema.define(version: 20170202174123) do
     t.string  "action"
   end
 
-  create_table "grownups", force: :cascade do |t|
-    t.string  "fname"
-    t.string  "lname"
-    t.string  "email",       limit: 50
-    t.string  "password"
-    t.integer "admin_level",            default: 1
+  create_table "customers", force: :cascade do |t|
+    t.string   "fname"
+    t.string   "lname"
+    t.string   "email",       limit: 50
+    t.string   "password"
+    t.datetime "dob"
+    t.integer  "admin_level",            default: 1
   end
 
-  add_index "grownups", ["email"], name: "index_grownups_on_email", unique: true
+  add_index "customers", ["email"], name: "index_customers_on_email", unique: true
 
   create_table "kid_grownups", force: :cascade do |t|
     t.integer "kid_id"
     t.integer "grownup_id"
   end
-
-  create_table "kids", force: :cascade do |t|
-    t.string   "fname"
-    t.string   "lname"
-    t.string   "email",    limit: 50
-    t.string   "password"
-    t.datetime "dob"
-  end
-
-  add_index "kids", ["email"], name: "index_kids_on_email", unique: true
 
 end
