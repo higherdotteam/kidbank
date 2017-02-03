@@ -1,6 +1,12 @@
 <% if current_user %>
 
 <h1>Welcome Back Kid</h1>
+
+<% current_user.accounts.each do |a| %>
+<%= a.flavor %>
+<% end %>
+
+
 <% else %>
 <h1>Welcome Kids!</h1>
 
