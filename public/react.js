@@ -68,7 +68,7 @@
 	      title: 'Item 2',
 	      price: 21
 	    }, {
-	      title: 'Item 3',
+	      title: 'Item 4',
 	      price: 33
 	    }]
 	  }
