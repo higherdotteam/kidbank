@@ -11,7 +11,7 @@ k2=Customer.create(fname: 'Jason', lname: 'Arrow', dob: 4.years.ago, email: 'jga
 k3=Customer.create(fname: 'Athena', lname: 'Arrow', dob: 1.years.ago, email: 'aarrow@kid.org', password: '123')
 
 Token.delete_all
-Token.create(customer_id: k1.id, token: 'AB467-1389', flavor: 'ios')
+Token.create(customer_id: k1.id, token: 'AB467-1389', flavor: 'apple')
 Token.create(customer_id: k1.id, token: 'AB467-1390', flavor: 'android')
 Token.create(customer_id: k1.id, token: 'AB467-1391', flavor: 'html5')
 

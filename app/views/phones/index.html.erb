@@ -4,14 +4,24 @@
 <div class="row">
   <div class="col-lg-2">
   </div>
-  <div class="col-lg-3">
-    <a href="/"><img src="/images/android.jpg" "300" height="300"/></a>
+  <div class="col-lg-3" style="text-align: center;">
+    <img src="/images/android.jpg" "300" height="300"/>
+    <br/>
+    <%= Token.where(flavor: 'android', customer_id: current_user.id).first.token %>
   </div>
-  <div class="col-lg-2">
-    <a href="/"><img src="/images/apple.jpg"/></a>
+  <div class="col-lg-2" style="text-align: center;">
+    <img src="/images/apple.jpg"/>
+    <br/>
+    <br/>
+    <br/>
+    <%= Token.where(flavor: 'apple', customer_id: current_user.id).first.token %>
   </div>
-  <div class="col-lg-2">
-    <a href="/"><img src="/images/html5.png"/></a>
+  <div class="col-lg-2" style="text-align: center;">
+    <img src="/images/html5.png"/>
+    <br/>
+    <br/>
+    <br/>
+    <%= Token.where(flavor: 'html5', customer_id: current_user.id).first.token %>
   </div>
 </div>
 <br/>
