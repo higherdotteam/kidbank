@@ -10,14 +10,14 @@
       <td> <%= link_to a.flavor, account_activities_path(a) %></td>
       <td></td>
       <td></td>
-      <td> <%= link_to number_to_currency(a.balance, :unit => "ϟ"), account_activities_path(a) %></td>
+      <td> <%= link_to number_to_currency(a.balance, unit: 'ϟ'), account_activities_path(a) %></td>
       </tr>
   <% a.last_few.each do |a| %>
       <tr>
         <td><%=a.happened_at.strftime("%a, %b %e") %></td>
         <td><%=time_ago_in_words(a.happened_at) %> ago</td>
         <td><%=a.action %></td>
-        <td><%=a.amount %></td>
+        <td><%=number_to_currency(a.amount, unit: '') %></td>
       </tr>
   <% end %>
       <tr>
@@ -42,16 +42,17 @@
   <br/>
   <br/>
   <br/>
-<p>
-Are you a kid age 4 through 12? Sign up here.
+<p style="font-size: 24px;">
+Are you a kid age 4 through 12?
 </p>
-<p>
-Are you a kid age 13 through 17? Sign up here.
+<p style="font-size: 18px;">
+Finally a bank for you! With a real ATM Card that works at any KidBank branch.
+Ask your parents if it's okay for you to open a KidBank account today!
 </p>
-<p>
-Are you a grownup 18 through &infin; Sign up here.
-</p>
-<p>
+
+  <br/>
+  <br/>
+<p style="font-size: 18px;">
 Already have an account? <a href="/sessions/new">Login here</a>.
 </p>
 <% end %>
