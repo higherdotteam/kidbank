@@ -7,11 +7,16 @@ class Customer < ActiveRecord::Base
   end
 
   def under_13?
-    true
+    age < 13
   end
 
   def under_18?
-    true
+    age < 18
+  end
+
+  def age
+    sec = Time.now.to_i - dob.to_time.to_i
+    years = (((sec / 60) / 60 / 24) / 365)
   end
   
 end
