@@ -7,10 +7,27 @@
   <%= csrf_meta_tags %>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
 
   <div class="container">
+<% if current_user %>
+    <a href="/">[KidBank Logo]</a>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= current_user.name %> <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="/kids/<%= current_user.id %>/edit">Settings</a></li>
+        <li><a href="#">Something</a></li>
+        <li><a href="#">Else</a></li>
+        <li><a href="#">Here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Log out</a></li>
+      </ul>
+    </div>
+  <% end %>
 <%= yield %>
   </div>
 
