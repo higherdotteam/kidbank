@@ -31,5 +31,6 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'react', :to => "kids#react"
 
 end

@@ -1,6 +1,10 @@
 class KidsController < ApplicationController
   before_action :set_kid, only: [:show, :edit, :update, :destroy]
 
+  def react
+    render layout: 'react'
+  end
+
   # GET /kids
   # GET /kids.json
   def index
