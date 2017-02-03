@@ -11,6 +11,16 @@
     </tr>
   <% end %>
   </table>
+<% elsif current_user.under_18? %>
+  teenagers!
+<% else %>
+  <table class="table">
+  <% current_user.kids.each do |k| %>
+    <tr>
+      <td> <%= k.name %></td>
+    </tr>
+  <% end %>
+  </table>
 <% end %>
 
 <% else %>

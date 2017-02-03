@@ -2,6 +2,10 @@ class Customer < ActiveRecord::Base
 
   has_many :accounts, foreign_key: 'kid_id'
 
+  def kids
+    KidGrownup.where(grownup_id: id).collect {|kg| kg.kid}
+  end
+
   def name
     fname + ' ' + lname
   end
