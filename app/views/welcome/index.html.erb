@@ -1,13 +1,14 @@
 <% if current_user %>
 
+
 <h1>Welcome Back</h1>
 
 <% if current_user.under_13? %>
   <table class="table">
   <% current_user.accounts.each do |a| %>
     <tr>
-      <td> <%= a.flavor %></td>
-      <td> <%= number_to_currency(a.balance, :unit => "ϟ") %></td>
+      <td> <%= link_to a.flavor, account_activities_path(a) %></td>
+      <td> <%= link_to number_to_currency(a.balance, :unit => "ϟ"), account_activities_path(a) %></td>
     </tr>
   <% end %>
   </table>

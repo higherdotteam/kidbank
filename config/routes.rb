@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   resources :kid_parents
   resources :admins
   resources :activities
-  resources :accounts
+  resources :accounts do
+    resources :activities
+  end
+
   root 'welcome#index'
 
   resources :sessions

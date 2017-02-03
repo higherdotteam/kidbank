@@ -15,7 +15,7 @@
   <tbody>
     <% @activities.each do |activity| %>
       <tr>
-        <td><%= activity.account %></td>
+        <td><%= activity.account.flavor %></td>
         <td><%= activity.amount %></td>
         <td><%= activity.action %></td>
         <td><%= link_to 'Show', activity %></td>

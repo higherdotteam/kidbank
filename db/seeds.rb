@@ -19,3 +19,14 @@ p1=Customer.create(fname: 'Andrew', lname: 'Arrow', dob: 40.years.ago, email: 'a
 KidGrownup.create(kid_id: k1.id, grownup_id: p1.id)
 KidGrownup.create(kid_id: k2.id, grownup_id: p1.id)
 KidGrownup.create(kid_id: k3.id, grownup_id: p1.id)
+
+Activity.delete_all
+Activity.create(account_id: Account.first.id, amount: 300, action: 'deposit')
+Activity.create(account_id: Account.first.id, amount: 150, action: 'transfer')
+Activity.create(account_id: Account.first.id, amount: 660, action: 'check')
+Activity.create(account_id: Account.first.id, amount: 1000, action: 'transfer')
+Activity.create(account_id: Account.second.id, amount: 354, action: 'check')
+Activity.create(account_id: Account.second.id, amount: 111, action: 'deposit')
+Activity.create(account_id: Account.second.id, amount: 200, action: 'deposit')
+
+
