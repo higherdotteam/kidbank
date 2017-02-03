@@ -8,6 +8,13 @@
   <% current_user.accounts.each do |a| %>
     <tr>
       <td> <%= link_to a.flavor, account_activities_path(a) %></td>
+      </tr>
+  <% a.last_few.each do |a| %>
+      <tr>
+        <td>hi</td>
+      </tr>
+  <% end %>
+      <tr>
       <td> <%= link_to number_to_currency(a.balance, :unit => "ϟ"), account_activities_path(a) %></td>
     </tr>
   <% end %>
