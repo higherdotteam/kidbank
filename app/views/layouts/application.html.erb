@@ -24,7 +24,7 @@
         <li><a href="#">Else</a></li>
         <li><a href="#">Here</a></li>
         <li role="separator" class="divider"></li>
-        <li><a href="#">Log out</a></li>
+        <li><%= link_to 'Log out', session_path(current_user), :method => :delete %></li>
       </ul>
     </div>
   <% end %>
