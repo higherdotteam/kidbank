@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :sessions
+  resources :phones
 
   namespace "api" do
     root 'api#welcome'

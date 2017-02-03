@@ -22,9 +22,14 @@
       </div>
 <% if current_user %>
     <div class="col-lg-4">
+      <% if current_user.under_13? %>
       <a href="" class="btn btn-danger">pay bills</a>
       <a href="" class="btn btn-info">deposit checks</a>
       <a href="" class="btn btn-success">transfers</a>
+    <% elsif current_user.under_18? %>
+    <% else %>
+      <a href="" class="btn btn-info">add kid</a>
+    <% end %>
     </div>
     <div class="col-lg-3">
       <div class="btn-group">
@@ -33,9 +38,7 @@
         </button>
         <ul class="dropdown-menu">
           <li><a href="/kids/<%= current_user.id %>/edit">Settings</a></li>
-          <li><a href="#">Something</a></li>
-          <li><a href="#">Else</a></li>
-          <li><a href="#">Here</a></li>
+          <li><a href="/phones/">Phone Access</a></li>
           <li role="separator" class="divider"></li>
           <li><%= link_to 'Log out', session_path(current_user), :method => :delete %></li>
         </ul>
