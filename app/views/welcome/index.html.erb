@@ -1,14 +1,18 @@
 <% if current_user %>
-<h1>Welcome Back Kid</h1>
 
-<table class="table">
-<% current_user.accounts.each do |a| %>
-  <tr>
-    <td> <%= a.flavor %></td>
-    <td> <%= number_to_currency(a.balance, :unit => "ϟ") %></td>
-  </tr>
+<h1>Welcome Back</h1>
+
+<% if current_user.under_13? %>
+  <table class="table">
+  <% current_user.accounts.each do |a| %>
+    <tr>
+      <td> <%= a.flavor %></td>
+      <td> <%= number_to_currency(a.balance, :unit => "ϟ") %></td>
+    </tr>
+  <% end %>
+  </table>
 <% end %>
-</table>
+
 <% else %>
 <h1>Welcome Kids!</h1>
 
