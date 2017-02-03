@@ -3,6 +3,6 @@ class Account < ActiveRecord::Base
   has_many :activities
 
   def last_few
-    [1,2,3]
+    activities.where('happened_at > ?', 1.month.ago).limit(5) 
   end
 end

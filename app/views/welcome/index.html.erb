@@ -8,14 +8,19 @@
   <% current_user.accounts.each do |a| %>
     <tr>
       <td> <%= link_to a.flavor, account_activities_path(a) %></td>
+      <td></td>
+      <td></td>
+      <td> <%= link_to number_to_currency(a.balance, :unit => "ϟ"), account_activities_path(a) %></td>
       </tr>
   <% a.last_few.each do |a| %>
       <tr>
-        <td>hi</td>
+        <td><%=a.happened_at.to_s(:db) %></td>
+        <td><%=time_ago_in_words(a.happened_at) %></td>
+        <td><%=a.action %></td>
+        <td><%=a.amount %></td>
       </tr>
   <% end %>
       <tr>
-      <td> <%= link_to number_to_currency(a.balance, :unit => "ϟ"), account_activities_path(a) %></td>
     </tr>
   <% end %>
   </table>
