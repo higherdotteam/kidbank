@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kidbank</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -13,7 +14,9 @@
 
   <div class="container">
 <% if current_user %>
-    <a href="/">[KidBank Logo]</a>
+  <a href="/">
+    <img src="/images/logo.png" width="110" height="61"/>
+  </a>
     <div class="btn-group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= current_user.name %> <span class="caret"></span>
