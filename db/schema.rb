@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203082035) do
+ActiveRecord::Schema.define(version: 20170203182942) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "kid_id"
@@ -41,5 +41,13 @@ ActiveRecord::Schema.define(version: 20170203082035) do
     t.integer "kid_id"
     t.integer "grownup_id"
   end
+
+  create_table "tokens", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string  "token",       limit: 50
+    t.string  "flavor"
+  end
+
+  add_index "tokens", ["token"], name: "index_tokens_on_token", unique: true
 
 end
