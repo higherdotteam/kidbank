@@ -34,6 +34,27 @@
     </tr>
   <% end %>
   </table>
+<%= form_for(@kid) do |f| %>
+  <div class="field">
+    <%= f.label 'My First Name Is' %><br>
+    <%= f.text_field :fname, id: 'fname', style: 'font-size: 24px;' %>
+  </div>
+  <div class="field">
+    <br/>
+    <%= f.label 'My Last Name Is' %><br>
+    <%= f.text_field :lname, style: 'font-size: 24px;' %>
+  </div>
+  <div class="field">
+    <br/>
+    <%= f.label 'I was born on' %><br>
+    <%= f.date_select :dob, {start_year: 4.years.ago.year-14, end_year: 4.years.ago.year},
+      style: 'font-size: 24px;' %>
+  </div>
+  <div class="actions">
+    <br/>
+    <%= f.submit value: 'Okay Let Me In!', class: 'btn btn-info' %>
+  </div>
+<% end %>
 <% end %>
 
 <% else %>
