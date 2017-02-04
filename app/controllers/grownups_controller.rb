@@ -16,6 +16,7 @@ class GrownupsController < ApplicationController
   def new
     @parent = Grownup.new
     @kid = Kid.new
+    @hide_menu = true
   end
 
   # GET /grownups/1/edit
