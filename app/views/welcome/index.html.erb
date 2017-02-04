@@ -28,9 +28,9 @@
   teenagers!
 <% else %>
   <table class="table">
-  <% current_user.kids.each do |k| %>
+  <% current_user.kids.compact.each do |k| %>
     <tr>
-      <td> <%= k.name %></td>
+      <td> <%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete'%></td>
     </tr>
   <% end %>
   </table>
