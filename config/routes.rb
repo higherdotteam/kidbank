@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :kids
+  resources :kids do
+    member do
+      post :set_co_parent
+      post :set_observer
+    end
+  end
   resources :kid_grownups
   resources :grownups
   resources :activities

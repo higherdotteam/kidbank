@@ -36,33 +36,52 @@
   <% current_user.kids.compact.each do |k| %>
     <tr>
       <td> <%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%></td>
-      <td> Jane Smith</td>
+      <td> Jane Smith
+      
+  <%= form_for(Customer.new, url: set_co_parent_kid_path(k), method: 'post', html: {id: 'set-co-form'+k.id.to_s, style: 'display: none;'}) do |f| %>
+    <div class="field">
+      <%= f.label 'Name (first & last)' %><br>
+      <%= f.text_field :fname, id: 'fname'%>
+    </div>
+    <div class="field">
+      <br/>
+      <%= f.label 'Email' %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="actions">
+      <br/>
+      <%= f.submit value: 'Set as Co-Parent', class: 'btn btn-info' %>
+      <a href="#" onclick="$('set-co-form'+<%=k.id%>).hide()" class="btn btn-danger">Cancel</a>
+    </div>
+  <% end %>
+      
+      </td>
       <td> Jane Smith</td>
     </tr>
   <% end %>
   </table>
   <%= form_for(@kid, html: {id: 'add-kid-form', style: 'display: none;'}) do |f| %>
-  <div class="field">
-    <%= f.label 'First Name' %><br>
-    <%= f.text_field :fname, id: 'fname'%>
-  </div>
-  <div class="field">
-    <br/>
-    <%= f.label 'Last Name' %><br>
-    <%= f.text_field :lname %>
-  </div>
-  <div class="field">
-    <br/>
-    <%= f.label 'Born on' %><br>
-    <%= f.date_select :dob, {start_year: 4.years.ago.year-14, end_year: 4.years.ago.year},
-      style: 'font-size: 24px;' %>
-  </div>
-  <div class="actions">
-    <br/>
-    <%= f.submit value: 'Add This Kid', class: 'btn btn-info' %>
-    <a href="#" onclick="$('#add-kid-form').hide()" class="btn btn-danger">Cancel</a>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label 'First Name' %><br>
+      <%= f.text_field :fname, id: 'fname'%>
+    </div>
+    <div class="field">
+      <br/>
+      <%= f.label 'Last Name' %><br>
+      <%= f.text_field :lname %>
+    </div>
+    <div class="field">
+      <br/>
+      <%= f.label 'Born on' %><br>
+      <%= f.date_select :dob, {start_year: 4.years.ago.year-14, end_year: 4.years.ago.year},
+        style: 'font-size: 24px;' %>
+    </div>
+    <div class="actions">
+      <br/>
+      <%= f.submit value: 'Add This Kid', class: 'btn btn-info' %>
+      <a href="#" onclick="$('#add-kid-form').hide()" class="btn btn-danger">Cancel</a>
+    </div>
+  <% end %>
 <% end %>
 
 <% else %>
