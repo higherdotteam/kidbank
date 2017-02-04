@@ -28,7 +28,7 @@
       <a href="" class="btn btn-success">transfers</a>
     <% elsif current_user.under_18? %>
     <% else %>
-      <a href="" class="btn btn-info">add kid</a>
+      <a href="#" onclick="$('#add-kid-form').show(); return false;" class="btn btn-info">add kid</a>
       <a href="" class="btn btn-success">set co-parent</a>
     <% end %>
     </div>
