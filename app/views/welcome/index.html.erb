@@ -14,7 +14,7 @@
       </tr>
   <% a.last_few.each do |a| %>
       <tr>
-        <td><%=a.happened_at.strftime("%a, %b %e") %></td>
+        <td></td>
         <td><%=time_ago_in_words(a.happened_at) %> ago</td>
         <td><%=a.action %></td>
         <td><%=number_to_currency(a.amount, unit: '') %></td>
