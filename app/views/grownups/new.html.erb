@@ -1,5 +1,62 @@
-<h1>New Grownup</h1>
 
-<%= render 'form' %>
+<br/>
+<br/>
+<div class="row">
+  <div class="col-lg-1">
+  </div>
+  <div class="col-lg-5" style="text-align: center;">
+<%= form_for(@parent) do |f| %>
+  <% if @parent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@parent.errors.count, "error") %> prohibited this parent from being saved:</h2>
 
-<%= link_to 'Back', grownups_path %>
+      <ul>
+      <% @parent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'My name is (first and last)' %><br>
+    <%= f.text_field :fname, id: 'fname', style: 'font-size: 24px;' %>
+  </div>
+  <div class="field">
+    <br/>
+    <%= f.label "My kid's name is (first and last)" %><br>
+    <%= f.text_field :lname, style: 'font-size: 24px;' %>
+  </div>
+  <div class="field">
+    <br/>
+    <%= f.label "My email is:" %><br>
+    <%= f.text_field :email, style: 'font-size: 24px; width: 400px;' %>
+  </div>
+  <div class="field">
+    <br/>
+    <%= f.label 'My kid was born on' %><br>
+    <%= f.date_select :dob, {start_year: 4.years.ago.year-14, end_year: 4.years.ago.year},
+      style: 'font-size: 24px;' %>
+  </div>
+  <div class="actions">
+    <br/>
+    <%= f.submit value: 'Create Accounts', class: 'btn btn-success' %>
+  </div>
+<% end %>
+  </div>
+  <div class="col-lg-4" style="text-align: center;">
+<div style="padding: 20px; font-size: 24px;">
+  Welcome new parent! Enter your email and your 1st kid's name and age. You can add your 2nd, 3rd, 4th kids in the next step.
+</div>
+<br/>
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
+
+<script>
+$(document).ready(function(){
+  $("#fname").focus();
+});
+</script>

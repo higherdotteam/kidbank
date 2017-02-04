@@ -14,7 +14,8 @@ class GrownupsController < ApplicationController
 
   # GET /grownups/new
   def new
-    @grownup = Grownup.new
+    @parent = Grownup.new
+    @kid = Kid.new
   end
 
   # GET /grownups/1/edit
