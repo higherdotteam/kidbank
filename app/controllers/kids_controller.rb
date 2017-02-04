@@ -19,6 +19,7 @@ class KidsController < ApplicationController
   # GET /kids/new
   def new
     @kid = Kid.new
+    @kid.dob = 4.years.ago
   end
 
   # GET /kids/1/edit

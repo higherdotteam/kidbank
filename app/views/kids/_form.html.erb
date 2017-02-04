@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label 'I was born on' %><br>
-    <%= f.datetime_select :dob %>
+    <%= f.date_select :dob, start_year: 4.years.ago.year-14, end_year: 4.years.ago.year %>
   </div>
   <div class="actions">
     <%= f.submit %>
