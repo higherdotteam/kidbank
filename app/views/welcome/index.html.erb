@@ -51,7 +51,7 @@
     <div class="actions">
       <br/>
       <%= f.submit value: 'Set as Co-Parent', class: 'btn btn-info' %>
-      <a href="#" onclick="$('set-co-form'+<%=k.id%>).hide()" class="btn btn-danger">Cancel</a>
+      <a href="#" onclick="$('set-co-form'+<%=k.id%>).hide(); return false;" class="btn btn-danger">Cancel</a>
     </div>
   <% end %>
       
