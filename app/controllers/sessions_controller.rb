@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     if params[:kid]
       session[:person_id] = Customer.first.id
     else
-      session[:person_id] = Customer.last.id
+      session[:person_id] = Customer.find_by_email('andrew@higher.team').id
     end
     redirect_to '/'
   end
