@@ -35,7 +35,7 @@
     </tr>
   <% current_user.kids.compact.each do |k| %>
     <tr>
-      <td> <%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete'%></td>
+      <td> <%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%></td>
       <td> Jane Smith</td>
       <td> Jane Smith</td>
     </tr>
