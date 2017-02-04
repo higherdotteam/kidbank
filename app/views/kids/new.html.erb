@@ -20,7 +20,7 @@
 
   <div class="field">
     <%= f.label 'My First Name Is' %><br>
-    <%= f.text_field :fname %>
+    <%= f.text_field :fname, id: 'fname' %>
   </div>
   <div class="field">
     <br/>
@@ -53,3 +53,9 @@
 <br/>
 <br/>
 <br/>
+
+<script>
+$(document).ready(function(){
+  $("#fname").focus();
+});
+</script>
