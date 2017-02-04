@@ -20,22 +20,23 @@
 
   <div class="field">
     <%= f.label 'My First Name Is' %><br>
-    <%= f.text_field :fname, id: 'fname' %>
+    <%= f.text_field :fname, id: 'fname', style: 'font-size: 24px;' %>
   </div>
   <div class="field">
     <br/>
     <%= f.label 'My Last Name Is' %><br>
-    <%= f.text_field :lname %>
+    <%= f.text_field :lname, style: 'font-size: 24px;' %>
   </div>
   <div class="field">
     <br/>
     <%= f.label "My mom or dad's email is:" %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, style: 'font-size: 24px; width: 400px;' %>
   </div>
   <div class="field">
     <br/>
     <%= f.label 'I was born on' %><br>
-    <%= f.date_select :dob, start_year: 4.years.ago.year-14, end_year: 4.years.ago.year %>
+    <%= f.date_select :dob, {start_year: 4.years.ago.year-14, end_year: 4.years.ago.year},
+      style: 'font-size: 24px;' %>
   </div>
   <div class="actions">
     <br/>
