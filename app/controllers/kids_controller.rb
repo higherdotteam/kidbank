@@ -60,10 +60,7 @@ class KidsController < ApplicationController
   # DELETE /kids/1.json
   def destroy
     @kid.destroy
-    respond_to do |format|
-      format.html { redirect_to kids_url, notice: 'Kid was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to '/'
   end
 
   private
