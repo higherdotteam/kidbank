@@ -20,6 +20,7 @@ class KidsController < ApplicationController
   def new
     @kid = Kid.new
     @kid.dob = 4.years.ago
+    @hide_menu = true
   end
 
   # GET /kids/1/edit
