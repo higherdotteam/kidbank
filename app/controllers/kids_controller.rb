@@ -5,31 +5,30 @@ class KidsController < ApplicationController
     render layout: 'react'
   end
 
-  # GET /kids
-  # GET /kids.json
   def index
     @kids = Kid.all
   end
 
-  # GET /kids/1
-  # GET /kids/1.json
   def show
   end
 
-  # GET /kids/new
   def new
     @kid = Kid.new
     @kid.dob = 4.years.ago
     @hide_menu = true
   end
 
-  # GET /kids/1/edit
   def edit
   end
 
-  # POST /kids
-  # POST /kids.json
   def create
+    if current_user
+      Kid.add_to(current_user)
+      redirect_to '/'
+      return
+    else
+    end
+
     @kid = Kid.new(kid_params)
 
     respond_to do |format|
