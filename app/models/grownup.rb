@@ -1,2 +1,2 @@
-class Grownup < ActiveRecord::Base
+class Grownup < Customer
 end
