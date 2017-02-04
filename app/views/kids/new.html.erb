@@ -2,13 +2,9 @@
 <br/>
 <br/>
 <div class="row">
-  <div class="col-lg-2">
+  <div class="col-lg-1">
   </div>
-  <div class="col-lg-3" style="text-align: center;">
-<div style="padding: 20px; font-size: 24px;">
-  Welcome new kid! Go get your mom or dad* and together we'll make you a new account.
-</div>
-<br/>
+  <div class="col-lg-5" style="text-align: center;">
 <%= form_for(@kid) do |f| %>
   <% if @kid.errors.any? %>
     <div id="error_explanation">
@@ -27,29 +23,33 @@
     <%= f.text_field :fname %>
   </div>
   <div class="field">
+    <br/>
     <%= f.label 'My Last Name Is' %><br>
     <%= f.text_field :lname %>
   </div>
   <div class="field">
+    <br/>
     <%= f.label "My mom or dad's email is:" %><br>
     <%= f.text_field :email %>
   </div>
   <div class="field">
+    <br/>
     <%= f.label 'I was born on' %><br>
     <%= f.date_select :dob, start_year: 4.years.ago.year-14, end_year: 4.years.ago.year %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <br/>
+    <%= f.submit value: 'Okay Let Me In!', class: 'btn btn-info' %>
   </div>
 <% end %>
   </div>
-  <div class="col-lg-2" style="text-align: center;">
-  </div>
-  <div class="col-lg-2" style="text-align: center;">
+  <div class="col-lg-4" style="text-align: center;">
+<div style="padding: 20px; font-size: 24px;">
+  Welcome new kid! Go get your mom or dad* and together we'll make you a new account.
+</div>
+<br/>
   </div>
 </div>
 <br/>
 <br/>
 <br/>
-
-<%= link_to 'Back', kids_path %>
