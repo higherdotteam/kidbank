@@ -1,6 +1,6 @@
 class Kid < Customer
   
-  has_many :observers
+  has_many :observers, :dependent: 'destory'
 
   def non_co_parent_observers
     observers.where.not(flavor: 'co_parent').to_a
