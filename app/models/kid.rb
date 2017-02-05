@@ -1,6 +1,10 @@
 class Kid < Customer
   
   has_many :observers
+
+  def non_co_parent_observers
+    observers.where.not(flavor: 'co_parent').to_a
+  end
   
   def co_parent
     co = observers.where(flavor: 'co_parent').first
