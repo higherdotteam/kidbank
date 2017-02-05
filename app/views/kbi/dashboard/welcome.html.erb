@@ -10,7 +10,11 @@
   <% Customer.all.order(:id).limit(1000).each do |c| %>
     <tr>
       <td><%= c.id %></td>
-      <td><%= c.name %></td>
+      <td>
+        <%= c.name %>
+        <br/>
+        <%= c.email %>
+      </td>
       <td><%= c.age %></td>
       <td></td>
     </tr>

@@ -8,7 +8,7 @@ class Customer < ActiveRecord::Base
   end
 
   def name
-    fname + ' ' + lname
+    fname.to_s + ' ' + lname.to_s
   end
 
   def under_13?

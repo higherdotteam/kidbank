@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def new
+    @customer = Customer.new
+    @hide_menu = true
   end
   def create
     if params[:kid]

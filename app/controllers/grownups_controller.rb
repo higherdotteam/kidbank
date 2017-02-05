@@ -1,30 +1,26 @@
 class GrownupsController < ApplicationController
   before_action :set_grownup, only: [:show, :edit, :update, :destroy]
 
-  # GET /grownups
-  # GET /grownups.json
+  def login
+    redirect_to '/'
+  end
+
   def index
     @grownups = Grownup.all
   end
 
-  # GET /grownups/1
-  # GET /grownups/1.json
   def show
   end
 
-  # GET /grownups/new
   def new
     @parent = Grownup.new
     @kid = Kid.new
     @hide_menu = true
   end
 
-  # GET /grownups/1/edit
   def edit
   end
 
-  # POST /grownups
-  # POST /grownups.json
   def create
     @grownup = Grownup.new(grownup_params)
 
@@ -39,8 +35,6 @@ class GrownupsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /grownups/1
-  # PATCH/PUT /grownups/1.json
   def update
     respond_to do |format|
       if @grownup.update(grownup_params)
