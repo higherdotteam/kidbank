@@ -29,12 +29,16 @@
 <% else %>
   <table class="table">
     <tr>
+      <th>Level</th>
+      <th>Age For Level</th>
       <th>Kid</th>
       <th>Co-Parent</th>
       <th>Observer</th>
     </tr>
   <% current_user.kids.compact.each do |k| %>
     <tr class="black">
+      <td> Level 1, Savings</td>
+      <td> <%= k.age %> &#x2714; </td>
       <td> <%= link_to '[su]', login_as_kid_path(k), method: 'post' %>  <%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%></td>
       <td> <a href="#" onclick="$('#set-co-form<%=k.id%>').show(); return false;"><%= k.co_parent %></a>
       
