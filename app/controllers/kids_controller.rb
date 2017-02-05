@@ -52,6 +52,17 @@ class KidsController < ApplicationController
       redirect_to '/'
       return
     else
+      # kid"=>{"fname"=>"bobby", "lname"=>"smith", "email"=>"break@dance.com", "dob(1i)"=>"2003", "dob(2i)"=>"2", "dob(3i)"=>"5"
+      c = Customer.find_by_email(params[:kid][:email])
+      if c
+        flash[:notice] = 'Email already in system, your mom or dad* can login.'
+        redirect_to '/'
+        return
+      end
+
+      session[:person_id] = kid.id
+      redirect_to '/'
+      return
     end
 
     @kid = Kid.new(kid_params)
@@ -67,8 +78,6 @@ class KidsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /kids/1
-  # PATCH/PUT /kids/1.json
   def update
     respond_to do |format|
       if @kid.update(kid_params)
@@ -81,15 +90,12 @@ class KidsController < ApplicationController
     end
   end
 
-  # DELETE /kids/1
-  # DELETE /kids/1.json
   def destroy
     @kid.destroy
     redirect_to '/'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_kid
       @kid = Kid.find(params[:id])
     end
