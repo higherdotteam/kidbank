@@ -69,7 +69,7 @@ class KidsController < ApplicationController
       etokens = params[:kid][:email].split('@')
       momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
 
-      kid=Kid.create(email: momdadplus, dob: dob, fname: params[:kid][:fname], lname: params[:kid][:lname], password: 'dog'+rand(999).to_s)
+      kid=Kid.create(email: momdadplus, dob: dob, fname: params[:kid][:fname], lname: params[:kid][:lname])
       KidGrownup.create(kid_id: kid.id, grownup_id: c.id)
 
       session[:person_id] = kid.id

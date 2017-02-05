@@ -20,6 +20,7 @@ class Customer < ActiveRecord::Base
   end
 
   def age
+    return 0 unless dob
     sec = Time.now.to_i - dob.to_time.to_i
     years = (((sec / 60) / 60 / 24) / 365)
   end

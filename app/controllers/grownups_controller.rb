@@ -41,7 +41,7 @@ class GrownupsController < ApplicationController
     momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
 
     dob=Date.parse(params[:grownup]['dob(1i)']+'-'+ params[:grownup]['dob(2i)'] + '-'+ params[:grownup]['dob(3i)'])
-    kid=Kid.create(email: momdadplus, dob: dob, fname: ktokens.first, lname: ktokens[1..-1].join(' '), password: 'dog'+rand(999).to_s)
+    kid=Kid.create(email: momdadplus, dob: dob, fname: ktokens.first, lname: ktokens[1..-1].join(' '))
     KidGrownup.create(kid_id: kid.id, grownup_id: c.id)
 
     session[:person_id] = c.id

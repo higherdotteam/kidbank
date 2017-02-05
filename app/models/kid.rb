@@ -2,6 +2,7 @@ class Kid < Customer
   
   has_many :observers, :dependent => :destroy
   belongs_to :customer, :dependent => :destroy
+  before_validation :make_pass
 
   def non_co_parent_observers
     observers.where.not(flavor: 'co_parent').to_a
@@ -14,8 +15,12 @@ class Kid < Customer
   end
 
   def self.add_to(parent, momdadplus, dob, fname, lname)
-    k=Customer.create(fname: fname, lname: lname, dob: dob, email: momdadplus, password: '123')
+    k=Customer.create(fname: fname, lname: lname, dob: dob, email: momdadplus)
 
     KidGrownup.create(kid_id: k.id, grownup_id: parent.id)
+  end
+
+  def make_pass
+    self.pass = 'wefwfwef'
   end
 end
