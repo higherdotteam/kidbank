@@ -55,7 +55,7 @@ class KidsController < ApplicationController
       # kid"=>{"fname"=>"bobby", "lname"=>"smith", "email"=>"break@dance.com", "dob(1i)"=>"2003", "dob(2i)"=>"2", "dob(3i)"=>"5"
       c = Customer.find_by_email(params[:kid][:email])
       if c
-        flash[:notice] = 'Email already in system, your mom or dad* can login.'
+        flash[:notice] = 'Email already in system, your mom or dad* can login and give you your password.'
         redirect_to '/sessions/new'
         return
       end

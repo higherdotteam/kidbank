@@ -39,7 +39,13 @@
     <tr class="black">
       <td> Level 1, Savings</td>
       <td> <%= k.age %> &#x2714; </td>
-      <td> <%= link_to '[su]', login_as_kid_path(k), method: 'post' %>  <%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%></td>
+      <td> 
+        <div><%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%>
+        </div>
+        <div>
+          Password: <code><%=k.password%></code> <%= link_to 'login as', login_as_kid_path(k), method: 'post' %>
+        </div>
+    </td>
       <td> <a href="#" onclick="$('#set-co-form<%=k.id%>').show(); return false;"><%= k.co_parent %></a>
       
   <%= form_for(Customer.new, url: set_co_parent_kid_path(k), method: 'post', html: {id: 'set-co-form'+k.id.to_s, style: 'display: none;'}) do |f| %>
@@ -55,7 +61,7 @@
     <div class="actions white">
       <br/>
       <%= f.submit value: 'Set as Co-Parent', class: 'btn btn-info' %>
-      <a href="#" onclick="$('#set-co-form<%=k.id%>').hide(); return false;" class="btn btn-danger">Cancel</a>
+      <a href="#" style="color: white;" onclick="$('#set-co-form<%=k.id%>').hide(); return false;" class="btn btn-danger">Cancel</a>
     </div>
   <% end %>
       

@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Customer.delete_all
-k1=Customer.create(fname: 'Jackson', lname: 'Arrow', dob: 7.years.ago, email: 'jsarrow@kid.org', password: '123')
-k2=Customer.create(fname: 'Jason', lname: 'Arrow', dob: 4.years.ago, email: 'jgarrow@kid.org', password: '123')
-k3=Customer.create(fname: 'Athena', lname: 'Arrow', dob: 1.years.ago, email: 'aarrow@kid.org', password: '123')
+k1=Customer.create(fname: 'Jackson', lname: 'Arrow', dob: 7.years.ago, email: 'jsarrow@kid.org', password: 'dog123')
+k2=Customer.create(fname: 'Jason', lname: 'Arrow', dob: 4.years.ago, email: 'jgarrow@kid.org', password: 'cat123')
+k3=Customer.create(fname: 'Athena', lname: 'Arrow', dob: 1.years.ago, email: 'aarrow@kid.org', password: 'fish123')
 
 Token.delete_all
 Token.create(customer_id: k1.id, token: 'AB467-1389', flavor: 'apple')
