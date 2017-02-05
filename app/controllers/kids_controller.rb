@@ -23,6 +23,12 @@ class KidsController < ApplicationController
   def set_observer
     redirect_to '/'
   end
+
+  def login_as
+    set_kid
+    session[:person_id] = @kid.id
+    redirect_to '/'
+  end
   
   def index
     @kids = Kid.all

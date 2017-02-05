@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     member do
       post :set_co_parent
       post :set_observer
+      post :login_as
     end
   end
   resources :kid_grownups
