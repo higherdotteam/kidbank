@@ -67,7 +67,7 @@ class KidsController < ApplicationController
       momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
 
       kid=Kid.create(email: momdadplus, dob: dob)
-      KidGrownup.create(kid_id: k.id, grownup_id: c.id)
+      KidGrownup.create(kid_id: kid.id, grownup_id: c.id)
 
       session[:person_id] = kid.id
       redirect_to '/'
