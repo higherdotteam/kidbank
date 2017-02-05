@@ -8,5 +8,10 @@ class Grownup < Customer
      Snake Sheep Starfish Tadpole Tiger Turkey Turtle Tortoise Zebra}
 
     a=words[rand(words.size)].downcase+(rand(9)+1).to_s
+    b=words[rand(words.size)].downcase+(rand(9)+1).to_s
+    c=words[rand(words.size)].downcase+(rand(9)+1).to_s
+    d=words[rand(words.size)].downcase+(rand(9)+1).to_s
+
+    self.password = "#{a} #{b} #{c} #{d}"
   end
 end
