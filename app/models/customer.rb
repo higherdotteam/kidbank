@@ -25,8 +25,8 @@ class Customer < ActiveRecord::Base
   end
 
   def make_tokens
-    Token.create(customer_id: id, token: 'A'+rand(9999) + '-' + rand(9999).to_s, flavor: 'apple')
-    Token.create(customer_id: id, token: 'A'+rand(9999) + '-' + rand(9999).to_s, flavor: 'android')
+    Token.create(customer_id: id, token: 'A'+rand(9999).to_s + '-' + rand(9999).to_s, flavor: 'apple')
+    Token.create(customer_id: id, token: 'A'+rand(9999).to_s + '-' + rand(9999).to_s, flavor: 'android')
 
     Account.create(flavor: 'savings', balance: 100.00, kid_id: id)
   end
