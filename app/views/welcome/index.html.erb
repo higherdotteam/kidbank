@@ -36,7 +36,7 @@
   <% current_user.kids.compact.each do |k| %>
     <tr>
       <td> <%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%></td>
-      <td> <a href="#" onclick="$('#set-co-form<%=k.id%>').show(); return false;">Jane Smith</a>
+      <td class="black"> <a href="#" onclick="$('#set-co-form<%=k.id%>').show(); return false;">Jane Smith</a>
       
   <%= form_for(Customer.new, url: set_co_parent_kid_path(k), method: 'post', html: {id: 'set-co-form'+k.id.to_s, style: 'display: none;'}) do |f| %>
     <div class="field">

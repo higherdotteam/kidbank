@@ -1,1 +1,2 @@
-.header a:visited {color: white;}
+a:visited {color: white;}
+.black a:visited {color: black;}
