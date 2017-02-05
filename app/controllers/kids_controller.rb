@@ -15,7 +15,7 @@ class KidsController < ApplicationController
                         dob: 18.years.ago)
     end
     @kid.observers.where(flavor: 'co_parent').destroy_all
-    @kid.observers.create(observer_id: c.id, kid_id: @kid.id)
+    @kid.observers.create(observer_id: c.id, kid_id: @kid.id, flavor: 'co_parent')
 
     redirect_to '/'
   end

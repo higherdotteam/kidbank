@@ -9,7 +9,7 @@ class Kid < Customer
   def co_parent
     co = observers.where(flavor: 'co_parent').first
     return 'none set yet' unless co
-    co.grownup.name
+    co.observer.name
   end
 
   def self.add_to(parent)
