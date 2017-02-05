@@ -1,10 +1,22 @@
 class KidsController < ApplicationController
   before_action :set_kid, only: [:show, :edit, :update, :destroy]
 
-  def react
-    render layout: 'react'
+  def set_co_parent
+    set_kid
+    #"customer"=>{"fname"=>"wefwef", "email"=>"wefwef"}
+    c=Customer.find_by_email(params[:csutomer][:email])
+    if c
+      @kid.observers.where(flavor: 'co_parent').destroy_all
+      @kid.observers.create(parent_id: c.id, kid_id: @kid.id)
+    end
+
+    redirect_to '/'
   end
 
+  def set_observer
+    redirect_to '/'
+  end
+  
   def index
     @kids = Kid.all
   end
