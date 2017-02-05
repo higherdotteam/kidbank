@@ -62,6 +62,10 @@ class KidsController < ApplicationController
 
       c=Grownup.create(email: params[:kid][:email], dob: 18.years.ago)
       dob=Date.parse(params[:kid]['dob(1i)']+'-'+ params[:kid]['dob(2i)'] + '-'+ params[:kid]['dob(3i)'])
+
+      etokens = params[:kid][:email].split('@')
+      momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
+
       kid=Kid.create(email: momdadplus, dob: dob)
       KidGrownup.create(kid_id: k.id, grownup_id: c.id)
 
