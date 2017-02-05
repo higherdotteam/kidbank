@@ -1,1 +1,21 @@
-hi
+  <br/>
+  <br/>
+  <br/>
+  <table class="table">
+    <tr>
+      <th>id (<%=Customer.all.count%>)</th>
+      <th>name</th>
+      <th>dob</th>
+    </tr>
+  <% Customer.all.order(:id).limit(1000).each do |c| %>
+    <tr>
+      <td><%= c.id %></td>
+      <td><%= c.name %></td>
+      <td><%= c.age %></td>
+      <td></td>
+    </tr>
+  <% end %>
+  </table>
+  <br/>
+  <br/>
+  <br/>
