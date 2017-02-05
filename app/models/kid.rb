@@ -22,8 +22,8 @@ class Kid < Customer
 
   def make_pass
 
-    words = %W{Bat Bird Bunny Chicken Crab Ducks Elephant Fish Frog Giraffe Hedgehog Jellyfish Leopard 
-     Monkey Moose Mouse Octopus Owl Panda Peacock Penguin Pig Rabbit Reindeer Seahorse Sea Urchin
+    words = %W{Bat Bird Bunny Cat Chicken Crab Dog Ducks Elephant Fish Frog Giraffe Hedgehog Jellyfish Leopard 
+     Monkey Moose Mouse Octopus Owl Panda Penguin Pig Rat Rabbit Reindeer Seahorse Sea Urchin
      Snake Sheep Starfish Tadpole Tiger Turkey Turtle Tortoise Zebra}
 
     self.password = words[rand(words.size)].downcase+rand(999).to_s
