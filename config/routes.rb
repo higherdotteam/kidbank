@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   resources :sessions
   resources :phones
 
+  namespace "kbi" do
+    root 'dashboard#welcome'
+  end
+
   namespace "api" do
     root 'api#welcome'
     namespace "v1" do
