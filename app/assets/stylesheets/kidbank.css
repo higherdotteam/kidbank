@@ -1,2 +1,4 @@
-a:visited {color: white;}
-.black a:visited {color: black;}
+a.btn, a.btn:visited, a.btn:hover, a.btn:active {color: white;}
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
