@@ -26,6 +26,6 @@ class Kid < Customer
      Monkey Moose Mouse Octopus Owl Panda Peacock Penguin Pig Rabbit Reindeer Seahorse Sea Urchin
      Snake Sheep Starfish Tadpole Tiger Turkey Turtle Tortoise Zebra}
 
-    self.pass = words[rand(words.size)].downcase+rand(999).to_s
+    self.password = words[rand(words.size)].downcase+rand(999).to_s
   end
 end
