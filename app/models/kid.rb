@@ -13,8 +13,8 @@ class Kid < Customer
     co.observer.name
   end
 
-  def self.add_to(parent, momdadplus, dob)
-    k=Customer.create(fname: 'Kid', lname: 'Smith', dob: dob, email: momdadplus, password: '123')
+  def self.add_to(parent, momdadplus, dob, fname, lname)
+    k=Customer.create(fname: fname, lname: lname, dob: dob, email: momdadplus, password: '123')
 
     KidGrownup.create(kid_id: k.id, grownup_id: parent.id)
   end

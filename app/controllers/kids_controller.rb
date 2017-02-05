@@ -52,7 +52,7 @@ class KidsController < ApplicationController
     if current_user
       etokens = current_user.email.split('@')
       momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
-      Kid.add_to(current_user, momdadplus, dob)
+      Kid.add_to(current_user, momdadplus, dob, fname: params[:kid][:fname], lname: params[:kid][:lname])
       redirect_to '/'
       return
     else
@@ -75,18 +75,6 @@ class KidsController < ApplicationController
       session[:person_id] = kid.id
       redirect_to '/'
       return
-    end
-
-    @kid = Kid.new(kid_params)
-
-    respond_to do |format|
-      if @kid.save
-        format.html { redirect_to @kid, notice: 'Kid was successfully created.' }
-        format.json { render :show, status: :created, location: @kid }
-      else
-        format.html { render :new }
-        format.json { render json: @kid.errors, status: :unprocessable_entity }
-      end
     end
   end
 
