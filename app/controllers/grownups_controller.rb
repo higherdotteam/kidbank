@@ -36,6 +36,14 @@ class GrownupsController < ApplicationController
     ktokens = flk.split(' ')
 
     c = Customer.create(fname: ptokens.first, lname: ptokens[1..-1].join(' '), email: params[:grownup][:email], dob: 18.years.ago)
+
+    etokens = c.email.split('@')
+    momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
+
+    dob=Date.parse(params[:grownup]['dob(1i)']+'-'+ params[:grownup]['dob(2i)'] + '-'+ params[:grownup]['dob(3i)'])
+    kid=Kid.create(email: momdadplus, dob: dob, fname: ktokens.first, lname: ktokens[1..-1].join(' '), password: 'dog'+rand(999).to_s)
+    KidGrownup.create(kid_id: kid.id, grownup_id: c.id)
+
     session[:person_id] = c.id
     redirect_to '/'
   end
