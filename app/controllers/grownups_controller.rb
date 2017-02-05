@@ -31,9 +31,11 @@ class GrownupsController < ApplicationController
     end
 
     flp = params[:grownup][:fname] #first last parent
+    ptokens = flp.split(' ')
     flk = params[:grownup][:lname] #first last kid
+    ktokens = flk.split(' ')
 
-    c = Create(fname: f, lname: l, email: params[:grownup][:email])
+    c = Create(fname: ptokens.first, lname: ptokens[1..-1].join(' '), email: params[:grownup][:email])
     session[:person_id] = c.id
     redirect_to '/'
   end
