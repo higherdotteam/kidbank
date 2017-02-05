@@ -47,8 +47,12 @@ class KidsController < ApplicationController
   end
 
   def create
+    dob=Date.parse(params[:kid]['dob(1i)']+'-'+ params[:kid]['dob(2i)'] + '-'+ params[:kid]['dob(3i)'])
+
     if current_user
-      Kid.add_to(current_user)
+      etokens = current_user.email.split('@')
+      momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
+      Kid.add_to(current_user, momdadplus, dob)
       redirect_to '/'
       return
     else
@@ -61,12 +65,11 @@ class KidsController < ApplicationController
       end
 
       c=Grownup.create(email: params[:kid][:email], dob: 18.years.ago)
-      dob=Date.parse(params[:kid]['dob(1i)']+'-'+ params[:kid]['dob(2i)'] + '-'+ params[:kid]['dob(3i)'])
 
       etokens = params[:kid][:email].split('@')
       momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
 
-      kid=Kid.create(email: momdadplus, dob: dob, fname: params[:kid][:fname], lname: params[:kid][:lname])
+      kid=Kid.create(email: momdadplus, dob: dob, fname: params[:kid][:fname], lname: params[:kid][:lname], password: 'dog'+rand(999).to_s)
       KidGrownup.create(kid_id: kid.id, grownup_id: c.id)
 
       session[:person_id] = kid.id

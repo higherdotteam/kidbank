@@ -6,12 +6,24 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:kid]
-      session[:person_id] = Customer.first.id
-    else
-      session[:person_id] = Customer.find_by_email('andrew@higher.team').id
+    # "customer"=>{"email"=>"wefwefwef", "password"=>"wfwefwefwef"},
+    #
+    c = Customer.find_by_email(params[:customer][:email])
+    unless c
+      flash[:notice] = 'Check that email make sure you typed it exactly right.'
+      redirect_to '/sessions/new'
+      return
     end
-    redirect_to '/'
+    
+    if c.password == params[:customer][:password]
+      session[:person_id] = c.id
+      redirect_to '/'
+      return
+    else
+      flash[:notice] = 'Check that password make sure you typed it exactly right.'
+      redirect_to '/sessions/new'
+      return
+    end
   end
 
   def destroy
