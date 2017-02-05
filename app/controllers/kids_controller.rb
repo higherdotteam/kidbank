@@ -4,11 +4,18 @@ class KidsController < ApplicationController
   def set_co_parent
     set_kid
     #"customer"=>{"fname"=>"wefwef", "email"=>"wefwef"}
-    c=Customer.find_by_email(params[:csutomer][:email])
-    if c
-      @kid.observers.where(flavor: 'co_parent').destroy_all
-      @kid.observers.create(parent_id: c.id, kid_id: @kid.id)
+    c=Customer.find_by_email(params[:customer][:email])
+    unless c
+      tokens = params[:customer][:fname].split(' ')
+      f = tokens.first
+      l = tokens.last
+      c=Grownup.create(email: params[:customer][:email],
+                        fname: f,
+                        lname: l,
+                        dob: 18.years.ago)
     end
+    @kid.observers.where(flavor: 'co_parent').destroy_all
+    @kid.observers.create(observer_id: c.id, kid_id: @kid.id)
 
     redirect_to '/'
   end
