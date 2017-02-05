@@ -52,7 +52,7 @@ class KidsController < ApplicationController
     if current_user
       etokens = current_user.email.split('@')
       momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
-      Kid.add_to(current_user, momdadplus, dob, fname: params[:kid][:fname], lname: params[:kid][:lname])
+      Kid.add_to(current_user, momdadplus, dob, params[:kid][:fname], params[:kid][:lname])
       redirect_to '/'
       return
     else
