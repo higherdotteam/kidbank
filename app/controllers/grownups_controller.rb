@@ -22,17 +22,20 @@ class GrownupsController < ApplicationController
   end
 
   def create
-    @grownup = Grownup.new(grownup_params)
-
-    respond_to do |format|
-      if @grownup.save
-        format.html { redirect_to @grownup, notice: 'Grownup was successfully created.' }
-        format.json { render :show, status: :created, location: @grownup }
-      else
-        format.html { render :new }
-        format.json { render json: @grownup.errors, status: :unprocessable_entity }
-      end
+    #"grownup"=>{"fname"=>"wefefw", "lname"=>"wfwef", "email"=>"wefwef", "dob(1i)"=>"1999", "dob(2i)"=>"2", "dob(3i)"=>"5"}
+    c = Customer.find_by_email(params[:grownup][:email])
+    if c
+      flash[:notice] = 'Please just login with that email.'
+      redirect_to '/sessions/new'
+      return
     end
+
+    flp = params[:grownup][:fname] #first last parent
+    flk = params[:grownup][:lname] #first last kid
+
+    c = Create(fname: f, lname: l, email: params[:grownup][:email])
+    session[:person_id] = c.id
+    redirect_to '/'
   end
 
   def update
