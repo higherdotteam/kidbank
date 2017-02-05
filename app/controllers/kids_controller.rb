@@ -63,6 +63,7 @@ class KidsController < ApplicationController
       c=Grownup.create(email: params[:kid][:email], dob: 18.years.ago)
       dob=Date.parse(params[:kid]['dob(1i)']+'-'+ params[:kid]['dob(2i)'] - '-'+ params[:kid]['dob(3i)'])
       kid=Kid.create(email: momdadplus, dob: dob)
+      KidGrownup.create(kid_id: k.id, grownup_id: c.id)
 
       session[:person_id] = kid.id
       redirect_to '/'
