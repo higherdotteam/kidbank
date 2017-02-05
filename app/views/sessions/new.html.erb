@@ -1,13 +1,15 @@
-
+<br/>
+<br/>
+<br/>
   <%= form_for(@customer, url: sessions_path, method: 'post') do |f| %>
     <div class="field">
-      <%= f.label 'First Name' %><br>
-      <%= f.text_field :fname, id: 'fname'%>
+      <%= f.label 'Enter the mom or dad* email here:' %><br>
+      <%= f.text_field :email, id: 'email', size: 50, style: 'font-size: 24px;' %>
     </div>
     <div class="field">
       <br/>
-      <%= f.label 'Last Name' %><br>
-      <%= f.text_field :lname %>
+      <%= f.label 'Enter mom or dad password (to login as grownup) OR kid password (to login as that kid):' %><br>
+      <%= f.text_field :password, size: 50, style: 'font-size: 24px;'  %>
     </div>
     <div class="actions">
       <br/>
