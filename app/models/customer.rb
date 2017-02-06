@@ -11,6 +11,19 @@ class Customer < ActiveRecord::Base
     BANK_TERMS[level-1]
   end
 
+  def total_cash
+    checking+savings
+  end
+
+  def net_worth
+    bills = -1*cards.where(flavor: 'bill').sum(:amount)
+    asum = 0
+    assets.each do |a|
+      asum += a.value
+    end
+    (asum + total_cash) - loan - bills
+  end
+
   def post_new_transactions
     if rand(4) == 2
       cards.create(kid_id: id, flavor: 'deal', action: COMMON_DEALS[rand(COMMON_DEALS.size)], 
