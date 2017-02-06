@@ -2,7 +2,6 @@ class Kid < Customer
   
   has_many :observers, :dependent => :destroy
   belongs_to :customer, :dependent => :destroy
-  before_validation :make_pass
 
   def non_co_parent_observers
     observers.where.not(flavor: 'co_parent').to_a
