@@ -1,5 +1,20 @@
 <% if current_user.under_13? %>
-  You can reset your password
+<br/>
+<br/>
+<br/>
+<div class="row">
+  <div class="col-lg-2">
+  </div>
+  <div class="col-lg-3" style="text-align: center; font-size: 24px;">
+    Remember your password kid, it's <code><%= @current_user.password %></code>
+  </div>
+  <div class="col-lg-4" style="text-align: center; font-size: 18px;">
+    Don't tell anyone your password! 
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
 <% else %>
   
 <br/>
