@@ -5,6 +5,7 @@
     <tr>
       <th>id (<%=Customer.all.count%>)</th>
       <th>name</th>
+      <th>rolled_at</th>
       <th>dob</th>
     </tr>
   <% @items.each do |c| %>
@@ -15,6 +16,7 @@
         <br/>
         <%= c.email %>
       </td>
+      <td><%= c.rolled_at %></td>
       <td><%= c.age %></td>
       <td></td>
     </tr>
