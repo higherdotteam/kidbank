@@ -19,4 +19,8 @@ class Kid < Customer
     KidGrownup.create(kid_id: k.id, grownup_id: parent.id)
   end
 
+  def level_text
+    BANK_TERMS[level-1]
+  end
+
 end
