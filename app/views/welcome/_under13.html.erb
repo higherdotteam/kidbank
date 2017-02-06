@@ -13,7 +13,7 @@
 <div class="row">
   <div class="col-lg-1">
   </div>
-  <div class="col-lg-4" style="">
+  <div class="col-lg-6" style="">
   <table class="table">
     <tr>
       <th></th>
@@ -32,14 +32,17 @@
         (<%= number_to_currency(c.amount*-1, unit: 'ϟ')  %>)
       <% end %>
       </td>
-      <td> <%= c.flavor %></td>
+      <td>
+        <%= c.flavor %>
+        <br/>
+       <%= link_to 'action', bump_level_kid_path(current_user), method: 'post' %>
+    </td>
     </tr>
   <% end %>
   </table>
   </div>
-  <div class="col-lg-1" style="">
-  </div>
   <div class="col-lg-4" style="">
+    <!--
   <table class="table">
     <tr>
       <th>Account</th>
@@ -54,6 +57,7 @@
     </tr>
   <% end %>
   </table>
+    -->
   </div>
 </div>
 
