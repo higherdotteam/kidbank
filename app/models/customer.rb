@@ -16,7 +16,7 @@ class Customer < ActiveRecord::Base
                    amount: "#{rand(999)}.#{rand(99)}".to_f, 
                    happened_at: Time.now)
     elsif rand(4) == 1
-      cards.create(kid_id: id, flavor: 'income', action: COMMON_INCOME[rand(COMMON_INCOME.size)], 
+      cards.create(kid_id: id, flavor: 'check', action: COMMON_INCOME[rand(COMMON_INCOME.size)], 
                    amount: "#{rand(999)}.#{rand(99)}".to_f, 
                    happened_at: Time.now)
     else
