@@ -21,7 +21,7 @@
       <th>Amount</th>
       <th>Type</th>
     </tr>
-  <% current_user.cards.order('happened_at desc').each do |c| %>
+  <% current_user.cards.order('happened_at desc').limit(100).each do |c| %>
     <tr>
       <td style="white-space: nowrap;"> 
        <%= link_to 'x', card_path(c), method: 'delete' %>
@@ -46,6 +46,40 @@
   </table>
   </div>
   <div class="col-lg-4" style="">
+  <table class="table">
+    <tr>
+      <th style="text-align: right;">Checking: </th>
+      <td> 3.33</td>
+    </tr>
+    <tr>
+      <th style="text-align: right;">Savings: </th>
+      <td> 3.33</td>
+    </tr>
+    <tr>
+      <th style="text-align: right;">Total Cash: </th>
+      <td> 6.33</td>
+    </tr>
+    <tr>
+      <th style="text-align: right;"></th>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <th style="text-align: right;">Bills: </th>
+      <td> (3.33)</td>
+    </tr>
+    <tr>
+      <th style="text-align: right;">Assets: </th>
+      <td> 3.33</td>
+    </tr>
+    <tr>
+      <th style="text-align: right;">Loans: </th>
+      <td> (3.33)</td>
+    </tr>
+    <tr>
+      <th style="text-align: right;">Net Worth: </th>
+      <td> 3.33</td>
+    </tr>
+  </table>
     <!--
   <table class="table">
     <tr>
