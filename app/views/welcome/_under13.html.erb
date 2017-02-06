@@ -91,9 +91,9 @@
           <%= a.flavor %>, Sell for <%=link_to number_to_currency(a.value, unit: '')%> <span class="caret"> </span>
         </button>
         <ul class="dropdown-menu">
-            <li> <%= link_to 'to Checking', root_path(source: 'c'), method: 'patch' %> </li>
-            <li> <%= link_to 'to Savings', root_path(source: 's'), method: 'patch' %> </li>
-            <li> <%= link_to 'to Loan', root_path(source: 'l'), method: 'patch' %> </li>
+            <li> <%= link_to 'to Checking', deal_path(a, source: 'c'), method: 'patch' %> </li>
+            <li> <%= link_to 'to Savings', deal_path(a, source: 's'), method: 'patch' %> </li>
+            <li> <%= link_to 'to Loan', deal_path(a, source: 'l'), method: 'patch' %> </li>
         </ul>
       </div>
         <br/>

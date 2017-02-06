@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
   end
   resources :cards
+  resources :deals
   resources :kid_grownups
   resources :grownups
   resources :activities

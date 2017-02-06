@@ -95,6 +95,10 @@ class Customer < ActiveRecord::Base
     post_new_transactions
     post_new_transactions
     post_new_transactions
+    post_new_transactions
+    post_new_transactions
+    post_new_transactions
+    post_new_transactions
   end
 
   
