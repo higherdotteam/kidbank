@@ -49,15 +49,15 @@
   <table class="table">
     <tr>
       <th style="text-align: right;">Checking: </th>
-      <td> 3.33</td>
+      <td> <%= number_to_currency(current_user.checking, unit: 'ϟ')  %></td>
     </tr>
     <tr>
       <th style="text-align: right;">Savings: </th>
-      <td> 3.33</td>
+      <td> <%= number_to_currency(current_user.savings, unit: 'ϟ')  %></td>
     </tr>
     <tr>
       <th style="text-align: right;">Total Cash: </th>
-      <td> 6.33</td>
+      <td> <%= number_to_currency(current_user.checking+current_user.savings, unit: 'ϟ')  %></td>
     </tr>
     <tr>
       <th style="text-align: right;"></th>
@@ -73,7 +73,7 @@
     </tr>
     <tr>
       <th style="text-align: right;">Loans: </th>
-      <td> (3.33)</td>
+      <td> (<%= number_to_currency(current_user.loan, unit: 'ϟ')  %>)</td>
     </tr>
     <tr>
       <th style="text-align: right;">Net Worth: </th>

@@ -28,6 +28,12 @@ class Customer < ActiveRecord::Base
   end
 
   def make_pass
+    
+    self.checking = 1000.00 unless checking
+    self.savings = 0 unless savings
+    self.loan = 0 unless loan
+
+    return if password
 
     words = %W{Bat Bird Bunny Cat Chicken Crab Dog Ducks Elephant Fish Frog Giraffe Hedgehog Jellyfish Leopard 
      Monkey Moose Mouse Octopus Owl Panda Penguin Pig Rat Rabbit Reindeer Seahorse Sea Urchin
@@ -72,7 +78,8 @@ class Customer < ActiveRecord::Base
     Token.create(customer_id: id, token: 'A'+rand(9999).to_s + '-' + rand(9999).to_s, flavor: 'apple')
     Token.create(customer_id: id, token: 'A'+rand(9999).to_s + '-' + rand(9999).to_s, flavor: 'android')
 
-    Account.create(flavor: 'savings', balance: 100.00, kid_id: id)
+    #todo rethink accounts
+    #Account.create(flavor: 'savings', balance: 100.00, kid_id: id)
   end
 
   
