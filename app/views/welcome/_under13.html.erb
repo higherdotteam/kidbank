@@ -5,7 +5,7 @@
     Welcome back <%= current_user.fname %>
   </div>
   <div class="col-lg-4" style="text-align: center; font-size: 18px;">
-    You are at Level <%= current_user.level %> <%= current_user.level_text %>
+    There are <%= current_user.level %> days til next PayDay!
   <br/>
   Click <%= link_to 'here', bump_level_kid_path(current_user), method: 'post' %> to goto next level.
   </div>
@@ -48,26 +48,22 @@
         <br/> 
         <code>C+</code>
   </div>
-</div>
-
-
+  <div class="col-lg-4" style="">
   <table class="table">
+    <tr>
+      <th>Account</th>
+      <th>Balance</th>
+      <th>Type</th>
+    </tr>
   <% current_user.accounts.each do |a| %>
     <tr>
-      <td> <%= link_to a.flavor, account_activities_path(a) %></td>
-      <td></td>
-      <td></td>
+      <td> <%= link_to 'KB '+a.flavor.titleize, account_activities_path(a) %></td>
       <td> <%= link_to number_to_currency(a.balance, unit: 'ϟ'), account_activities_path(a) %></td>
-      </tr>
-  <% a.last_few.each do |a| %>
-      <tr>
-        <td></td>
-        <td><%=time_ago_in_words(a.happened_at) %> ago</td>
-        <td><%=a.action %></td>
-        <td><%=number_to_currency(a.amount, unit: '') %></td>
-      </tr>
-  <% end %>
-      <tr>
+      <td> <%= a.flavor %></td>
     </tr>
   <% end %>
   </table>
+  </div>
+</div>
+
+
