@@ -11,6 +11,11 @@ class Customer < ActiveRecord::Base
      Monkey Moose Mouse Octopus Owl Panda Penguin Pig Rat Rabbit Reindeer Seahorse Sea Urchin
      Snake Sheep Starfish Tadpole Tiger Turkey Turtle Tortoise Zebra}
 
+    if under_13?
+      self.password = words[rand(words.size)].downcase+rand(999).to_s
+      return
+    end
+
     a=words[rand(words.size)].downcase+(rand(9)+1).to_s
     b=words[rand(words.size)].downcase+(rand(9)+1).to_s
     c=words[rand(words.size)].downcase+(rand(9)+1).to_s

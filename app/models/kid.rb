@@ -19,12 +19,4 @@ class Kid < Customer
     KidGrownup.create(kid_id: k.id, grownup_id: parent.id)
   end
 
-  def make_pass
-
-    words = %W{Bat Bird Bunny Cat Chicken Crab Dog Ducks Elephant Fish Frog Giraffe Hedgehog Jellyfish Leopard 
-     Monkey Moose Mouse Octopus Owl Panda Penguin Pig Rat Rabbit Reindeer Seahorse Sea Urchin
-     Snake Sheep Starfish Tadpole Tiger Turkey Turtle Tortoise Zebra}
-
-    self.password = words[rand(words.size)].downcase+rand(999).to_s
-  end
 end
