@@ -39,7 +39,25 @@
       <td>
         <%= c.flavor %>
         <br/>
-       <%= link_to c.action_text, bump_level_kid_path(current_user), method: 'post' %>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= c.action_text %> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% if c.flavor == 'bill' %>
+          <li><a href="#">from Checking</a></li>
+          <li><a href="#">from Savings</a></li>
+          <li><a href="#">from Loan</a></li>
+        <% elsif c.flavor == 'check' %>
+          <li><a href="#">into Checking</a></li>
+          <li><a href="#">into Savings</a></li>
+        <% elsif c.flavor == 'deal' %>
+          <li><a href="#">from Checking</a></li>
+          <li><a href="#">from Savings</a></li>
+          <li><a href="#">from Loan</a></li>
+         <% end %>
+        </ul>
+      </div>
     </td>
     </tr>
   <% end %>
@@ -80,22 +98,6 @@
       <td> 3.33</td>
     </tr>
   </table>
-    <!--
-  <table class="table">
-    <tr>
-      <th>Account</th>
-      <th>Balance</th>
-      <th>Type</th>
-    </tr>
-  <% current_user.accounts.each do |a| %>
-    <tr>
-      <td> <%= link_to 'KB '+a.flavor.titleize, account_activities_path(a) %></td>
-      <td> <%= link_to number_to_currency(a.balance, unit: 'ϟ'), account_activities_path(a) %></td>
-      <td> <%= a.flavor %></td>
-    </tr>
-  <% end %>
-  </table>
-    -->
   </div>
 </div>
 
