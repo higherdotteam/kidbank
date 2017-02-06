@@ -14,27 +14,33 @@
     <%= f.label 'First Name' %><br>
     <%= f.text_field :fname %>
   </div>
-  <div class="field">
-    <%= f.label "Email:" %><br>
-    <%= f.text_field :email %>
-  </div>
-  </div>
-  <div class="col-lg-4" style="text-align: center;">
+  <br/>
+  <br/>
   <div class="field">
     <%= f.label 'Last Name' %><br>
     <%= f.text_field :lname %>
   </div>
+  <br/>
+  <br/>
+  <div class="actions">
+    <%= f.submit value: 'Save Changes', class: 'btn btn-info' %>
+  </div>
+  </div>
+  <div class="col-lg-4" style="text-align: center;">
+  <div class="field">
+    <%= f.label "Email:" %><br>
+    <%= f.text_field :email %>
+  </div>
+  <br/>
+  <br/>
   <div class="field">
     <%= f.label "Your DOB not your kid's" %><br>
-    <%= f.date_select :dob, start_year: 4.years.ago.year-14, end_year: 4.years.ago.year %>
+    <%= f.date_select :dob, start_year: 117.years.ago.year, end_year: 13.years.ago.year %>
   </div>
   </div>
   <div class="col-lg-2" style="text-align: center;">
   </div>
 </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
 <br/>
 <br/>
