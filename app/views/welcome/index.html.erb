@@ -55,7 +55,7 @@
     </tr>
   <% current_user.kids.compact.each do |k| %>
     <tr class="black">
-      <td> Level 1, Savings</td>
+      <td> Level <%=k.level%>, Savings</td>
       <td> <%= k.age %> &#x2714; </td>
       <td> 
         <div><%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%>
