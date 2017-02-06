@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       post :bump_level
     end
   end
+  resources :cards
   resources :kid_grownups
   resources :grownups
   resources :activities
