@@ -21,7 +21,7 @@ class Customer < ActiveRecord::Base
                    happened_at: Time.now)
     else
       cards.create(kid_id: id, flavor: 'bill', action: COMMON_BILLS[rand(COMMON_BILLS.size)], 
-                   amount: "#{rand(999)}.#{rand(99)}".to_f, 
+                   amount: "-#{rand(999)}.#{rand(99)}".to_f, 
                    happened_at: Time.now)
     end
     update_attributes(rolled_at: Time.now)

@@ -25,7 +25,13 @@
     <tr>
       <td style="white-space: nowrap;"> <%= time_ago_in_words(c.happened_at) %> ago</td>
       <td style="white-space: nowrap;"> <%= c.action %></td>
-      <td> <%= link_to number_to_currency(c.amount, unit: 'ϟ'), root_path() %></td>
+      <td style="white-space: nowrap;"> 
+        <% if c.amount > 0 %>
+        <%= number_to_currency(c.amount, unit: 'ϟ')  %>
+      <% else %>
+        (<%= number_to_currency(c.amount*-1, unit: 'ϟ')  %>)
+      <% end %>
+      </td>
       <td> <%= c.flavor %></td>
     </tr>
   <% end %>
