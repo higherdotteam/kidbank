@@ -1,13 +1,10 @@
 <div class="row">
-  <div class="col-lg-2">
+  <div class="col-lg-1">
   </div>
-  <div class="col-lg-3" style="text-align: center; font-size: 24px;">
-    Welcome back <%= current_user.fname %>
+  <div class="col-lg-5" style="text-align: center; font-size: 24px;">
+    <%= @next_event_hours.round(1) %> hour(s) until new transactions post
   </div>
   <div class="col-lg-4" style="text-align: center; font-size: 18px;">
-    There are <%= current_user.level %> days til next PayDay!
-  <br/>
-  Click <%= link_to 'here', bump_level_kid_path(current_user), method: 'post' %> to goto next level.
   </div>
 </div>
 <br/>

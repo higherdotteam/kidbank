@@ -9,6 +9,17 @@ class Customer < ActiveRecord::Base
     BANK_TERMS[level-1]
   end
 
+  def post_new_transactions
+    if rand(4) == 2
+      COMMON_DEALS 
+    elsif rand(4) == 1
+      COMMON_INCOME 
+    else
+      COMMON_BILLS 
+    end
+    update_attributes(rolled_at: Time.now)
+  end
+
   def make_pass
 
     words = %W{Bat Bird Bunny Cat Chicken Crab Dog Ducks Elephant Fish Frog Giraffe Hedgehog Jellyfish Leopard 

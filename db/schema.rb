@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206034034) do
+ActiveRecord::Schema.define(version: 20170206045554) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "kid_id"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20170206034034) do
     t.integer  "account_id"
     t.float    "amount"
     t.string   "action"
+    t.datetime "happened_at"
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.integer  "kid_id"
+    t.float    "amount"
+    t.string   "action"
+    t.string   "flavor"
     t.datetime "happened_at"
   end
 

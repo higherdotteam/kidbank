@@ -1,5 +1,5 @@
 COMMON_DEALS = [
-  'Stock in KB'
+  'Stock in KB',
   'Rare Painting',
   'Prize Race Horse',
   'New Computer',
