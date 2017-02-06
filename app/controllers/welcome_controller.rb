@@ -4,8 +4,8 @@ class WelcomeController < ApplicationController
 
     if current_user
       if current_user.under_13?
-        if current_user.last_rolled == nil || (current_user.last_rolled.day != Time.now.day)
-          current_user.update_attributes(last_rolled: Time.now)
+        if current_user.rolled_at == nil || (current_user.rolled_at.day != Time.now.day)
+          current_user.update_attributes(rolled_at: Time.now)
         end
       end
     end
