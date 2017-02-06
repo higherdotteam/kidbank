@@ -79,11 +79,15 @@
     </tr>
     <tr>
       <th style="text-align: right;">Bills: </th>
-      <td> (<%= -1*current_user.cards.where(flavor: 'bill').sum(:amount)%>)</td>
+      <td> (<%= -1*current_user.cards.where(flavor: 'bill').sum(:amount).round(2)%>)</td>
     </tr>
     <tr>
       <th style="text-align: right;">Assets: </th>
-      <td> 3.33</td>
+      <td>
+        <% current_user.assets.each do |a| %>
+          <%= a.flavor%><br/>
+        <% end%>
+      </td>
     </tr>
     <tr>
       <th style="text-align: right;">Loans: </th>
