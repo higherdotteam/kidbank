@@ -4,7 +4,6 @@ Rails.application.routes.draw do
       post :set_co_parent
       post :set_observer
       post :login_as
-      post :bump_level
     end
   end
   resources :cards

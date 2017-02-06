@@ -45,9 +45,15 @@
         </button>
         <ul class="dropdown-menu">
           <% if c.flavor == 'bill' %>
-          <li><a href="#">from Checking</a></li>
-          <li><a href="#">from Savings</a></li>
-          <li><a href="#">from Loan</a></li>
+            <li>
+              <%= link_to 'from Checking', card_path(c, source: 'c'), method: 'patch' %>
+            </li>
+            <li>
+              <%= link_to 'from Savings', card_path(c, source: 's'), method: 'patch' %>
+            </li>
+            <li>
+              <%= link_to 'from Loan', card_path(c, source: 'l'), method: 'patch' %>
+            </li>
         <% elsif c.flavor == 'check' %>
           <li><a href="#">into Checking</a></li>
           <li><a href="#">into Savings</a></li>
