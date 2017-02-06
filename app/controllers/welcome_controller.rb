@@ -1,10 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @kid = Kid.new
-    if current_user
-      current_user.kids.each do |k|
-        #todo add more
-      end
-    end
+    @kid = Kid.new(dob: 5.years.ago)
   end
 end
