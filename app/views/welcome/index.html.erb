@@ -48,7 +48,7 @@
   <table class="table">
     <tr>
       <th>Debt / Assets</th>
-      <th>Age For Level</th>
+      <th>Breakdown</th>
       <th>Kid</th>
       <th>Co-Parent</th>
       <th>Observers</th>
@@ -56,13 +56,29 @@
   <% current_user.kids.compact.each do |k| %>
     <tr class="black">
       <td> 
-        (45.33)
+        Loan @ 19.5% APY
         <br/>
-        109.22
+        (343.11)
+        <br/>
+        <br/>
+        Assets
+        <br/> 
+        Stock in KB, 200.00
+        <br/> 
+        Rare Painting, 900.00
       </td>
-      <td> <%= k.age %> &#x2714; </td>
       <td> 
-        <div><%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%>
+        Checking
+        <br/>
+        38.43
+        <br/>
+        <br/>
+        Savings
+        <br/> 
+        10.23
+      </td>
+      <td> 
+        <div><%= k.name %>, <%= k.age %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%>
         </div>
         <div>
           Password: <code><%=k.password%></code> <%= link_to 'login as', login_as_kid_path(k), method: 'post' %>
