@@ -21,7 +21,7 @@ class Customer < ActiveRecord::Base
     assets.each do |a|
       asum += a.value
     end
-    (asum + total_cash) - loan - bills
+    (asum + total_cash) - (-1*loan) - bills
   end
 
   def post_new_transactions
