@@ -2,12 +2,13 @@
   <br/>
   <br/>
   <br/>
-<% if current_user.under_13? %>
-  <%= render partial: 'under13' %>
-<% elsif current_user.under_18? %>
-  teenagers!
-<% else %>
-  <%= render partial: 'over18' %>
+  <% if current_user.under_13? %>
+    <%= render partial: 'under13' %>
+  <% elsif current_user.under_18? %>
+    teenagers!
+  <% else %>
+    <%= render partial: 'over18' %>
+  <% end %>
 <% else %>
 <br/>
 <br/>
