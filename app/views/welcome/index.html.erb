@@ -47,7 +47,7 @@
 <% else %>
   <table class="table">
     <tr>
-      <th>Level</th>
+      <th>Debt / Assets</th>
       <th>Age For Level</th>
       <th>Kid</th>
       <th>Co-Parent</th>
@@ -55,7 +55,11 @@
     </tr>
   <% current_user.kids.compact.each do |k| %>
     <tr class="black">
-      <td> Level <%=k.level%>, <%= k.level_text %></td>
+      <td> 
+        (45.33)
+        <br/>
+        109.22
+      </td>
       <td> <%= k.age %> &#x2714; </td>
       <td> 
         <div><%= k.name %> <%= link_to 'x', kid_path(k), method: 'delete', data: {confirm: 'u sure?'}%>
