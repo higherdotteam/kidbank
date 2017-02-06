@@ -18,7 +18,7 @@ COMMON_BILLS = [
  'Mortgage',
  "Homeowner’s Insurance",
  "Renter's Insurance",
- 'Home Warrantyr',
+ 'Home Warranty',
  'Home Maintenance',
  'Home Repairs',
  'Lawn Care',
