@@ -13,7 +13,7 @@ class Customer < ActiveRecord::Base
   def post_new_transactions
     if rand(4) == 2
       cards.create(kid_id: id, flavor: 'deal', action: COMMON_DEALS[rand(COMMON_DEALS.size)], 
-                   amount: "#{rand(999)}.#{rand(99)}".to_f, 
+                   amount: "-#{rand(999)}.#{rand(99)}".to_f, 
                    happened_at: Time.now)
     elsif rand(4) == 1
       cards.create(kid_id: id, flavor: 'check', action: COMMON_INCOME[rand(COMMON_INCOME.size)], 
