@@ -16,13 +16,15 @@
   <div class="col-lg-4" style="">
   <table class="table">
     <tr>
+      <th></th>
       <th>Event</th>
       <th>Amount</th>
       <th>Type</th>
     </tr>
   <% current_user.cards.order('happened_at desc').each do |c| %>
     <tr>
-      <td> <%= c.action %></td>
+      <td style="white-space: nowrap;"> <%= time_ago_in_words(c.happened_at) %> ago</td>
+      <td style="white-space: nowrap;"> <%= c.action %></td>
       <td> <%= link_to number_to_currency(c.amount, unit: 'ϟ'), root_path() %></td>
       <td> <%= c.flavor %></td>
     </tr>
