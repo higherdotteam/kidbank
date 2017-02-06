@@ -7,7 +7,7 @@
       <th>name</th>
       <th>dob</th>
     </tr>
-  <% Customer.all.order(:id).limit(1000).each do |c| %>
+  <% @items.each do |c| %>
     <tr>
       <td><%= c.id %></td>
       <td>
