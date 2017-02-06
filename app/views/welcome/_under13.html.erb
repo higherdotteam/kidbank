@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-lg-2">
+  </div>
+  <div class="col-lg-3" style="text-align: center; font-size: 24px;">
+    Welcome back <%= current_user.fname %>
+  </div>
+  <div class="col-lg-4" style="text-align: center; font-size: 18px;">
+    You are at Level <%= current_user.level %> <%= current_user.level_text %>
+  <br/>
+  Click <%= link_to 'here', bump_level_kid_path(current_user), method: 'post' %> to goto next level.
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
+
+
+  <table class="table">
+  <% current_user.accounts.each do |a| %>
+    <tr>
+      <td> <%= link_to a.flavor, account_activities_path(a) %></td>
+      <td></td>
+      <td></td>
+      <td> <%= link_to number_to_currency(a.balance, unit: 'ϟ'), account_activities_path(a) %></td>
+      </tr>
+  <% a.last_few.each do |a| %>
+      <tr>
+        <td></td>
+        <td><%=time_ago_in_words(a.happened_at) %> ago</td>
+        <td><%=a.action %></td>
+        <td><%=number_to_currency(a.amount, unit: '') %></td>
+      </tr>
+  <% end %>
+      <tr>
+    </tr>
+  <% end %>
+  </table>
