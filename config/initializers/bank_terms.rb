@@ -1,4 +1,4 @@
-BANK_TERMS = w%{Account
+BANK_TERMS = %W{Account
 Adjustment Credit
 Adversely Classified Asset
 Agricultural Sector Investment Program
