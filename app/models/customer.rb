@@ -2,6 +2,7 @@ class Customer < ActiveRecord::Base
 
   has_many :accounts, foreign_key: 'kid_id', :dependent => :destroy
   has_many :cards, foreign_key: 'kid_id', :dependent => :destroy
+  has_many :assets, :dependent => :destroy
   after_create :make_tokens
 
   before_validation :make_pass

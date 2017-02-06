@@ -16,7 +16,7 @@ class CardsController < ApplicationController
       end
     elsif c.flavor == 'deal'
       c.transaction do
-        # TODO add asset
+        c.customer.assets.create(flavor: c.action, value: c.amount*-1, paid: c.amount*-1, acquired_at: Time.now)
         if params[:source] == 'c'
           c.customer.checking += c.amount
         elsif params[:source] == 's'
@@ -42,6 +42,7 @@ class CardsController < ApplicationController
     end
     redirect_to '/'
   end
+
   def destroy
     c = Card.find(params[:id])
     if c.flavor == 'deal'
