@@ -4,6 +4,24 @@
   <br/>
   <br/>
 <% if current_user.under_13? %>
+
+<div class="row">
+  <div class="col-lg-2">
+  </div>
+  <div class="col-lg-3" style="text-align: center; font-size: 24px;">
+    Welcome back <%= current_user.fname %>
+  </div>
+  <div class="col-lg-4" style="text-align: center; font-size: 18px;">
+    You are at Level <%= current_user.level %>
+  <br/>
+  Click <%= link_to 'here', bump_level_kid_path(current_user), method: 'post' %> to goto next level.
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
+
+
   <table class="table">
   <% current_user.accounts.each do |a| %>
     <tr>

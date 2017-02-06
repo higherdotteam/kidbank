@@ -1,6 +1,12 @@
 class KidsController < ApplicationController
   before_action :set_kid, only: [:show, :edit, :update, :destroy]
 
+  def bump_level
+    set_kid
+    Kid.increment_counter(:level, @kid.id)
+    redirect_to '/'
+  end
+
   def set_co_parent
     set_kid
     #"customer"=>{"fname"=>"wefwef", "email"=>"wefwef"}
