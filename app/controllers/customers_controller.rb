@@ -6,6 +6,8 @@ class CustomersController < ApplicationController
   end
 
   def update
+    flash[:notice] = 'Changes saved.'
+    redirect_to '/'
   end
 
 end
