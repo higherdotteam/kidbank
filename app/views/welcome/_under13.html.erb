@@ -49,8 +49,9 @@
             <li> <%= link_to 'from Savings', card_path(c, source: 's'), method: 'patch' %> </li>
             <li> <%= link_to 'from Loan', card_path(c, source: 'l'), method: 'patch' %> </li>
         <% elsif c.flavor == 'check' %>
-            <li> <%= link_to 'from Checking', card_path(c, source: 'c'), method: 'patch' %> </li>
-            <li> <%= link_to 'from Savings', card_path(c, source: 's'), method: 'patch' %> </li>
+            <li> <%= link_to 'to Checking', card_path(c, source: 'c'), method: 'patch' %> </li>
+            <li> <%= link_to 'to Savings', card_path(c, source: 's'), method: 'patch' %> </li>
+            <li> <%= link_to 'to Loan', card_path(c, source: 'l'), method: 'patch' %> </li>
          <% end %>
         </ul>
       </div>
@@ -85,7 +86,17 @@
       <th style="text-align: right;">Assets: </th>
       <td>
         <% current_user.assets.each do |a| %>
-          <%= a.flavor%><br/>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= a.flavor %>, Sell for <%=link_to number_to_currency(a.value, unit: '')%> <span class="caret"> </span>
+        </button>
+        <ul class="dropdown-menu">
+            <li> <%= link_to 'to Checking', root_path(source: 'c'), method: 'patch' %> </li>
+            <li> <%= link_to 'to Savings', root_path(source: 's'), method: 'patch' %> </li>
+            <li> <%= link_to 'to Loan', root_path(source: 'l'), method: 'patch' %> </li>
+        </ul>
+      </div>
+        <br/>
         <% end%>
       </td>
     </tr>
