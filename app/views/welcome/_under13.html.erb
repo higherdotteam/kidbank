@@ -11,39 +11,25 @@
 <br/>
 <br/>
 <div class="row">
-  <div class="col-lg-2">
+  <div class="col-lg-1">
   </div>
-  <div class="col-lg-2">
-       <strong>Loans</strong>
-       <br/>
-        Loan @ 19.5% APY
-        <br/>
-        (343.11)
-        <br/>
-        <br/>
-        <strong>Assets</strong>
-        <br/> 
-        Stock in KB, 200.00
-        <br/> 
-        Rare Painting, 900.00
-        <br/>
-        Cash, 40.00
+  <div class="col-lg-4" style="">
+  <table class="table">
+    <tr>
+      <th>Account</th>
+      <th>Balance</th>
+      <th>Type</th>
+    </tr>
+  <% current_user.cards.order('happened_at desc').each do |c| %>
+    <tr>
+      <td> <%= c.action %></td>
+      <td> <%= link_to number_to_currency(c.amount, unit: 'ϟ'), root_path() %></td>
+      <td> <%= c.flavor %></td>
+    </tr>
+  <% end %>
+  </table>
   </div>
-  <div class="col-lg-3" style="">
-       <strong>Bills</strong>
-       <br/>
-        Dentist 
-        <br/>
-        (110.00)
-        <br/>
-        Car Insurance 
-        <br/>
-        (310.00)
-        <br/>
-        <br/>
-        <strong>Grade</strong>
-        <br/> 
-        <code>C+</code>
+  <div class="col-lg-1" style="">
   </div>
   <div class="col-lg-4" style="">
   <table class="table">
