@@ -5,6 +5,10 @@ class Customer < ActiveRecord::Base
 
   before_validation :make_pass
 
+  def level_text
+    BANK_TERMS[level-1]
+  end
+
   def make_pass
 
     words = %W{Bat Bird Bunny Cat Chicken Crab Dog Ducks Elephant Fish Frog Giraffe Hedgehog Jellyfish Leopard 

@@ -12,7 +12,7 @@
     Welcome back <%= current_user.fname %>
   </div>
   <div class="col-lg-4" style="text-align: center; font-size: 18px;">
-    You are at Level <%= current_user.level %>
+    You are at Level <%= current_user.level %> <%= current_user.level_text %>
   <br/>
   Click <%= link_to 'here', bump_level_kid_path(current_user), method: 'post' %> to goto next level.
   </div>
