@@ -28,8 +28,10 @@
       <a href="" class="btn btn-success">transfers</a>
     <% elsif current_user.under_18? %>
     <% else %>
-      <a href="#" onclick="$('#add-kid-form').show(); return false;" class="btn btn-info">add kid</a>
-      <a href="#" onclick="alert('This will goto the real bank side of KidBank, but it is not ready yet.'); return false;" class="btn btn-success">real banking</a>
+      <% unless @hide_menu %>
+        <a href="#" onclick="$('#add-kid-form').show(); return false;" class="btn btn-info">add kid</a>
+        <a href="#" onclick="alert('This will goto the real bank side of KidBank, but it is not ready yet.'); return false;" class="btn btn-success">real banking</a>
+      <% end %>
     <% end %>
     </div>
     <div class="col-lg-3">
@@ -38,7 +40,7 @@
           <%= current_user.name %> <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-          <li><a href="/kids/<%= current_user.id %>/edit">Settings</a></li>
+          <li><a href="/customers/<%= current_user.id %>/edit">Settings</a></li>
           <li><a href="/phones/">Phone Access</a></li>
           <li role="separator" class="divider"></li>
           <li><%= link_to 'Log out', session_path(current_user), :method => :delete %></li>

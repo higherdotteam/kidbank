@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :activities
   resources :accounts
   resources :kids
+  resources :customers
   resources :kid_grownups
   resources :grownups
   resources :activities

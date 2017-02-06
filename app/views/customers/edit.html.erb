@@ -1,0 +1,43 @@
+<% if current_user.under_13? %>
+  You can reset your password
+<% else %>
+  
+<br/>
+<br/>
+<br/>
+<div class="row">
+  <div class="col-lg-2">
+  </div>
+  <div class="col-lg-3" style="text-align: center;">
+<%= form_for(@customer) do |f| %>
+  <div class="field">
+    <%= f.label 'My First Name Is' %><br>
+    <%= f.text_field :fname %>
+  </div>
+  <div class="field">
+    <%= f.label 'My Last Name Is' %><br>
+    <%= f.text_field :lname %>
+  </div>
+  <div class="field">
+    <%= f.label "My mom or dad's email is:" %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label 'I was born on' %><br>
+    <%= f.date_select :dob, start_year: 4.years.ago.year-14, end_year: 4.years.ago.year %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+  </div>
+  <div class="col-lg-2" style="text-align: center;">
+  </div>
+  <div class="col-lg-2" style="text-align: center;">
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
+<% end %>
+
