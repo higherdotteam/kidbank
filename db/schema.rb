@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206045554) do
+ActiveRecord::Schema.define(version: 20170206062921) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "kid_id"
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 20170206045554) do
     t.integer  "admin_level",            default: 1
     t.integer  "level",                  default: 1
     t.datetime "rolled_at"
+    t.float    "checking"
+    t.float    "savings"
+    t.float    "loan"
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true

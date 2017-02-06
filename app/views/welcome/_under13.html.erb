@@ -65,7 +65,7 @@
     </tr>
     <tr>
       <th style="text-align: right;">Bills: </th>
-      <td> (3.33)</td>
+      <td> (<%= -1*current_user.cards.where(flavor: 'bill').sum(:amount)%>)</td>
     </tr>
     <tr>
       <th style="text-align: right;">Assets: </th>
