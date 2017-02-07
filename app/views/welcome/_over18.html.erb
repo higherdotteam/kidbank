@@ -24,13 +24,11 @@
         Total Cash: <%= number_to_currency(k.total_cash, unit: 'ϟ')  %>
       </td>
       <td> 
-        Dentist 
+        <a href="#" title="<%=k.cards.where(flavor: 'bill').collect {|c| c.action}.join(', ')%>" onclick="return false;"><%=k.cards.where(flavor: 'bill').size%> bill(s) total</a>
         <br/>
-        (110.00)
+        (<%= -1*k.cards.where(flavor: 'bill').sum(:amount).round(2)%>)
         <br/>
-        Car Insurance 
         <br/>
-        (310.00)
         <br/>
         <br/>
         <strong>Grade</strong>
