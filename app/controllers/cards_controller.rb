@@ -12,6 +12,11 @@ class CardsController < ApplicationController
           end
           c.customer.checking += c.amount
         elsif params[:source] == 's'
+          if c.amount*-1 > c.customer.savings
+            flash[:notice] = 'Not enough in that account, would you like a loan?'
+            redirect_to '/'
+            return
+          end
           c.customer.savings += c.amount
         elsif params[:source] == 'l'
           c.customer.loan += c.amount
