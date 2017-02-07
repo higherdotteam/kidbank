@@ -5,6 +5,11 @@ class CardsController < ApplicationController
     if c.flavor == 'bill'
       c.transaction do
         if params[:source] == 'c'
+          if c.amount*-1 > c.customer.checking
+            flash[:notice] = 'Not enough in that account, would you like a loan?'
+            redirect_to '/'
+            return
+          end
           c.customer.checking += c.amount
         elsif params[:source] == 's'
           c.customer.savings += c.amount
