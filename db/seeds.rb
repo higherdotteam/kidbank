@@ -9,6 +9,8 @@ Customer.delete_all
 k1=Customer.create(fname: 'Jackson', lname: 'Arrow', dob: 7.years.ago, email: 'jsarrow@kid.org')
 k2=Customer.create(fname: 'Jason', lname: 'Arrow', dob: 4.years.ago, email: 'jgarrow@kid.org')
 k3=Customer.create(fname: 'Athena', lname: 'Arrow', dob: 1.years.ago, email: 'aarrow@kid.org')
+k4=Customer.create(fname: 'Aria', lname: 'Momdjian', dob: 5.years.ago, email: 'amom@kid.org')
+k5=Customer.create(fname: 'Paul', lname: 'Momdjian', dob: 2.years.ago, email: 'pmom@kid.org')
 
 Token.delete_all
 Token.create(customer_id: k1.id, token: 'AB467-1389', flavor: 'apple')
@@ -20,10 +22,17 @@ Account.create(flavor: 'checkings', balance: 100.00, kid_id: k1.id)
 Account.create(flavor: 'savings', balance: 1000.00, kid_id: k1.id)
 
 p1=Customer.create(fname: 'Andrew', lname: 'Arrow', dob: 40.years.ago, email: 'andrew@higher.team', password: '123')
+p2=Customer.create(fname: 'Christian', lname: 'Momdjian', dob: 22.years.ago, email: 'chrismomdjian@gmail.com', password: '321')
 
+
+#Andrews row
 KidGrownup.create(kid_id: k1.id, grownup_id: p1.id)
 KidGrownup.create(kid_id: k2.id, grownup_id: p1.id)
 KidGrownup.create(kid_id: k3.id, grownup_id: p1.id)
+
+#Christians row
+KidGrownup.create(kid_id: k4.id, grownup_id: p2.id)
+KidGrownup.create(kid_id: k5.id, grownup_id: p2.id)
 
 Activity.delete_all
 Activity.create(account_id: Account.first.id, amount: 300, action: 'deposit', happened_at: Time.now)
