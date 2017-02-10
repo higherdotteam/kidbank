@@ -23,5 +23,9 @@ class Api::V1::ApiController < ApplicationController
   def kids
     render :json => {"results": [1,2,3]}
   end
+  
+  def parents
+	render :json => [{"id": 1, "text": "Andrew Arrow"}, {"id": 2, "text": "Christian Momdjian"}]
+  end
 end
 
