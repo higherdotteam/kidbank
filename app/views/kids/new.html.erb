@@ -30,7 +30,7 @@
   <div class="field">
     <br/>
     <%= f.label "My mom or dad's email is:" %><br>
-    <%= f.select({:include_blank => true}, {:id=> 'selecttwo', :data => {:placeholder => 'Choose E-mail'}}) :email, style: 'font-size: 24px; width: 400px;' %>
+    <%= f.text_field :email, style: 'font-size: 24px; width: 400px;' %>
   </div>
   <div class="field">
     <br/>
