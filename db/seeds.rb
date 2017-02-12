@@ -34,6 +34,13 @@ KidGrownup.create(kid_id: k3.id, grownup_id: p1.id)
 KidGrownup.create(kid_id: k4.id, grownup_id: p2.id)
 KidGrownup.create(kid_id: k5.id, grownup_id: p2.id)
 
+100.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  c=Customer.create(fname: first_name, lname: last_name, 
+                    dob: 40.years.ago, email: Faker::Internet.email(first_name + "." + last_name), password: '123')
+end
+
 Activity.delete_all
 Activity.create(account_id: Account.first.id, amount: 300, action: 'deposit', happened_at: Time.now)
 Activity.create(account_id: Account.first.id, amount: 150, action: 'transfer', happened_at: 2.days.ago)
