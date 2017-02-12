@@ -67,9 +67,11 @@
     </div>
 <script>
 $("#co-<%=k.id%>").select2({
-  tags: false,
+  tags: true,
+  placeholder: "Kid's other parent",
+  allowClear: true,
   multiple: false,
-  tokenSeparators: [',', ' '],
+  tokenSeparators: [','],
   minimumInputLength: 1,
   minimumResultsForSearch: 10,
   ajax: {
