@@ -51,7 +51,9 @@
   <%= form_for(Customer.new, url: set_co_parent_kid_path(k), method: 'post', html: {id: 'set-co-form'+k.id.to_s, style: 'display: none;'}) do |f| %>
     <div class="field">
       <%= f.label 'Name (first & last)' %><br>
-      <%= f.text_field :fname, id: 'fname'%>
+	  <select name="sel" id="sel" style="width: 200px;">
+	  </select>
+      
     </div>
     <div class="field">
       <br/>
@@ -92,3 +94,12 @@
       <a href="#" onclick="$('#add-kid-form').hide()" class="btn btn-danger">Cancel</a>
     </div>
   <% end %>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  <script>
+	$('select').select2({
+		placeholder: 'Enter a name'
+		
+	});
+  </script>
