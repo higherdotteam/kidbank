@@ -51,7 +51,7 @@
   <%= form_for(Customer.new, url: set_co_parent_kid_path(k), method: 'post', html: {id: 'set-co-form'+k.id.to_s, style: 'display: none;'}) do |f| %>
     <div class="field">
       <%= f.label 'Name (first & last)' %><br>
-      <select id="co-<%=k.id%>" style="width: 200px;">
+      <select id="co-<%=k.id%>" name="customer[name]" style="width: 200px;">
         <option></option>
       </select>
     </div>

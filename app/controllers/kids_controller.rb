@@ -10,7 +10,8 @@ class KidsController < ApplicationController
   def set_co_parent
     set_kid
     #"customer"=>{"fname"=>"wefwef", "email"=>"wefwef"}
-    c=Customer.find_by_email(params[:customer][:email])
+    c=Customer.find_by_id(params[:customer][:name].to_i)
+    c=Customer.find_by_email(params[:customer][:email]) unless c
     unless c
       tokens = params[:customer][:fname].split(' ')
       f = tokens.first
