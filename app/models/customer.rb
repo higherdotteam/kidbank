@@ -7,6 +7,13 @@ class Customer < ActiveRecord::Base
 
   before_validation :make_pass
 
+  def as_json
+    r = {}
+    r[:id] = id
+    r[:name] = name
+    r
+  end
+
   def level_text
     BANK_TERMS[level-1]
   end
