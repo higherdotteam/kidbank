@@ -32,8 +32,17 @@ class Api::V1::ApiController < ApplicationController
   
   def coparents
     q = params[:q]
-    list = Customer.where('dob < ?', 18.years.ago).where('fname like ?', '%'+q).limit(100)
-    render json: list.as_json
+    # todo move this search to https://www.elastic.co vs sql
+    list1 = Customer.where('dob < ?', 18.years.ago).where('fname like ?', '%'+q+'%').limit(100)
+    list2 = Customer.where('dob < ?', 18.years.ago).where('lname like ?', '%'+q+'%').limit(100)
+    list3 = {}
+    list1.each do |c|
+      list3[c.id] = c
+    end
+    list2.each do |c|
+      list3[c.id] = c
+    end
+    render json: list3.values.as_json
   end
 end
 
