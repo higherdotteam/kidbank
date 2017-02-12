@@ -33,7 +33,7 @@ class Api::V1::ApiController < ApplicationController
   def coparents
     q = params[:q]
     list = Customer.where('dob < ?', 18.years.ago).limit(100)
-    render json: list.as_json
+    render json: {items: list.as_json, total_count: 100}
   end
 end
 
