@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     namespace "v1" do
       get 'accounts', :to => "api#accounts"
       get 'kids', :to => "api#kids"
+      get 'coparents', :to => "api#coparents"
     end
   end
 
