@@ -14,8 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require select2
 
-$(function($){
-$("#selecttwo").select2();
-});
