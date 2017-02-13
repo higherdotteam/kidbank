@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :about
   resources :kids do
     member do
       post :set_co_parent
