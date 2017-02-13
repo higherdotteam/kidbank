@@ -7,3 +7,5 @@ a, a:visited, a:hover, a:active {
 .big th {white-space: nowrap; font-weight: normal; font-size: 18px; font-family: 'courier'}
 .big td {white-space: nowrap; font-size: 18px; font-family: 'courier'}
 
+
+.about a {text-decoration: underline; color: #0000FF;}
