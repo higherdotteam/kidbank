@@ -8,4 +8,6 @@ a, a:visited, a:hover, a:active {
 .big td {white-space: nowrap; font-size: 18px; font-family: 'courier'}
 
 
-.about a {text-decoration: underline; color: #0000FF;}
+.about a {text-decoration: underline; color: #005577;}
+.about {font-size: 14px; line-height: 1.6em;}
+.about li {font-size: 14px; line-height: 1.6em;}
