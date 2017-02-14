@@ -43,7 +43,13 @@
               <% if current_user %>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                <a href="/kids/new" class="btn btn-info">add kid</a>
+                      <% if current_user.under_13? %>
+                      <% elsif current_user.under_18? %>
+                      <% else %>
+                <% unless @hide_menu %>
+                  <a href="#" onclick="$('#add-kid-form').show(); return false;" class="btn btn-info">add kid</a>
+                <% end %>
+                <% end %>
                     </li>
                     <li>
 					 <div class="btn-group">
