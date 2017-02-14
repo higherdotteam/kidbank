@@ -1,11 +1,11 @@
 <% if current_user.under_13? %>
 <div class="row edit under-13">
 	<div class="col-lg-2"></div>
-	<div class="col-lg-3" style="text-align: center; font-size: 24px;">
-		Remember your password kid, it's <code><%= @current_user.password %></code>
+	<div class="col-lg-3">
+		<p>Remember your password kid, it's <code><%= @current_user.password %></code></p>
 	</div>
-	<div class="col-lg-4" style="text-align: center; font-size: 18px;">
-		Don't tell anyone your password! 
+	<div class="col-lg-4">
+		<p>Don't tell anyone your password!</p>
 	</div>
 </div>
 <% else %>

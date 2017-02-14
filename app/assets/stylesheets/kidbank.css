@@ -75,8 +75,14 @@ a:active { color: inherit; }
 	padding: .25em;
 }
 
-.edit.under-13 .col-lg-3 {
+.edit.under-13 .col-lg-3 p {
 	text-align: center;
+	font-size: 24px;
+}
+
+.edit.under-13 .col-lg-4 p {
+	text-align: center;
+	font-size: 18px;
 }
 
 
