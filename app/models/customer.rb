@@ -5,6 +5,9 @@ class Customer < ActiveRecord::Base
   has_many :assets, :dependent => :destroy
   after_create :make_tokens
 
+  validates_presence_of :fname, :lname
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
   before_validation :make_pass
 
   def as_json
@@ -19,7 +22,7 @@ class Customer < ActiveRecord::Base
   end
 
   def total_cash
-    checking+savings
+    checking.to_f+savings.to_f
   end
 
   def net_worth

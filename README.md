@@ -11,8 +11,8 @@ https://kidbank.team
 
 https://higher.team
 
-![](https://kidbank.team/images/atmv.png)
+![](http://kidbank.team/images/atmv.png)
 
-![](https://kidbank.team/images/mall.jpg)
+![](http://kidbank.team/images/mall.jpg)
 
-![](https://kidbank.team/images/mall2.jpg)
+![](http://kidbank.team/images/mall2.jpg)

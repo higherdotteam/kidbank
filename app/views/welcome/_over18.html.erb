@@ -43,7 +43,7 @@
         </div>
         <div>
           <br/>
-          Last Here: <%= time_ago_in_words(k.rolled_at) %>
+          Last Here: <%= time_ago_in_words(k.rolled_at || Time.now) %>
         </div>
     </td>
       <td> <a href="#" onclick="$('#set-co-form<%=k.id%>').show(); return false;"><%= k.co_parent %></a>
@@ -51,9 +51,11 @@
   <%= form_for(Customer.new, url: set_co_parent_kid_path(k), method: 'post', html: {id: 'set-co-form'+k.id.to_s, style: 'display: none;'}) do |f| %>
     <div class="field">
       <%= f.label 'Name (first & last)' %><br>
+
       <select id="co-<%=k.id%>" name="customer[name]" style="width: 200px;">
         <option></option>
       </select>
+
     </div>
     <div class="field">
       <br/>
@@ -73,7 +75,7 @@ $("#co-<%=k.id%>").select2({
   multiple: false,
   tokenSeparators: [','],
   minimumInputLength: 1,
-  minimumResultsForSearch: 10,
+  minimumResultsForSearch: 1,
   ajax: {
     url: '/api/v1/coparents',
     dataType: "json",
