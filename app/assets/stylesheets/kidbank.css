@@ -1,13 +1,39 @@
-a.btn, a.btn:visited, a.btn:hover, a.btn:active {color: white;}
-a, a:visited, a:hover, a:active {
-  color: inherit;
+a.btn,
+a.btn:visited,
+a.btn:hover,
+a.btn:active { color: white; }
+
+a,
+a:visited,
+a:hover,
+a:active { color: inherit; }
+
+.black a,
+.black a:visited,
+.black a:hover,
+.black a:active { color: #767676; }
+
+.big th {
+	font-family: 'courier';
+	font-size: 18px;
+	font-weight: normal;
+	white-space: nowrap;
 }
-.black a, .black a:visited, .black a:hover, .black a:active {color: #767676;}
+.big td {
+	font-family: 'courier';
+	font-size: 18px;
+	white-space: nowrap;	
+}
+.about {
+	font-size: 14px;
+	line-height: 1.6em;
+}
+.about a {
+	color: #005577;
+	text-decoration: underline;
+}
 
-.big th {white-space: nowrap; font-weight: normal; font-size: 18px; font-family: 'courier'}
-.big td {white-space: nowrap; font-size: 18px; font-family: 'courier'}
-
-
-.about a {text-decoration: underline; color: #005577;}
-.about {font-size: 14px; line-height: 1.6em;}
-.about li {font-size: 14px; line-height: 1.6em;}
+.about li {
+	font-size: 14px;
+	line-height: 1.6em;
+}
