@@ -46,6 +46,9 @@ class GrownupsController < ApplicationController
 
     session[:person_id] = c.id
     redirect_to '/'
+  rescue
+    flash[:notice] = 'Please check what you entered and try again.'
+    redirect_to '/grownups/new'
   end
 
   def update
