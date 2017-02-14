@@ -1,4 +1,44 @@
-<% if !current_user %>
+<% if current_user %>
+    <section id="download" class="download bg-primary text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <h2 class="section-heading">Hi <%= current_user.name %>!</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 text-center">
+            <div class="section-heading" style="font-size: 18px;">
+              <% if current_user.under_13? %>
+                <%= render partial: 'under13' %>
+              <% elsif current_user.under_18? %>
+                teenagers!
+              <% else %>
+                <%= render partial: 'over18' %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-lg-2 text-center">
+					 <div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<%= current_user.name %> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="/customers/<%= current_user.id %>/edit">Settings</a></li>
+								<li><a href="/phones/">Phone Access</a></li>
+								<li role="separator" class="divider"></li>
+								<li><%= link_to 'Log out', session_path(current_user), :method => :delete %></li>
+							</ul>
+						</div>
+          </div>
+        </div>
+      </div>
+    </section>
+<% else %>
 <header>
         <div class="container">
             <div class="row">
