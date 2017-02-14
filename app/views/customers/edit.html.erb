@@ -1,64 +1,44 @@
 <% if current_user.under_13? %>
-<br/>
-<br/>
-<br/>
-<div class="row">
-  <div class="col-lg-2">
-  </div>
-  <div class="col-lg-3" style="text-align: center; font-size: 24px;">
-    Remember your password kid, it's <code><%= @current_user.password %></code>
-  </div>
-  <div class="col-lg-4" style="text-align: center; font-size: 18px;">
-    Don't tell anyone your password! 
-  </div>
+<div class="row edit under-13">
+	<div class="col-lg-2"></div>
+	<div class="col-lg-3" style="text-align: center; font-size: 24px;">
+		Remember your password kid, it's <code><%= @current_user.password %></code>
+	</div>
+	<div class="col-lg-4" style="text-align: center; font-size: 18px;">
+		Don't tell anyone your password! 
+	</div>
 </div>
-<br/>
-<br/>
-<br/>
 <% else %>
-  
-<br/>
-<br/>
-<br/>
+
 <%= form_for(@customer) do |f| %>
-<div class="row">
-  <div class="col-lg-2">
-  </div>
-  <div class="col-lg-3" style="text-align: center;">
-  <div class="field">
-    <%= f.label 'First Name' %><br>
-    <%= f.text_field :fname %>
-  </div>
-  <br/>
-  <br/>
-  <div class="field">
-    <%= f.label 'Last Name' %><br>
-    <%= f.text_field :lname %>
-  </div>
-  <br/>
-  <br/>
-  <div class="actions">
-    <%= f.submit value: 'Save Changes', class: 'btn btn-info' %>
-  </div>
-  </div>
-  <div class="col-lg-4" style="text-align: center;">
-  <div class="field">
-    <%= f.label "Email:" %><br>
-    <%= f.text_field :email %>
-  </div>
-  <br/>
-  <br/>
-  <div class="field">
-    <%= f.label "Your DOB not your kid's" %><br>
-    <%= f.date_select :dob, start_year: 117.years.ago.year, end_year: 13.years.ago.year %>
-  </div>
-  </div>
-  <div class="col-lg-2" style="text-align: center;">
-  </div>
+<div class="row edit customer">
+	<div class="col-lg-2"></div>
+	<div class="col-lg-3 first-name">
+		<div class="field">
+			<%= f.label 'First Name' %>
+			<%= f.text_field :fname %>
+		</div>
+		<div class="field">
+			<%= f.label 'Last Name' %>
+			<%= f.text_field :lname %>
+		</div>
+		<div class="actions">
+			<%= f.submit value: 'Save Changes', class: 'btn btn-info' %>
+		</div>
+	</div>
+	<div class="col-lg-4 email">
+		<div class="field">
+			<%= f.label "Email:" %>
+			<%= f.text_field :email %>
+		</div>
+		<div class="field your-dob">
+			<%= f.label "Your DOB not your kid's" %>
+			<%= f.date_select :dob, start_year: 117.years.ago.year, end_year: 13.years.ago.year %>
+		</div>
+	</div>
+	<div class="col-lg-2"></div>
 </div>
 <% end %>
-<br/>
-<br/>
-<br/>
+
 <% end %>
 

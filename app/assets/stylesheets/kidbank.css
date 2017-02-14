@@ -1,0 +1,78 @@
+/* global styles */
+
+a.btn,
+a.btn:visited,
+a.btn:hover,
+a.btn:active { color: white; }
+
+a,
+a:visited,
+a:hover,
+a:active { color: inherit; }
+
+.black a,
+.black a:visited, 
+.black a:hover,
+.black a:active { color: #767676; }
+
+.big th {
+	font-family: 'courier';
+	font-size: 18px;
+	font-weight: normal;
+	white-space: nowrap;
+}
+.big td {
+	font-family: 'courier';
+	font-size: 18px;
+	white-space: nowrap;	
+}
+.about {
+	font-size: 14px;
+	line-height: 1.6em;
+}
+.about a {
+	color: #005577;
+	text-decoration: underline;
+}
+
+.about li {
+	font-size: 14px;
+	line-height: 1.6em;
+}
+
+/* per edit.html.erb */
+
+
+
+/* per edit.html.erb */
+
+.edit .field {
+	margin-bottom: 4em;
+}
+
+.edit .field input, 
+.edit .field select {
+	padding: .25em;
+}
+
+.edit.under-13 .col-lg-3 {
+	text-align: center;
+}
+
+
+.edit.customer .first-name,
+.edit.customer .email {
+	text-align: center;
+}
+
+
+/* mobile & tab.portrait */
+@media (max-width: 767px) { 
+
+}
+
+/* tab.lando & desktop */
+@media (min-width: 768px) {
+
+
+}
