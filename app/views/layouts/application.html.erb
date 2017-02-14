@@ -45,6 +45,20 @@
                     <li>
                 <a href="/kids/new" class="btn btn-info">add kid</a>
                     </li>
+                    <li>
+					 <div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<%= current_user.name %> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="/customers/<%= current_user.id %>/edit">Settings</a></li>
+								<li><a href="/phones/">Phone Access</a></li>
+								<li role="separator" class="divider"></li>
+								<li><%= link_to 'Log out', session_path(current_user), :method => :delete %></li>
+							</ul>
+						</div>
+          </div>
+                    </li>
                 </ul>
               <% else %>
               <% unless @hide_menu %>
