@@ -43,7 +43,7 @@
         </div>
         <div>
           <br/>
-          Last Here: <%= time_ago_in_words(k.rolled_at) %>
+          Last Here: <%= time_ago_in_words(k.rolled_at || Time.now) %>
         </div>
     </td>
       <td> <a href="#" onclick="$('#set-co-form<%=k.id%>').show(); return false;"><%= k.co_parent %></a>

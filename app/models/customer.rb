@@ -22,7 +22,7 @@ class Customer < ActiveRecord::Base
   end
 
   def total_cash
-    checking+savings
+    checking.to_f+savings.to_f
   end
 
   def net_worth
