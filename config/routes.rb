@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :about
   resources :kids do
     member do
       post :set_co_parent
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
     namespace "v1" do
       get 'accounts', :to => "api#accounts"
       get 'kids', :to => "api#kids"
+      get 'coparents', :to => "api#coparents"
     end
   end
 
