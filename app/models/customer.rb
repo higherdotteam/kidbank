@@ -5,6 +5,8 @@ class Customer < ActiveRecord::Base
   has_many :assets, :dependent => :destroy
   after_create :make_tokens
 
+  validates_presence_of :fname, :lname
+
   before_validation :make_pass
 
   def as_json
