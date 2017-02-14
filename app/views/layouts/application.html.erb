@@ -40,17 +40,19 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <% unless @hide_menu %>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#download">Download</a>
+                <a href="/kids/new" class="btn btn-info">sign up as kid</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#features">Features</a>
+                <a href="/grownups/new" class="btn btn-success">sign up as parent</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+               <a style="text-decoration: underline;" href="/sessions/new">Login</a>
                     </li>
                 </ul>
+              <% end %>
             </div>
             <!-- /.navbar-collapse -->
         </div>
