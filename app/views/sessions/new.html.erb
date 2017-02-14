@@ -2,12 +2,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="section-heading">About KidBank</h2>
-                    <p>Our app is available on any mobile device! Download now to get started!</p>
-                    <div class="badges">
-                        <a class="badge-link" href="/"><img src="/images/newage/google-play-badge.svg" alt=""></a>
-                        <a class="badge-link" href="/"><img src="/images/newage/app-store-badge.svg" alt=""></a>
-                    </div>
+                    <h2 class="section-heading">Login</h2>
                 </div>
             </div>
         </div>
@@ -16,10 +11,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <div class="section-heading">
-<br/>
-<br/>
-<br/>
+            <div class="section-heading" style="font-size: 18px;">
   <%= form_for(@customer, url: sessions_path, method: 'post') do |f| %>
     <div class="field">
       <%= f.label 'Enter the mom or dad* email here:' %><br>
@@ -27,7 +19,7 @@
     </div>
     <div class="field">
       <br/>
-      <%= f.label 'Enter mom or dad password (to login as grownup) OR kid password (to login as that kid):' %><br>
+      <%= f.label 'Enter mom or dad password OR kid password:' %><br>
       <%= f.text_field :password, size: 50, style: 'font-size: 24px;'  %>
     </div>
     <div class="actions">
