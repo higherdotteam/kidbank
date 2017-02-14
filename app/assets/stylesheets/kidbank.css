@@ -40,9 +40,29 @@ a:active { color: inherit; }
 	line-height: 1.6em;
 }
 
-/* per edit.html.erb */
+/* per application.html.erb */
 
+.header {
+	margin: 2em 0 4em 0;
+}
 
+.reg-login p {
+	margin: 10px 0 0 0;
+}
+
+.reg-login p a {
+	ext-decoration: underline;
+}
+
+.notice .copy {
+	font-weight: bold; 
+	padding: 10px; 
+	border: 2px solid red;
+}
+
+.footer {
+	text-align: center;
+}
 
 /* per edit.html.erb */
 
