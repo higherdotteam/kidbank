@@ -63,25 +63,38 @@ class KidsController < ApplicationController
       redirect_to '/'
       return
     else
-      # kid"=>{"fname"=>"bobby", "lname"=>"smith", "email"=>"break@dance.com", "dob(1i)"=>"2003", "dob(2i)"=>"2", "dob(3i)"=>"5"
-      c = Customer.find_by_email(params[:kid][:email])
-      if c
-        flash[:notice] = 'Email already in system, your mom or dad* can login and give you your password.'
-        redirect_to '/sessions/new'
-        return
+      begin
+        # kid"=>{"fname"=>"bobby", "lname"=>"smith", "email"=>"break@dance.com", "dob(1i)"=>"2003", "dob(2i)"=>"2", "dob(3i)"=>"5"
+        c = Customer.find_by_email(params[:kid][:email])
+        if c
+          flash[:notice] = 'Email already in system, your mom or dad* can login and give you your password.'
+          redirect_to '/sessions/new'
+          return
+        end
+
+        c=Grownup.create(email: params[:kid][:email], fname: '?', lname: '?', dob: 18.years.ago)
+        if c.errors.size == 0
+          etokens = params[:kid][:email].split('@')
+          momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
+
+          kid=Kid.create(email: momdadplus, dob: dob, fname: params[:kid][:fname], lname: params[:kid][:lname])
+          if kid.errors.size == 0
+            KidGrownup.create(kid_id: kid.id, grownup_id: c.id)
+
+            session[:person_id] = kid.id
+            redirect_to '/'
+          else
+            flash[:notice] = 'Please check what you entered and try again.'
+            redirect_to '/kids/new'
+          end
+        else
+          flash[:notice] = 'Please check what you entered and try again.'
+          redirect_to '/kids/new'
+        end
+      rescue
+        flash[:notice] = 'Please check what you entered and try again.'
+        redirect_to '/kids/new'
       end
-
-      c=Grownup.create(email: params[:kid][:email], dob: 18.years.ago)
-
-      etokens = params[:kid][:email].split('@')
-      momdadplus = "#{etokens.first}+#{rand(999999999999)}@#{etokens.last}"
-
-      kid=Kid.create(email: momdadplus, dob: dob, fname: params[:kid][:fname], lname: params[:kid][:lname])
-      KidGrownup.create(kid_id: kid.id, grownup_id: c.id)
-
-      session[:person_id] = kid.id
-      redirect_to '/'
-      return
     end
   end
 

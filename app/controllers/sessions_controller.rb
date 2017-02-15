@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       return
     end
 	
-	if Rails.env == 'development' && params[:customer][:email] == 'c'
+	  if Rails.env == 'development' && params[:customer][:email] == 'c'
       session[:person_id] = Customer.find_by_email('chrismomdjian@gmail.com').id
       redirect_to '/'
       return
@@ -31,6 +31,13 @@ class SessionsController < ApplicationController
       redirect_to '/'
       return
     else
+      c.kids.each do |k|
+        if k.password == params[:customer][:password]
+          session[:person_id] = k.id
+          redirect_to '/'
+          return
+        end
+      end
       flash[:notice] = 'Check that password make sure you typed it exactly right.'
       redirect_to '/sessions/new'
       return
