@@ -19,3 +19,6 @@ config/secrets.yml
 !/log/.keep
 /tmp
 .idea/
+
+gfw1
+gfw1.pub
