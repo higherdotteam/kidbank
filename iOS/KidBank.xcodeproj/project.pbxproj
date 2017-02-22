@@ -323,7 +323,7 @@
 				DEVELOPMENT_TEAM = 755R3VBZ84;
 				INFOPLIST_FILE = KidBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = higher.team.KidBank;
+				PRODUCT_BUNDLE_IDENTIFIER = team.kidbank;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -339,7 +339,7 @@
 				DEVELOPMENT_TEAM = 755R3VBZ84;
 				INFOPLIST_FILE = KidBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = higher.team.KidBank;
+				PRODUCT_BUNDLE_IDENTIFIER = team.kidbank;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
