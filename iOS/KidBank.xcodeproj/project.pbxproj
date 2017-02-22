@@ -12,6 +12,13 @@
 		00666C941E5D442900060DE7 /* HDAugmentedReality in Resources */ = {isa = PBXBuildFile; fileRef = 00666C931E5D442900060DE7 /* HDAugmentedReality */; };
 		00666C961E5D445F00060DE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C951E5D445F00060DE7 /* CoreLocation.framework */; };
 		00666C981E5D446700060DE7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C971E5D446700060DE7 /* CoreMotion.framework */; };
+		00666C9E1E5D463F00060DE7 /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00666C991E5D463F00060DE7 /* ARAnnotation.swift */; };
+		00666C9F1E5D463F00060DE7 /* ARAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00666C9A1E5D463F00060DE7 /* ARAnnotationView.swift */; };
+		00666CA01E5D463F00060DE7 /* ARConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00666C9B1E5D463F00060DE7 /* ARConfiguration.swift */; };
+		00666CA11E5D463F00060DE7 /* ARTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00666C9C1E5D463F00060DE7 /* ARTrackingManager.swift */; };
+		00666CA21E5D463F00060DE7 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00666C9D1E5D463F00060DE7 /* ARViewController.swift */; };
+		00666CA41E5D467800060DE7 /* DebugMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00666CA31E5D467800060DE7 /* DebugMapViewController.swift */; };
+		00666CA61E5D468A00060DE7 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 00666CA51E5D468A00060DE7 /* Resources */; };
 		00AAB5A01E446F3A00D8D774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB59F1E446F3A00D8D774 /* AppDelegate.swift */; };
 		00AAB5A21E446F3A00D8D774 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB5A11E446F3A00D8D774 /* FirstViewController.swift */; };
 		00AAB5A41E446F3A00D8D774 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB5A31E446F3A00D8D774 /* SecondViewController.swift */; };
@@ -23,9 +30,16 @@
 /* Begin PBXFileReference section */
 		00666C8F1E5D1D1100060DE7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		00666C911E5D40E300060DE7 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
-		00666C931E5D442900060DE7 /* HDAugmentedReality */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HDAugmentedReality; sourceTree = "<group>"; };
+		00666C931E5D442900060DE7 /* HDAugmentedReality */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HDAugmentedReality; path = ../HDAugmentedReality; sourceTree = "<group>"; };
 		00666C951E5D445F00060DE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		00666C971E5D446700060DE7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		00666C991E5D463F00060DE7 /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ARAnnotation.swift; path = ../HDAugmentedReality/Classes/ARAnnotation.swift; sourceTree = "<group>"; };
+		00666C9A1E5D463F00060DE7 /* ARAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ARAnnotationView.swift; path = ../HDAugmentedReality/Classes/ARAnnotationView.swift; sourceTree = "<group>"; };
+		00666C9B1E5D463F00060DE7 /* ARConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ARConfiguration.swift; path = ../HDAugmentedReality/Classes/ARConfiguration.swift; sourceTree = "<group>"; };
+		00666C9C1E5D463F00060DE7 /* ARTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ARTrackingManager.swift; path = ../HDAugmentedReality/Classes/ARTrackingManager.swift; sourceTree = "<group>"; };
+		00666C9D1E5D463F00060DE7 /* ARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ARViewController.swift; path = ../HDAugmentedReality/Classes/ARViewController.swift; sourceTree = "<group>"; };
+		00666CA31E5D467800060DE7 /* DebugMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugMapViewController.swift; path = ../HDAugmentedReality/Classes/Debug/DebugMapViewController.swift; sourceTree = "<group>"; };
+		00666CA51E5D468A00060DE7 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../HDAugmentedReality/Resources; sourceTree = "<group>"; };
 		00AAB59C1E446F3A00D8D774 /* KidBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00AAB59F1E446F3A00D8D774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00AAB5A11E446F3A00D8D774 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +77,6 @@
 		00AAB5931E446F3A00D8D774 = {
 			isa = PBXGroup;
 			children = (
-				00666C931E5D442900060DE7 /* HDAugmentedReality */,
 				00AAB59E1E446F3A00D8D774 /* KidBank */,
 				00AAB59D1E446F3A00D8D774 /* Products */,
 				00666C8E1E5D1D1100060DE7 /* Frameworks */,
@@ -81,6 +94,14 @@
 		00AAB59E1E446F3A00D8D774 /* KidBank */ = {
 			isa = PBXGroup;
 			children = (
+				00666CA51E5D468A00060DE7 /* Resources */,
+				00666CA31E5D467800060DE7 /* DebugMapViewController.swift */,
+				00666C991E5D463F00060DE7 /* ARAnnotation.swift */,
+				00666C9A1E5D463F00060DE7 /* ARAnnotationView.swift */,
+				00666C9B1E5D463F00060DE7 /* ARConfiguration.swift */,
+				00666C9C1E5D463F00060DE7 /* ARTrackingManager.swift */,
+				00666C9D1E5D463F00060DE7 /* ARViewController.swift */,
+				00666C931E5D442900060DE7 /* HDAugmentedReality */,
 				00AAB59F1E446F3A00D8D774 /* AppDelegate.swift */,
 				00AAB5A11E446F3A00D8D774 /* FirstViewController.swift */,
 				00AAB5A31E446F3A00D8D774 /* SecondViewController.swift */,
@@ -156,6 +177,7 @@
 				00AAB5A91E446F3A00D8D774 /* Assets.xcassets in Resources */,
 				00666C941E5D442900060DE7 /* HDAugmentedReality in Resources */,
 				00AAB5A71E446F3A00D8D774 /* Main.storyboard in Resources */,
+				00666CA61E5D468A00060DE7 /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +191,12 @@
 				00666C921E5D40E300060DE7 /* PlaceAnnotation.swift in Sources */,
 				00AAB5A41E446F3A00D8D774 /* SecondViewController.swift in Sources */,
 				00AAB5A01E446F3A00D8D774 /* AppDelegate.swift in Sources */,
+				00666CA41E5D467800060DE7 /* DebugMapViewController.swift in Sources */,
+				00666CA21E5D463F00060DE7 /* ARViewController.swift in Sources */,
+				00666CA11E5D463F00060DE7 /* ARTrackingManager.swift in Sources */,
+				00666C9E1E5D463F00060DE7 /* ARAnnotation.swift in Sources */,
+				00666C9F1E5D463F00060DE7 /* ARAnnotationView.swift in Sources */,
+				00666CA01E5D463F00060DE7 /* ARConfiguration.swift in Sources */,
 				00AAB5A21E446F3A00D8D774 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +320,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = KidBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = higher.team.KidBank;
@@ -304,6 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = KidBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = higher.team.KidBank;
