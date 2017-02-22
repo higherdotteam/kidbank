@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class SecondViewController: UIViewController, ARDataSource {
+class SecondViewController: ARViewController, ARDataSource {
     
     fileprivate func getRandomLocation(centerLatitude: Double, centerLongitude: Double, delta: Double) -> CLLocation
     {
@@ -48,17 +48,18 @@ class SecondViewController: UIViewController, ARDataSource {
         let count = 50
          let dummyAnnotations = self.getDummyAnnotations(centerLatitude: lat, centerLongitude: lon, delta: delta, count: count)
         
-        let arViewController = ARViewController()
-        arViewController.dataSource = self
-        arViewController.maxDistance = 0
-        arViewController.maxVisibleAnnotations = 100
-        arViewController.maxVerticalLevel = 5
-        arViewController.headingSmoothingFactor = 0.05
-        arViewController.trackingManager.userDistanceFilter = 25
-        arViewController.trackingManager.reloadDistanceFilter = 75
-        arViewController.setAnnotations(dummyAnnotations)
-        arViewController.uiOptions.debugEnabled = true
-        arViewController.uiOptions.closeButtonEnabled = true
+        
+        self.dataSource = self
+        self.maxDistance = 0
+        self.maxVisibleAnnotations = 100
+        self.maxVerticalLevel = 5
+        self.headingSmoothingFactor = 0.05
+        self.trackingManager.userDistanceFilter = 25
+        self.trackingManager.reloadDistanceFilter = 75
+        self.setAnnotations(dummyAnnotations)
+        self.uiOptions.debugEnabled = true
+        self.uiOptions.closeButtonEnabled = true
+        
     }
     
     func ar(_ arViewController: ARViewController, viewForAnnotation: ARAnnotation) -> ARAnnotationView
