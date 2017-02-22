@@ -9,17 +9,48 @@
 import UIKit
 import MapKit
 
-class FirstViewController: UIViewController {
+extension FirstViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //1
+        if locations.count > 0 {
+            let location = locations.last!
+            print("Accuracy: \(location.horizontalAccuracy)")
+            
+            //2
+            if location.horizontalAccuracy < 100 {
+                //3
+                manager.stopUpdatingLocation()
+                let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
+                let region = MKCoordinateRegion(center: location.coordinate, span: span)
+                var map: MKMapView?
+                map = super.view as! MKMapView?
+                map?.region = region
+            }
+        }
+    }
+}
 
+class FirstViewController: UIViewController {
+    
+    fileprivate let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        locationManager.requestWhenInUseAuthorization()
         
         // https://www.raywenderlich.com/146436/augmented-reality-ios-tutorial-location-based-2
          var map: MKMapView?
         map = super.view as! MKMapView?
         NSLog("\(map)")
-        let latitude:CLLocationDegrees = 33.988914
+        map!.mapType = MKMapType.standard
+
+        
+        /*let latitude:CLLocationDegrees = 33.988914
         
         let longitude:CLLocationDegrees = -118.400969
         
@@ -35,10 +66,6 @@ class FirstViewController: UIViewController {
         let region = MKCoordinateRegionMake(location, span)
         
         
-        map!.mapType = MKMapType.standard
-        
-        
-
         let annotation = PlaceAnnotation(location: location, title: "Test")
         map!.addAnnotation(annotation)
 
@@ -48,7 +75,7 @@ class FirstViewController: UIViewController {
         let annotation2 = PlaceAnnotation(location: location2, title: "Test2")
         map!.addAnnotation(annotation2)
         
-        map!.setRegion(region, animated: false)
+        map!.setRegion(region, animated: false)*/
     }
 
     override func didReceiveMemoryWarning() {
