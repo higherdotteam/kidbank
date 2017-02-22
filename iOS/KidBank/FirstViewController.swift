@@ -36,6 +36,18 @@ class FirstViewController: UIViewController {
         
         
         map!.mapType = MKMapType.standard
+        
+        
+
+        let annotation = PlaceAnnotation(location: location, title: "Test")
+        map!.addAnnotation(annotation)
+
+        let l2:CLLocationDegrees = 33.987914
+        let l3:CLLocationDegrees = -118.400869
+        let location2 = CLLocationCoordinate2DMake(l2, l3)
+        let annotation2 = PlaceAnnotation(location: location2, title: "Test2")
+        map!.addAnnotation(annotation2)
+        
         map!.setRegion(region, animated: false)
     }
 
