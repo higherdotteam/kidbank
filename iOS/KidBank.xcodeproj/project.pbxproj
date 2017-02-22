@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00666C901E5D1D1100060DE7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C8F1E5D1D1100060DE7 /* MapKit.framework */; };
 		00AAB5A01E446F3A00D8D774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB59F1E446F3A00D8D774 /* AppDelegate.swift */; };
 		00AAB5A21E446F3A00D8D774 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB5A11E446F3A00D8D774 /* FirstViewController.swift */; };
 		00AAB5A41E446F3A00D8D774 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB5A31E446F3A00D8D774 /* SecondViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00666C8F1E5D1D1100060DE7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		00AAB59C1E446F3A00D8D774 /* KidBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00AAB59F1E446F3A00D8D774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00AAB5A11E446F3A00D8D774 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -31,17 +33,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00666C901E5D1D1100060DE7 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00666C8E1E5D1D1100060DE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00666C8F1E5D1D1100060DE7 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		00AAB5931E446F3A00D8D774 = {
 			isa = PBXGroup;
 			children = (
 				00AAB59E1E446F3A00D8D774 /* KidBank */,
 				00AAB59D1E446F3A00D8D774 /* Products */,
+				00666C8E1E5D1D1100060DE7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -303,6 +315,7 @@
 				00AAB5B21E446F3A00D8D774 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
