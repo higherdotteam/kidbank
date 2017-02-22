@@ -15,6 +15,7 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        // https://www.raywenderlich.com/146436/augmented-reality-ios-tutorial-location-based-2
          var map: MKMapView?
         map = super.view as! MKMapView?
         NSLog("\(map)")
