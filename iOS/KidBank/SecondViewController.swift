@@ -42,8 +42,10 @@ class SecondViewController: ARViewController, ARDataSource {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let lat = 45.554833
-        let lon = 18.695433
+        let lat:CLLocationDegrees = 33.988914
+        
+        let lon:CLLocationDegrees = -118.400969
+        
         let delta = 0.05
         let count = 50
          let dummyAnnotations = self.getDummyAnnotations(centerLatitude: lat, centerLongitude: lon, delta: delta, count: count)
