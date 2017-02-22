@@ -14,7 +14,7 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-       // let arViewController = ARViewController()
+       let arViewController = ARViewController()
     }
 
     override func didReceiveMemoryWarning() {
