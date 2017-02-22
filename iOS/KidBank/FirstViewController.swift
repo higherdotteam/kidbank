@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import MapKit
 
 class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+         var map: MKMapView?
+        map = super.view as! MKMapView?
+        NSLog("\(map)")
     }
 
     override func didReceiveMemoryWarning() {
