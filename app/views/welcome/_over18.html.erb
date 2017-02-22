@@ -43,7 +43,7 @@
         </div>
         <div>
           <br/>
-          Last Here: <%= time_ago_in_words(k.rolled_at) %>
+          Last Here: <%= time_ago_in_words(k.rolled_at || Time.now) %>
         </div>
     </td>
       <td> <a href="#" onclick="$('#set-co-form<%=k.id%>').show(); return false;"><%= k.co_parent %></a>
@@ -75,7 +75,7 @@ $("#co-<%=k.id%>").select2({
   multiple: false,
   tokenSeparators: [','],
   minimumInputLength: 1,
-  minimumResultsForSearch: 10,
+  minimumResultsForSearch: 1,
   ajax: {
     url: '/api/v1/coparents',
     dataType: "json",
@@ -128,12 +128,3 @@ $("#co-<%=k.id%>").select2({
       <a href="#" onclick="$('#add-kid-form').hide()" class="btn btn-danger">Cancel</a>
     </div>
   <% end %>
-  
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-  <script>
-	$('select').select2({
-		placeholder: 'Enter a name'
-		
-	});
-  </script>

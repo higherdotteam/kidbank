@@ -1,6 +1,17 @@
-<br/>
-<br/>
-<br/>
+    <section id="download" class="download bg-primary text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="section-heading">Login</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="section-heading" style="font-size: 18px;">
   <%= form_for(@customer, url: sessions_path, method: 'post') do |f| %>
     <div class="field">
       <%= f.label 'Enter the mom or dad* email here:' %><br>
@@ -8,7 +19,7 @@
     </div>
     <div class="field">
       <br/>
-      <%= f.label 'Enter mom or dad password (to login as grownup) OR kid password (to login as that kid):' %><br>
+      <%= f.label 'Enter mom or dad password OR kid password:' %><br>
       <%= f.text_field :password, size: 50, style: 'font-size: 24px;'  %>
     </div>
     <div class="actions">
@@ -16,3 +27,8 @@
       <%= f.submit value: 'Login', class: 'btn btn-success' %>
     </div>
   <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
