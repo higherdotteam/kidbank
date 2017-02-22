@@ -33,8 +33,14 @@ extension SecondViewController: CLLocationManagerDelegate {
                 let bodyData = "lat=33.983038432805429&lon=-118.39447743151841"
                 request.httpBody = bodyData.data(using: String.Encoding.utf8);
                 
+                let config = URLSessionConfiguration.default
+                let session = URLSession(configuration: config)
                 
+                let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
+                    
+                });
                 
+                task.resume()
             }
         }
     }
