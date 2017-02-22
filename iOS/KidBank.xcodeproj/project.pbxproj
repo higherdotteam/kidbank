@@ -11,6 +11,12 @@
 		00666C921E5D40E300060DE7 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00666C911E5D40E300060DE7 /* PlaceAnnotation.swift */; };
 		00666C961E5D445F00060DE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C951E5D445F00060DE7 /* CoreLocation.framework */; };
 		00666C981E5D446700060DE7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C971E5D446700060DE7 /* CoreMotion.framework */; };
+		008A73391E5E16BD000542ED /* DebugMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A73381E5E16BD000542ED /* DebugMapViewController.swift */; };
+		008A733B1E5E16D8000542ED /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A733A1E5E16D8000542ED /* ARAnnotation.swift */; };
+		008A733D1E5E16E8000542ED /* ARAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A733C1E5E16E8000542ED /* ARAnnotationView.swift */; };
+		008A733F1E5E1709000542ED /* ARConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A733E1E5E1709000542ED /* ARConfiguration.swift */; };
+		008A73411E5E171D000542ED /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A73401E5E171D000542ED /* ARViewController.swift */; };
+		008A73431E5E1734000542ED /* ARTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A73421E5E1734000542ED /* ARTrackingManager.swift */; };
 		00AAB5A01E446F3A00D8D774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB59F1E446F3A00D8D774 /* AppDelegate.swift */; };
 		00AAB5A21E446F3A00D8D774 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB5A11E446F3A00D8D774 /* FirstViewController.swift */; };
 		00AAB5A41E446F3A00D8D774 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB5A31E446F3A00D8D774 /* SecondViewController.swift */; };
@@ -24,6 +30,12 @@
 		00666C911E5D40E300060DE7 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		00666C951E5D445F00060DE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		00666C971E5D446700060DE7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		008A73381E5E16BD000542ED /* DebugMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugMapViewController.swift; sourceTree = "<group>"; };
+		008A733A1E5E16D8000542ED /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotation.swift; sourceTree = "<group>"; };
+		008A733C1E5E16E8000542ED /* ARAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotationView.swift; sourceTree = "<group>"; };
+		008A733E1E5E1709000542ED /* ARConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARConfiguration.swift; sourceTree = "<group>"; };
+		008A73401E5E171D000542ED /* ARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		008A73421E5E1734000542ED /* ARTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARTrackingManager.swift; sourceTree = "<group>"; };
 		00AAB59C1E446F3A00D8D774 /* KidBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00AAB59F1E446F3A00D8D774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00AAB5A11E446F3A00D8D774 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +98,12 @@
 				00AAB5AA1E446F3A00D8D774 /* LaunchScreen.storyboard */,
 				00AAB5AD1E446F3A00D8D774 /* Info.plist */,
 				00666C911E5D40E300060DE7 /* PlaceAnnotation.swift */,
+				008A73421E5E1734000542ED /* ARTrackingManager.swift */,
+				008A73401E5E171D000542ED /* ARViewController.swift */,
+				008A733E1E5E1709000542ED /* ARConfiguration.swift */,
+				008A733C1E5E16E8000542ED /* ARAnnotationView.swift */,
+				008A733A1E5E16D8000542ED /* ARAnnotation.swift */,
+				008A73381E5E16BD000542ED /* DebugMapViewController.swift */,
 			);
 			path = KidBank;
 			sourceTree = "<group>";
@@ -164,9 +182,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				00666C921E5D40E300060DE7 /* PlaceAnnotation.swift in Sources */,
+				008A73431E5E1734000542ED /* ARTrackingManager.swift in Sources */,
+				008A733B1E5E16D8000542ED /* ARAnnotation.swift in Sources */,
 				00AAB5A41E446F3A00D8D774 /* SecondViewController.swift in Sources */,
+				008A73411E5E171D000542ED /* ARViewController.swift in Sources */,
+				008A733F1E5E1709000542ED /* ARConfiguration.swift in Sources */,
 				00AAB5A01E446F3A00D8D774 /* AppDelegate.swift in Sources */,
+				008A73391E5E16BD000542ED /* DebugMapViewController.swift in Sources */,
 				00AAB5A21E446F3A00D8D774 /* FirstViewController.swift in Sources */,
+				008A733D1E5E16E8000542ED /* ARAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
