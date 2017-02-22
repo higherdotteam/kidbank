@@ -9,7 +9,14 @@
 import UIKit
 import CoreLocation
 
+
 class SecondViewController: ARViewController, ARDataSource {
+    
+    @IBAction func addAtmLocation(sender: UIButton) {
+        let bodyData = "key1=value&key2=value&key3=value"
+        //request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
+        NSLog("\(bodyData)")
+    }
     
     fileprivate func getRandomLocation(centerLatitude: Double, centerLongitude: Double, delta: Double) -> CLLocation
     {
