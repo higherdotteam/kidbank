@@ -18,13 +18,14 @@ class FirstViewController: UIViewController {
          var map: MKMapView?
         map = super.view as! MKMapView?
         NSLog("\(map)")
-        let latitude:CLLocationDegrees = 34.0225
+        let latitude:CLLocationDegrees = 33.988914
         
-        let longitude:CLLocationDegrees = 118.5714
+        let longitude:CLLocationDegrees = -118.400969
         
-        let latDelta:CLLocationDegrees = 0.05
         
-        let lonDelta:CLLocationDegrees = 0.05
+        let latDelta:CLLocationDegrees = 0.025
+        
+        let lonDelta:CLLocationDegrees = 0.025
         
         let span = MKCoordinateSpanMake(latDelta, lonDelta)
         
@@ -32,6 +33,8 @@ class FirstViewController: UIViewController {
         
         let region = MKCoordinateRegionMake(location, span)
         
+        
+        map!.mapType = MKMapType.standard
         map!.setRegion(region, animated: false)
     }
 
