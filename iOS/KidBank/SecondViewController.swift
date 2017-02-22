@@ -8,11 +8,44 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
+
+extension SecondViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //1
+        if locations.count > 0 {
+            let location = locations.last!
+            print("Accuracy: \(location.horizontalAccuracy)")
+            
+            //2
+            if location.horizontalAccuracy < 100 {
+                //3
+                manager.stopUpdatingLocation()
+                let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
+                let region = MKCoordinateRegion(center: location.coordinate, span: span)
+                
+                NSLog("\(region)")
+                
+                let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms")!
+                let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
+                request.httpMethod = "POST"
+                let bodyData = "lat=33.983038432805429&lon=-118.39447743151841"
+                request.httpBody = bodyData.data(using: String.Encoding.utf8);
+                
+                
+                
+            }
+        }
+    }
+}
 
 class SecondViewController: ARViewController, ARDataSource {
     
+    fileprivate let locationManager = CLLocationManager()
+    
     @IBAction func addAtmLocation(sender: UIButton) {
+        locationManager.startUpdatingLocation()
         let bodyData = "key1=value&key2=value&key3=value"
         //request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
         NSLog("\(bodyData)")
@@ -48,6 +81,10 @@ class SecondViewController: ARViewController, ARDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
         
         let lat:CLLocationDegrees = 33.988914
         
