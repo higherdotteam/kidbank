@@ -52,11 +52,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let result = parsedData["result"] as! NSArray
                 
                 for (thing) in result {
-                    //let lat = [thing objectForKey:@"lat"]
-                    //let lon = thing["lon"] as! Double
-
-                    NSLog("\(thing)")
-                    //NSLog("\(lon)")
+                    
+                    if let foo = thing as? Dictionary<String, Double> {
+                        let lat = foo["lat"]
+                        let lon = foo["lon"]
+                        NSLog("\(lat) \(lon)")
+                    }                    
                 }
                 
             } catch let error as NSError {
