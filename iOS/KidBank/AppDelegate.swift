@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var listAtms: NSArray = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -49,15 +49,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 
                 let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                let result = parsedData["result"] as! NSArray
+                self.listAtms = parsedData["result"] as! NSArray
                 
-                for (thing) in result {
+                for (thing) in self.listAtms {
                     
                     if let foo = thing as? Dictionary<String, Double> {
-                        let lat = foo["lat"]
-                        let lon = foo["lon"]
+                        let lat = foo["lat"]! as Double
+                        let lon = foo["lon"]! as Double
                         NSLog("\(lat) \(lon)")
-                    }                    
+                    }
                 }
                 
             } catch let error as NSError {
