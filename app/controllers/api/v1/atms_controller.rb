@@ -5,5 +5,10 @@ class Api::V1::AtmsController < ApplicationController
     render json: {}, status: 200
   end
 
+  def index
+    list = AtmLocation.all.limit(1000)
+    render json: {result: list.as_json}, status: 200
+  end
+
 end
 
