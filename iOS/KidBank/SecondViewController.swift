@@ -54,37 +54,31 @@ class SecondViewController: ARViewController, ARDataSource {
     
     @IBAction func addAtmLocation(sender: UIButton) {
         locationManager.startUpdatingLocation()
-        let bodyData = "key1=value&key2=value&key3=value"
-        //request.HTTPBody = bodyData.dataUsingEncoding(NSUTF8StringEncoding);
-        NSLog("\(bodyData)")
     }
     
-    fileprivate func getRandomLocation(centerLatitude: Double, centerLongitude: Double, delta: Double) -> CLLocation
-    {
-        var lat = centerLatitude
-        var lon = centerLongitude
+    func updateAtms(list: NSArray) {
         
-        let latDelta = -(delta / 2) + drand48() * delta
-        let lonDelta = -(delta / 2) + drand48() * delta
-        lat = lat + latDelta
-        lon = lon + lonDelta
-        return CLLocation(latitude: lat, longitude: lon)
-    }
-    
-    fileprivate func getDummyAnnotations(centerLatitude: Double, centerLongitude: Double, delta: Double, count: Int) -> Array<ARAnnotation>
-    {
         var annotations: [ARAnnotation] = []
         
-        srand48(3)
-        for i in stride(from: 0, to: count, by: 1)
-        {
-            let annotation = ARAnnotation()
-            annotation.location = self.getRandomLocation(centerLatitude: centerLatitude, centerLongitude: centerLongitude, delta: delta)
-            annotation.title = "POI \(i)"
-            annotations.append(annotation)
+        for (thing) in list {
+            
+            if let foo = thing as? Dictionary<String, Double> {
+                let lat = foo["lat"]! as Double
+                let lon = foo["lon"]! as Double
+                NSLog("\(lat) \(lon)")
+                
+    
+                let annotation = ARAnnotation()
+                annotation.location = CLLocation(latitude: lat, longitude: lon)
+                annotation.title = "ATM"
+                annotations.append(annotation)
+            }
         }
-        return annotations
+        
+        self.setAnnotations(annotations)
+        
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,15 +88,6 @@ class SecondViewController: ARViewController, ARDataSource {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         
-        let lat:CLLocationDegrees = 33.988914
-        
-        let lon:CLLocationDegrees = -118.400969
-        
-        let delta = 0.05
-        let count = 50
-         let dummyAnnotations = self.getDummyAnnotations(centerLatitude: lat, centerLongitude: lon, delta: delta, count: count)
-        
-        
         self.dataSource = self
         self.maxDistance = 0
         self.maxVisibleAnnotations = 100
@@ -110,10 +95,9 @@ class SecondViewController: ARViewController, ARDataSource {
         self.headingSmoothingFactor = 0.05
         self.trackingManager.userDistanceFilter = 25
         self.trackingManager.reloadDistanceFilter = 75
-        self.setAnnotations(dummyAnnotations)
+        
         self.uiOptions.debugEnabled = true
         self.uiOptions.closeButtonEnabled = true
-        
     }
     
     func ar(_ arViewController: ARViewController, viewForAnnotation: ARAnnotation) -> ARAnnotationView
