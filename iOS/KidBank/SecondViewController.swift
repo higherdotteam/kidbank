@@ -28,9 +28,11 @@ extension SecondViewController: CLLocationManagerDelegate {
                 NSLog("\(region)")
                 
                 let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms")!
+                //let URL: NSURL = NSURL(string: "http://127.0.0.1:3000/api/v1/atms")!
                 let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
                 request.httpMethod = "POST"
-                let bodyData = "lat=33.983038432805429&lon=-118.39447743151841"
+                let bodyData = "lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)"
+                
                 request.httpBody = bodyData.data(using: String.Encoding.utf8);
                 
                 let config = URLSessionConfiguration.default
