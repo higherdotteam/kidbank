@@ -51,14 +51,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
                 self.listAtms = parsedData["result"] as! NSArray
                 
-                for (thing) in self.listAtms {
-                    
-                    if let foo = thing as? Dictionary<String, Double> {
-                        let lat = foo["lat"]! as Double
-                        let lon = foo["lon"]! as Double
-                        NSLog("\(lat) \(lon)")
-                    }
-                }
+                 // let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                //NSLog("\(self.window)")
+                
+                let first = self.window?.rootViewController?.childViewControllers[0] as! FirstViewController
+                first.updateAtms(list: self.listAtms)
+                
+
                 
             } catch let error as NSError {
                 print(error)

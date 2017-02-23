@@ -34,6 +34,18 @@ class FirstViewController: UIViewController {
     
     fileprivate let locationManager = CLLocationManager()
     
+    func updateAtms(list: NSArray) {
+        for (thing) in list {
+            
+            if let foo = thing as? Dictionary<String, Double> {
+                let lat = foo["lat"]! as Double
+                let lon = foo["lon"]! as Double
+                NSLog("\(lat) \(lon)")
+            }
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
