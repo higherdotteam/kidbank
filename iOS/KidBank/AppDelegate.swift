@@ -45,7 +45,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let session = URLSession(configuration: config)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
-                     NSLog("\(data)")
+
+            do {
+                
+                let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                let result = parsedData["result"] as! NSArray
+                
+                for (thing) in result {
+                    //let lat = [thing objectForKey:@"lat"]
+                    //let lon = thing["lon"] as! Double
+
+                    NSLog("\(thing)")
+                    //NSLog("\(lon)")
+                }
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            
+            
         });
         
         task.resume()
