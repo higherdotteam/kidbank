@@ -157,6 +157,20 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.startCamera(notifyLocationFailure: true)
     }
     
+    //
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // #PRAGMA after onViewWillAppear
+    
     fileprivate func onViewDidAppear()
     {
         
@@ -392,8 +406,6 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.previosRegion = currentRegion
     }
     
-    
-    
     fileprivate func positionAnnotationViews()
     {
         for annotationView in self.annotationViews
@@ -404,6 +416,25 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
             annotationView.frame = CGRect(x: x, y: y, width: annotationView.bounds.size.width, height: annotationView.bounds.size.height)
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // #PRAGMA after positionAnnotationViews
     
     fileprivate func xPositionForAnnotationView(_ annotationView: ARAnnotationView, heading: Double) -> CGFloat
     {
@@ -831,6 +862,25 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.displayTimer?.invalidate()
         self.displayTimer = nil
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // #PRAGMA after stopCamera
     
     fileprivate func loadOverlay()
     {
