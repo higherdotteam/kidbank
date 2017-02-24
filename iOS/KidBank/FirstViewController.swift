@@ -34,6 +34,26 @@ class FirstViewController: UIViewController {
     
     fileprivate let locationManager = CLLocationManager()
     
+    func updateAtms(list: NSArray) {
+        var map: MKMapView?
+        map = super.view as! MKMapView?
+        
+        for (thing) in list {
+            
+            if let foo = thing as? Dictionary<String, Double> {
+                let lat = foo["lat"]! as Double
+                let lon = foo["lon"]! as Double
+                NSLog("\(lat) \(lon)")
+                
+                let location = CLLocationCoordinate2DMake(lat, lon)
+                let annotation = PlaceAnnotation(location: location, title: "ATM")
+                map!.addAnnotation(annotation)
+                
+            }
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
