@@ -1,15 +1,9 @@
-//
-//  ARTrackingManager.swift
-//  HDAugmentedRealityDemo
-//
 //  Created by Danijel Huis on 22/04/15.
 //  Copyright (c) 2015 Danijel Huis. All rights reserved.
-//
 
 import UIKit
 import CoreMotion
 import CoreLocation
-
 
 @objc protocol ARTrackingManagerDelegate : NSObjectProtocol
 {
@@ -21,30 +15,11 @@ import CoreLocation
 }
 
 
-/// Class used internally by ARViewController for location and orientation calculations.
 open class ARTrackingManager: NSObject, CLLocationManagerDelegate
 {
-    /**
-     *      Defines whether altitude is taken into account when calculating distances. Set this to false if your annotations
-     *      don't have altitude values. Note that this is only used for distance calculation, it doesn't have effect on vertical
-     *      levels of annotations. Default value is false.
-     */
     open var altitudeSensitive = false
-    
-    /**
-     *      Specifies how often the visibilities of annotations are reevaluated.
-     *
-     *      Annotation's visibility depends on number of factors - azimuth, distance from user, vertical level etc.
-     *      Note: These calculations are quite heavy if many annotations are present, so don't use value lower than 50m.
-     *      Default value is 75m.
-     *
-     */
     open var reloadDistanceFilter: CLLocationDistance!    // Will be set in init
     
-    /**
-     *      Specifies how often are distances and azimuths recalculated for visible annotations.
-     *      Default value is 25m.
-     */
     open var userDistanceFilter: CLLocationDistance!      // Will be set in init
         {
         didSet
@@ -53,7 +28,6 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         }
     }
     
-    //===== Internal variables
     fileprivate(set) internal var locationManager: CLLocationManager = CLLocationManager()
     fileprivate(set) internal var tracking = false
     fileprivate(set) internal var userLocation: CLLocation?
@@ -74,7 +48,6 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         }
     }
     
-    //===== Private variables
     fileprivate var motionManager: CMMotionManager = CMMotionManager()
     fileprivate var lastAcceleration: CMAcceleration = CMAcceleration(x: 0, y: 0, z: 0)
     fileprivate var reloadLocationPrevious: CLLocation?
@@ -84,7 +57,6 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
     fileprivate var debugLocation: CLLocation?
     fileprivate var locationSearchTimer: Timer? = nil
     fileprivate var locationSearchStartTime: TimeInterval? = nil
-    
     
     override init()
     {
@@ -99,29 +71,16 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
     
     fileprivate func initialize()
     {
-        // Defaults
         self.reloadDistanceFilter = 75
         self.userDistanceFilter = 25
-        
-        // Setup location manager
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.distanceFilter = CLLocationDistance(self.userDistanceFilter)
         self.locationManager.headingFilter = 1
         self.locationManager.delegate = self
     }
     
-    //==========================================================================================================================================================
-    // MARK:                                                        Tracking
-    //==========================================================================================================================================================
-    
-    /**
-     Starts location and motion manager
-     
-     - Parameter: notifyFailure if true, will call arTrackingManager:didFailToFindLocationAfter:
-     */
     internal func startTracking(notifyLocationFailure: Bool = false)
     {
-        // Request authorization if state is not determined
         if CLLocationManager.locationServicesEnabled()
         {
             if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.notDetermined
@@ -132,38 +91,32 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
                 }
                 else
                 {
-                    // Fallback on earlier versions
                 }
                 
             }
         }
         
-        // Start motion and location managers
         self.motionManager.startAccelerometerUpdates()
         self.locationManager.startUpdatingHeading()
         self.locationManager.startUpdatingLocation()
         
         self.tracking = true
         
-        // Location search
         self.stopLocationSearchTimer()
         if notifyLocationFailure
         {
             self.startLocationSearchTimer()
             
-            // Calling delegate with value 0 to be flexible, for example user might want to show indicator when search is starting.
             self.delegate?.arTrackingManager?(self, didFailToFindLocationAfter: 0)
         }
     }
     
-    /// Stops location and motion manager
     internal func stopTracking()
     {
         self.reloadLocationPrevious = nil
         self.userLocation = nil
         self.reportLocationDate = nil
         
-        // Stop motion and location managers
         self.motionManager.stopAccelerometerUpdates()
         self.locationManager.stopUpdatingHeading()
         self.locationManager.stopUpdatingLocation()
@@ -171,10 +124,6 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         self.tracking = false
         self.stopLocationSearchTimer()
     }
-    
-    //==========================================================================================================================================================
-    // MARK:                                                        CLLocationManagerDelegate
-    //==========================================================================================================================================================
     
     open func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
     {
@@ -187,7 +136,6 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         {
             let location = locations[0]
             
-            // Disregarding old and low quality location detections
             let age = location.timestamp.timeIntervalSinceNow;
             if age < -30 || location.horizontalAccuracy > 500 || location.horizontalAccuracy < 0
             {
@@ -197,10 +145,8 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
             
             self.stopLocationSearchTimer()
             
-            //println("== \(location!.horizontalAccuracy), \(age) \(location!.coordinate.latitude), \(location!.coordinate.longitude)" )
             self.userLocation = location
             
-            // Setting altitude to 0 if altitudeSensitive == false
             if self.userLocation != nil && !self.altitudeSensitive
             {
                 let location = self.userLocation!
@@ -214,20 +160,16 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
                 self.reloadLocationPrevious = self.userLocation
             }
             
-            //===== Reporting location 5s after we get location, this will filter multiple locations calls and make only one delegate call
             let reportIsScheduled = self.reportLocationTimer != nil
             
-            // First time, reporting immediately
             if self.reportLocationDate == nil
             {
                 self.reportLocationToDelegate()
             }
-                // Report is already scheduled, doing nothing, it will report last location delivered in that 5s
             else if reportIsScheduled
             {
                 
             }
-                // Scheduling report in 5s
             else
             {
                 self.reportLocationTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ARTrackingManager.reportLocationToDelegate), userInfo: nil, repeats: false)
@@ -253,9 +195,6 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         }
     }
     
-    //==========================================================================================================================================================
-    // MARK:                                                        Calculations
-    //==========================================================================================================================================================
     internal func calculatePitch() -> Double
     {
         if self.motionManager.accelerometerData == nil
@@ -265,7 +204,6 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         
         let acceleration: CMAcceleration = self.motionManager.accelerometerData!.acceleration
         
-        // Filtering data so its not jumping around
         let filterFactor: Double = 0.05
         self.lastAcceleration.x = (acceleration.x * filterFactor) + (self.lastAcceleration.x  * (1.0 - filterFactor));
         self.lastAcceleration.y = (acceleration.y * filterFactor) + (self.lastAcceleration.y  * (1.0 - filterFactor));
@@ -308,11 +246,9 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         let coordinate: CLLocationCoordinate2D = location.coordinate
         let userCoordinate: CLLocationCoordinate2D = self.userLocation!.coordinate
         
-        // Calculating azimuth
         let latitudeDistance: Double = userCoordinate.latitude - coordinate.latitude;
         let longitudeDistance: Double = userCoordinate.longitude - coordinate.longitude;
         
-        // Simplified azimuth calculation
         azimuth = radiansToDegrees(atan2(longitudeDistance, (latitudeDistance * Double(LAT_LON_FACTOR))))
         azimuth += 180.0
         
@@ -330,10 +266,6 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
         self.userLocation = nil
     }
     
-    //==========================================================================================================================================================
-    // MARK:                                                        Location search
-    //==========================================================================================================================================================
-    
     func startLocationSearchTimer(resetStartTime: Bool = true)
     {
         self.stopLocationSearchTimer()
@@ -343,7 +275,6 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
             self.locationSearchStartTime = Date().timeIntervalSince1970
         }
         self.locationSearchTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ARTrackingManager.locationSearchTimerTick), userInfo: nil, repeats: false)
-        
     }
     
     func stopLocationSearchTimer(resetStartTime: Bool = true)
