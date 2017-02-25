@@ -203,6 +203,17 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.setOrientation(UIApplication.shared.statusBarOrientation)
         self.layoutUi();
         self.startCamera(notifyLocationFailure: true)
+        
+        let annotation = ARAnnotation()
+        annotation.location = CLLocation(latitude: 34, longitude: -118.3)
+        annotation.title = "ATM"
+        
+        annotation.annotationView = nil
+        
+        annotation.annotationView = self.dataSource?.ar(self, viewForAnnotation: annotation)
+        annotation.annotationView!.bindUi()
+        
+        self.overlayView.addSubview(annotation.annotationView!)
     }
     
     fileprivate func onViewDidLayoutSubviews()
