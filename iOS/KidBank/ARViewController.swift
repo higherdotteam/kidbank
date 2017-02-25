@@ -67,8 +67,6 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         }
         self.initialized = true;
         self.trackingManager.delegate = self
-        NSLog("trackingManager.startTracking");
-        self.trackingManager.startTracking(notifyLocationFailure: true)
         
         NotificationCenter.default.addObserver(self, selector: #selector(ARViewController.locationNotification(_:)), name: NSNotification.Name(rawValue: "kNotificationLocationSet"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ARViewController.appWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
@@ -286,19 +284,19 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func updateAnnotationsForCurrentHeading()
     {
-        let annotation = ARAnnotation()
-        annotation.location = CLLocation(latitude: 34, longitude: -118.3)
-        annotation.title = "ATM"
+        //let annotation = ARAnnotation()
+        //annotation.location = CLLocation(latitude: 34, longitude: -118.3)
+        //annotation.title = "ATM"
         
-        var av: ARAnnotationView? = nil
-        av = self.dataSource?.ar(self, viewForAnnotation: annotation)
+        //var av: ARAnnotationView? = nil
+        //av = self.dataSource?.ar(self, viewForAnnotation: annotation)
         
-        annotation.annotationView = av
-        av!.annotation = annotation
+        //annotation.annotationView = av
+        //av!.annotation = annotation
         
-        av!.bindUi()
+        //av!.bindUi()
         
-        self.overlayView.addSubview(annotation.annotationView!)
+        //self.overlayView.addSubview(annotation.annotationView!)
     }
     
     internal func displayTimerTick()
@@ -315,7 +313,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
             currentHeading = (newHeading * filterFactor) + (currentHeading  * (1.0 - filterFactor))
         }
         
-        self.overlayView.frame = self.overlayFrame()
+        //self.overlayView.frame = self.overlayFrame()
         self.updateAnnotationsForCurrentHeading()
         
         //logText("Heading: \(self.trackingManager.heading)")
