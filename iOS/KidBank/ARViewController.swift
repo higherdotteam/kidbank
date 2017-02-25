@@ -323,15 +323,17 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateUserLocation: CLLocation?)
     {
+        NSLog("didUpdateUserLocation \(trackingManager.userLocation)");
     }
     
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateReloadLocation: CLLocation?)
     {
+        NSLog("didUpdateReloadLocation \(trackingManager.userLocation)");
     }
     
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didFailToFindLocationAfter elapsedSeconds: TimeInterval)
     {
-     
+        NSLog("didFailToFindLocationAfter");
     }
     
     fileprivate func startCamera(notifyLocationFailure: Bool)

@@ -60,7 +60,7 @@ open class TestAnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
     
     open func tapGesture()
     {
-        
+        NSLog("wow");
     }
     
     
