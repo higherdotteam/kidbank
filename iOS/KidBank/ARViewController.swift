@@ -37,6 +37,28 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.initializeInternal()
     }
     
+    internal func locationNotification(_ sender: Notification)
+    {
+        
+    }
+    
+    internal func appWillEnterForeground(_ notification: Notification)
+    {
+        if(self.view.window != nil)
+        {
+            self.trackingManager.stopTracking()
+            self.trackingManager.startTracking(notifyLocationFailure: true)
+        }
+    }
+    
+    internal func appDidEnterBackground(_ notification: Notification)
+    {
+        if(self.view.window != nil)
+        {
+            self.trackingManager.stopTracking()
+        }
+    }
+    
     internal func initializeInternal()
     {
         if self.initialized
@@ -47,6 +69,16 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.trackingManager.delegate = self
         NSLog("trackingManager.startTracking");
         self.trackingManager.startTracking(notifyLocationFailure: true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ARViewController.locationNotification(_:)), name: NSNotification.Name(rawValue: "kNotificationLocationSet"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ARViewController.appWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ARViewController.appDidEnterBackground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+    }
+    
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self)
+        self.stopCamera()
     }
     
     open class func createCaptureSession() -> (session: AVCaptureSession?, error: NSError?)
@@ -156,6 +188,14 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         return newFrame
     }
     
+    fileprivate func stopCamera()
+    {
+        self.cameraSession.stopRunning()
+        self.trackingManager.stopTracking()
+        self.displayTimer?.invalidate()
+        self.displayTimer = nil
+    }
+    
     open override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -181,7 +221,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func onViewDidDisappear()
     {
-        //stopCamera()
+        stopCamera()
     }
     
     open override func viewDidLayoutSubviews()
