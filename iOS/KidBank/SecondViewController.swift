@@ -31,7 +31,7 @@ extension SecondViewController: CLLocationManagerDelegate {
                 //let URL: NSURL = NSURL(string: "http://127.0.0.1:3000/api/v1/atms")!
                 let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
                 request.httpMethod = "POST"
-                let bodyData = "lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)"
+                let bodyData = "lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&h=\(currentHeading)"
                 
                 request.httpBody = bodyData.data(using: String.Encoding.utf8);
                 

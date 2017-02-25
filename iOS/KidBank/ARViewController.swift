@@ -18,7 +18,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     fileprivate var cameraLayer: AVCaptureVideoPreviewLayer?    // Will be set in init
     fileprivate var annotationViews: [ARAnnotationView] = []
     fileprivate var didLayoutSubviews: Bool = false
-    fileprivate var currentHeading: Double = 0
+    var currentHeading: Double = 0
     
     init()
     {
@@ -306,15 +306,12 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         let filterFactor: Double = headingSmoothingFactor
         let newHeading = self.trackingManager.heading
         
-        // Picking up the pace if device is being rotated fast or heading of device is at the border(North). It is needed
-        // to do this on North border because overlayView changes its position and we don't want it to animate full circle.
         if(self.headingSmoothingFactor == 1 || fabs(currentHeading - self.trackingManager.heading) > 50)
         {
             currentHeading = self.trackingManager.heading
         }
         else
         {
-            // Smoothing out heading
             currentHeading = (newHeading * filterFactor) + (currentHeading  * (1.0 - filterFactor))
         }
         
