@@ -54,11 +54,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  // let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 //NSLog("\(self.window)")
                 
+                NSLog("1")
                 let first = self.window?.rootViewController?.childViewControllers[0] as! SecondViewController
                 first.updateAtms(list: self.listAtms)
-                let second = self.window?.rootViewController?.childViewControllers[1] as! SecondViewController
-                second.updateAtms(list: self.listAtms)
-                
+                NSLog("2")
+                let second = self.window?.rootViewController?.childViewControllers[1] as! FirstViewController
+                //second.updateAtms(list: self.listAtms)
+                NSLog("3")
 
                 
             } catch let error as NSError {
