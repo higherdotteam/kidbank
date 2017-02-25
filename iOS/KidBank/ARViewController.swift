@@ -8,6 +8,7 @@ import CoreLocation
 open class ARViewController: UIViewController, ARTrackingManagerDelegate
 {
     open weak var dataSource: ARDataSource?
+    open var headingSmoothingFactor: Double = 1
     fileprivate(set) open var trackingManager: ARTrackingManager = ARTrackingManager()
     
     fileprivate var initialized: Bool = false
@@ -17,6 +18,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     fileprivate var cameraLayer: AVCaptureVideoPreviewLayer?    // Will be set in init
     fileprivate var annotationViews: [ARAnnotationView] = []
     fileprivate var didLayoutSubviews: Bool = false
+    fileprivate var currentHeading: Double = 0
     
     init()
     {
@@ -139,7 +141,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func overlayFrame() -> CGRect
     {
-        let x: CGFloat = self.view.bounds.size.width / 2 - (CGFloat(270) * H_PIXELS_PER_DEGREE)
+        let x: CGFloat = self.view.bounds.size.width / 2 - (CGFloat(currentHeading) * H_PIXELS_PER_DEGREE)
         let y: CGFloat = (CGFloat(self.trackingManager.pitch) * VERTICAL_SENS) + 60.0
         
         let newFrame = CGRect(x: x, y: y, width: OVERLAY_VIEW_WIDTH, height: self.view.bounds.size.height)
@@ -232,15 +234,44 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
     }
     
+    fileprivate func updateAnnotationsForCurrentHeading()
+    {
+        let annotation = ARAnnotation()
+        annotation.location = CLLocation(latitude: 34, longitude: -118.3)
+        annotation.title = "ATM"
+        
+        var av: ARAnnotationView? = nil
+        av = self.dataSource?.ar(self, viewForAnnotation: annotation)
+        
+        annotation.annotationView = av
+        av!.annotation = annotation
+        
+        av!.bindUi()
+        
+        self.overlayView.addSubview(annotation.annotationView!)
+    }
+    
     internal func displayTimerTick()
     {
+        let filterFactor: Double = headingSmoothingFactor
         let newHeading = self.trackingManager.heading
         
-        NSLog("55555555 \(newHeading)")
+        // Picking up the pace if device is being rotated fast or heading of device is at the border(North). It is needed
+        // to do this on North border because overlayView changes its position and we don't want it to animate full circle.
+        if(self.headingSmoothingFactor == 1 || fabs(currentHeading - self.trackingManager.heading) > 50)
+        {
+            currentHeading = self.trackingManager.heading
+        }
+        else
+        {
+            // Smoothing out heading
+            currentHeading = (newHeading * filterFactor) + (currentHeading  * (1.0 - filterFactor))
+        }
         
         self.overlayView.frame = self.overlayFrame()
-        //self.updateAnnotationsForCurrentHeading()
+        self.updateAnnotationsForCurrentHeading()
         
+        //logText("Heading: \(self.trackingManager.heading)")
     }
     
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateUserLocation: CLLocation?)
