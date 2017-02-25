@@ -16,6 +16,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     fileprivate var displayTimer: CADisplayLink?
     fileprivate var cameraLayer: AVCaptureVideoPreviewLayer?    // Will be set in init
     fileprivate var annotationViews: [ARAnnotationView] = []
+    fileprivate var didLayoutSubviews: Bool = false
     
     init()
     {
@@ -25,6 +26,12 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.initializeInternal()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.initializeInternal()
     }
     
@@ -117,11 +124,98 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         }
     }
     
+    fileprivate func layoutUi()
+    {
+        self.cameraLayer?.frame = self.view.bounds
+        self.overlayView.frame = self.overlayFrame()
+    }
+    
+    fileprivate func loadOverlay()
+    {
+        self.overlayView.removeFromSuperview()
+        self.overlayView = OverlayView()
+        self.view.addSubview(self.overlayView)
+    }
+    
+    fileprivate func overlayFrame() -> CGRect
+    {
+        let x: CGFloat = self.view.bounds.size.width / 2 - (CGFloat(270) * H_PIXELS_PER_DEGREE)
+        let y: CGFloat = (CGFloat(self.trackingManager.pitch) * VERTICAL_SENS) + 60.0
+        
+        let newFrame = CGRect(x: x, y: y, width: OVERLAY_VIEW_WIDTH, height: self.view.bounds.size.height)
+        return newFrame
+    }
+    
+    open override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        onViewWillAppear()  // Doing like this to prevent subclassing problems
+    }
+    
+    open override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        onViewDidAppear()   // Doing like this to prevent subclassing problems
+    }
+    
+    open override func viewDidDisappear(_ animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        onViewDidDisappear()    // Doing like this to prevent subclassing problems
+    }
+    
+    fileprivate func onViewDidAppear()
+    {
+        
+    }
+    
+    fileprivate func onViewDidDisappear()
+    {
+        //stopCamera()
+    }
+    
+    open override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
+        onViewDidLayoutSubviews()
+    }
+    
+    fileprivate func setOrientation(_ orientation: UIInterfaceOrientation)
+    {
+        if self.cameraLayer?.connection?.isVideoOrientationSupported != nil
+        {
+            if let videoOrientation = AVCaptureVideoOrientation(rawValue: Int(orientation.rawValue))
+            {
+                self.cameraLayer?.connection?.videoOrientation = videoOrientation
+            }
+        }
+        
+        if let deviceOrientation = CLDeviceOrientation(rawValue: Int32(orientation.rawValue))
+        {
+            self.trackingManager.orientation = deviceOrientation
+        }
+    }
+    
     fileprivate func onViewWillAppear()
     {
         if self.cameraLayer?.superlayer == nil { self.loadCamera() }
-        //if self.overlayView.superview == nil { self.loadOverlay() }
+        if self.overlayView.superview == nil { self.loadOverlay() }
+        self.setOrientation(UIApplication.shared.statusBarOrientation)
+        self.layoutUi();
         self.startCamera(notifyLocationFailure: true)
+    }
+    
+    fileprivate func onViewDidLayoutSubviews()
+    {
+        if !self.didLayoutSubviews
+        {
+            self.didLayoutSubviews = true
+            self.layoutUi()
+            self.view.layoutIfNeeded()
+        }
+        
+        //self.degreesPerScreen = (self.view.bounds.size.width / OVERLAY_VIEW_WIDTH) * 360.0
+        
     }
     
     internal func displayTimerTick()
@@ -130,9 +224,22 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
         NSLog("55555555 \(newHeading)")
         
-        //self.overlayView.frame = self.overlayFrame()
+        self.overlayView.frame = self.overlayFrame()
         //self.updateAnnotationsForCurrentHeading()
         
+    }
+    
+    internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateUserLocation: CLLocation?)
+    {
+    }
+    
+    internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateReloadLocation: CLLocation?)
+    {
+    }
+    
+    internal func arTrackingManager(_ trackingManager: ARTrackingManager, didFailToFindLocationAfter elapsedSeconds: TimeInterval)
+    {
+     
     }
     
     fileprivate func startCamera(notifyLocationFailure: Bool)
