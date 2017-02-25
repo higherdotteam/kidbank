@@ -80,25 +80,22 @@ class SecondViewController: ARViewController, ARDataSource {
         
     }
     
+    
+    func handleSingleTap(_ sender: UITapGestureRecognizer) {
+        print("Please Help!")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         
         self.dataSource = self
-        //self.maxDistance = 0
-        //self.maxVisibleAnnotations = 100
-        //self.maxVerticalLevel = 5
-        //self.headingSmoothingFactor = 0.05
-        //self.trackingManager.userDistanceFilter = 25
-        //self.trackingManager.reloadDistanceFilter = 75
         
-        //self.uiOptions.debugEnabled = true
-        //self.uiOptions.closeButtonEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     func ar(_ arViewController: ARViewController, viewForAnnotation: ARAnnotation) -> ARAnnotationView

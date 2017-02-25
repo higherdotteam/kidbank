@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 NSLog("1")
                 let first = self.window?.rootViewController?.childViewControllers[0] as! SecondViewController
-                first.updateAtms(list: self.listAtms)
+                //first.updateAtms(list: self.listAtms)
                 NSLog("2")
                 let second = self.window?.rootViewController?.childViewControllers[1] as! FirstViewController
                 //second.updateAtms(list: self.listAtms)
