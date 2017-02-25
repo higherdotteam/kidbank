@@ -107,10 +107,14 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.maxVisibleAnnotations = 100
         self.maxDistance = 0
         
+                   NSLog("11111111111")
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ARViewController.locationNotification(_:)), name: NSNotification.Name(rawValue: "kNotificationLocationSet"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ARViewController.appWillEnterForeground(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ARViewController.appDidEnterBackground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         self.initialize()
+        
+        NSLog("1111111111122222222")
     }
     
     internal func initialize()
@@ -263,6 +267,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     {
         if self.trackingManager.userLocation != nil && self.isViewLoaded
         {
+            NSLog("11111111111333333 \(self.trackingManager.userLocation)")
             self.shouldReloadAnnotations = false
             self.reload(calculateDistanceAndAzimuth: true, calculateVerticalLevels: true, createAnnotationViews: true)
         }
@@ -338,7 +343,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
                 continue
             }
             
-        
+        NSLog("11111111111444444 \(userLocation)")
             annotation.distanceFromUser = annotation.location!.distance(from: userLocation)
             
         
@@ -360,13 +365,17 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     {
         let degreesDelta = Double(degreesPerScreen)
         
+        NSLog("updateAnnotationsForCurrentHeading1");
         for annotationView in self.annotationViews
         {
+            NSLog("updateAnnotationsForCurrentHeading2 \(annotationView)");
             if annotationView.annotation != nil
             {
+                NSLog("updateAnnotationsForCurrentHeading3 \(annotationView.annotation)");
                 let delta = deltaAngle(currentHeading, angle2: annotationView.annotation!.azimuth)
                 
-                if fabs(delta) < degreesDelta && annotationView.annotation!.verticalLevel <= self.maxVerticalLevel
+                //if fabs(delta) < degreesDelta && annotationView.annotation!.verticalLevel <= self.maxVerticalLevel
+                if true || delta == 0
                 {
                     if annotationView.superview == nil
                     {
@@ -402,6 +411,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
                 self.reload(calculateDistanceAndAzimuth: false, calculateVerticalLevels: false, createAnnotationViews: false)
             }
         }
+        self.reload(calculateDistanceAndAzimuth: false, calculateVerticalLevels: false, createAnnotationViews: false)
         
         self.previosRegion = currentRegion
     }
@@ -637,7 +647,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
         self.positionAnnotationViews()
         
-        if calculateDistanceAndAzimuth
+        //if calculateDistanceAndAzimuth
+        if true
         {
             for annotationView in self.annotationViews
             {
@@ -662,14 +673,15 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         {
             let annotation = nsAnnotation as! ARAnnotation
             
-            if(checkMaxVisibleAnnotations && count >= maxVisibleAnnotations!)
+            /*if(checkMaxVisibleAnnotations && count >= maxVisibleAnnotations!)
             {
                 annotation.active = false
                 continue
-            }
+            }*/
             
-            if (!checkMaxVerticalLevel || annotation.verticalLevel <= maxVerticalLevel!) &&
-                (!checkMaxDistance || self.maxDistance == 0 || annotation.distanceFromUser <= maxDistance!)
+            //if (!checkMaxVerticalLevel || annotation.verticalLevel <= maxVerticalLevel!) &&
+              //  (!checkMaxDistance || self.maxDistance == 0 || annotation.distanceFromUser <= maxDistance!)
+            if true
             {
                 filteredAnnotations.append(annotation)
                 annotation.active = true
@@ -696,6 +708,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         {
             currentHeading = (newHeading * filterFactor) + (currentHeading  * (1.0 - filterFactor))
         }
+        //NSLog("55555555 \(currentHeading)")
         
         self.overlayView.frame = self.overlayFrame()
         self.updateAnnotationsForCurrentHeading()
