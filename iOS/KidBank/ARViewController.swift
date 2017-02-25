@@ -136,7 +136,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func loadOverlay()
     {
-        NSLog("loadOverlay")
+        //NSLog("loadOverlay")
         self.overlayView.removeFromSuperview()
         self.overlayView = OverlayView()
         self.view.addSubview(self.overlayView)
@@ -144,7 +144,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func overlayFrame() -> CGRect
     {
-        NSLog("loadOverlay[\(currentHeading)]")
+        //NSLog("loadOverlay[\(currentHeading)]")
         var x: CGFloat = self.view.bounds.size.width / 2 - (CGFloat(currentHeading) * H_PIXELS_PER_DEGREE)
         var y: CGFloat = (CGFloat(self.trackingManager.pitch) * VERTICAL_SENS) + 60.0
         
@@ -152,7 +152,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         y = 100
         
         let newFrame = CGRect(x: x, y: y, width: OVERLAY_VIEW_WIDTH, height: self.view.bounds.size.height)
-        NSLog("frame [\(newFrame)]")
+        //NSLog("frame [\(newFrame)]")
         return newFrame
     }
     
