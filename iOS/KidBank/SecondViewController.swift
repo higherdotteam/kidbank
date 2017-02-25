@@ -104,7 +104,7 @@ class SecondViewController: ARViewController, ARDataSource {
     {
         // Annotation views should be lightweight views, try to avoid xibs and autolayout all together.
         let annotationView = TestAnnotationView()
-        annotationView.frame = CGRect(x: 0,y: 0,width: 150,height: 50)
+        annotationView.frame = CGRect(x: 100,y: 100,width: 150,height: 50)
         return annotationView;
     }
 

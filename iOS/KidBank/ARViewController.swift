@@ -45,6 +45,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         }
         self.initialized = true;
         self.trackingManager.delegate = self
+        NSLog("trackingManager.startTracking");
         self.trackingManager.startTracking(notifyLocationFailure: true)
     }
     
@@ -106,6 +107,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func loadCamera()
     {
+        NSLog("loadCamera");
         self.cameraLayer?.removeFromSuperlayer()
         self.cameraLayer = nil
         
@@ -134,6 +136,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func loadOverlay()
     {
+        NSLog("loadOverlay")
         self.overlayView.removeFromSuperview()
         self.overlayView = OverlayView()
         self.view.addSubview(self.overlayView)
@@ -141,10 +144,15 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func overlayFrame() -> CGRect
     {
-        let x: CGFloat = self.view.bounds.size.width / 2 - (CGFloat(currentHeading) * H_PIXELS_PER_DEGREE)
-        let y: CGFloat = (CGFloat(self.trackingManager.pitch) * VERTICAL_SENS) + 60.0
+        NSLog("loadOverlay[\(currentHeading)]")
+        var x: CGFloat = self.view.bounds.size.width / 2 - (CGFloat(currentHeading) * H_PIXELS_PER_DEGREE)
+        var y: CGFloat = (CGFloat(self.trackingManager.pitch) * VERTICAL_SENS) + 60.0
+        
+        x = 100
+        y = 100
         
         let newFrame = CGRect(x: x, y: y, width: OVERLAY_VIEW_WIDTH, height: self.view.bounds.size.height)
+        NSLog("frame [\(newFrame)]")
         return newFrame
     }
     
@@ -184,6 +192,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func setOrientation(_ orientation: UIInterfaceOrientation)
     {
+        NSLog("setOrientation[\(orientation.rawValue)]");
         if self.cameraLayer?.connection?.isVideoOrientationSupported != nil
         {
             if let videoOrientation = AVCaptureVideoOrientation(rawValue: Int(orientation.rawValue))
@@ -218,6 +227,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
         av!.bindUi()
         
+        NSLog("addSubview \(annotation.annotationView!)");
         self.overlayView.addSubview(annotation.annotationView!)
     }
     
