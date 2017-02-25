@@ -53,6 +53,7 @@ class SecondViewController: ARViewController, ARDataSource {
     fileprivate let locationManager = CLLocationManager()
     
     @IBAction func addAtmLocation(sender: UIButton) {
+        NSLog("1");
         locationManager.startUpdatingLocation()
     }
     
