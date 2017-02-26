@@ -315,8 +315,12 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
         //self.overlayView.frame = self.overlayFrame()
         self.updateAnnotationsForCurrentHeading()
-        
         //logText("Heading: \(self.trackingManager.heading)")
+        
+        NSLog("A \(trackingManager.userLocation?.coordinate.latitude)")
+        NSLog("B \(trackingManager.userLocation?.coordinate.longitude)")
+        NSLog("C \(self.trackingManager.heading) \(currentHeading)")
+        
     }
     
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateUserLocation: CLLocation?)

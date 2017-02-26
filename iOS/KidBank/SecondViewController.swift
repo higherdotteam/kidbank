@@ -13,6 +13,7 @@ import MapKit
 
 extension SecondViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        NSLog("gotLocation")
         //1
         if locations.count > 0 {
             let location = locations.last!
@@ -32,6 +33,7 @@ extension SecondViewController: CLLocationManagerDelegate {
                 let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
                 request.httpMethod = "POST"
                 let bodyData = "lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&h=\(currentHeading)"
+                NSLog("\(bodyData)")
                 
                 request.httpBody = bodyData.data(using: String.Encoding.utf8);
                 
@@ -51,11 +53,6 @@ extension SecondViewController: CLLocationManagerDelegate {
 class SecondViewController: ARViewController, ARDataSource {
     
     fileprivate let locationManager = CLLocationManager()
-    
-    @IBAction func addAtmLocation(sender: UIButton) {
-        NSLog("1");
-        locationManager.startUpdatingLocation()
-    }
     
     func updateAtms(list: NSArray) {
         
@@ -81,8 +78,9 @@ class SecondViewController: ARViewController, ARDataSource {
     }
     
     
-    func handleSingleTap(_ sender: UITapGestureRecognizer) {
-        print("Please Help!")
+    func addAtmLocation(_ sender: UITapGestureRecognizer) {
+        print("addAtmLocation")
+        locationManager.startUpdatingLocation()
     }
 
     override func viewDidLoad() {
@@ -94,7 +92,7 @@ class SecondViewController: ARViewController, ARDataSource {
         
         self.dataSource = self
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.addAtmLocation(_:)))
         self.view.addGestureRecognizer(tapGesture)
     }
     
