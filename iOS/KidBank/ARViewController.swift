@@ -330,7 +330,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
     }
     
-    func loadAtms(lat: double, lon: double) {
+    func loadAtms(lat: Double, lon: Double) {
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms?lat=\(lat)&lon=\(lon)")!
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
         request.httpMethod = "GET"
@@ -346,8 +346,9 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
                 let list = parsedData["result"] as! NSArray
               
                 for (thing) in list {
-                  self.listOfAtms.append(thing)
+                  self.listOfAtms.append(thing as! NSDictionary)
                 }
+                NSLog("1111 \(self.listOfAtms)")
             } catch let error as NSError {
                 print(error)
             }
@@ -360,7 +361,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     {
         NSLog("didUpdateUserLocation \(trackingManager.userLocation)");
         if listOfAtms.count == 0 {
-            loadAtms(lat: trackingManager.userLocation?.coordinate.latitude, lon: trackingManager.userLocation?.coordinate.longitude)
+            loadAtms(lat: (trackingManager.userLocation?.coordinate.latitude)!, lon: (trackingManager.userLocation?.coordinate.longitude)!)
         }
     }
     
