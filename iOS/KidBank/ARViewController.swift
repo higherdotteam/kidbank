@@ -20,6 +20,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     fileprivate var annotationViews: [ARAnnotationView] = []
     fileprivate var listOfAtms: [NSDictionary] = []
     fileprivate var didLayoutSubviews: Bool = false
+    fileprivate var atmIsNear: Bool = false
+    
     var currentHeading: Double = 0
     
     init()
@@ -323,7 +325,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
         self.araview!.removeFromSuperview()
         
-        if currentHeading > 50
+        if atmIsNear
         {
           self.overlayView.addSubview(self.araview!)
         }
@@ -331,12 +333,17 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     }
     
     func findCloseATMS() {
+        atmIsNear = false
         for (thing) in self.listOfAtms {
           let lat = thing["lat"]
           let lon = thing["lon"]
           let loc = CLLocation(latitude: lat as! CLLocationDegrees, longitude: lon as! CLLocationDegrees)
           let d = loc.distance(from: trackingManager.userLocation!)
-            NSLog("\(d)")
+            
+          if d < 10
+          {
+            atmIsNear = true
+          }
         }
     }
     
