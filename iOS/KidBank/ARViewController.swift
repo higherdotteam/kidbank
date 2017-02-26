@@ -264,7 +264,6 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.araview = (self.dataSource?.ar(self, viewForAnnotation: annotation))!
         annotation.annotationView = self.araview
         self.araview?.annotation = annotation
-        //av!.bindUi()
         
         self.overlayView.addSubview(self.araview!)
     }
@@ -320,6 +319,13 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         //NSLog("A \(trackingManager.userLocation?.coordinate.latitude)")
         //NSLog("B \(trackingManager.userLocation?.coordinate.longitude)")
         //NSLog("C \(self.trackingManager.heading) \(currentHeading)")
+        
+        self.araview!.removeFromSuperview()
+        
+        if currentHeading > 50
+        {
+          self.overlayView.addSubview(self.araview!)
+        }
         
     }
     
