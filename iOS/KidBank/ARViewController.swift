@@ -330,6 +330,16 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
     }
     
+    func findCloseATMS() {
+        for (thing) in self.listOfAtms {
+          let lat = thing["lat"]
+          let lon = thing["lon"]
+          let loc = CLLocation(latitude: lat as! CLLocationDegrees, longitude: lon as! CLLocationDegrees)
+          let d = loc.distance(from: trackingManager.userLocation!)
+            NSLog("\(d)")
+        }
+    }
+    
     func loadAtms(lat: Double, lon: Double) {
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms?lat=\(lat)&lon=\(lon)")!
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
@@ -348,7 +358,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
                 for (thing) in list {
                   self.listOfAtms.append(thing as! NSDictionary)
                 }
-                NSLog("1111 \(self.listOfAtms)")
+                self.findCloseATMS()
             } catch let error as NSError {
                 print(error)
             }
@@ -362,6 +372,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         NSLog("didUpdateUserLocation \(trackingManager.userLocation)");
         if listOfAtms.count == 0 {
             loadAtms(lat: (trackingManager.userLocation?.coordinate.latitude)!, lon: (trackingManager.userLocation?.coordinate.longitude)!)
+        } else {
+            findCloseATMS()
         }
     }
     
