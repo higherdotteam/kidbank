@@ -6,7 +6,7 @@ class Api::V1::AtmsController < ApplicationController
   end
 
   def index
-    list = AtmLocation.all.limit(1000)
+    list = AtmLocation.nearby(params[:lat].to_f, params[:lon].to_f)
     render json: {result: list.as_json}, status: 200
   end
 
