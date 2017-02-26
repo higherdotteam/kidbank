@@ -13,6 +13,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate var initialized: Bool = false
     fileprivate var cameraSession: AVCaptureSession = AVCaptureSession()
+    fileprivate var araview: ARAnnotationView?
     fileprivate var overlayView: OverlayView = OverlayView()
     fileprivate var displayTimer: CADisplayLink?
     fileprivate var cameraLayer: AVCaptureVideoPreviewLayer?    // Will be set in init
@@ -259,13 +260,13 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         annotation.location = CLLocation(latitude: 34, longitude: -118.3)
         annotation.title = "ATM"
         
-        var av: ARAnnotationView? = nil
-        av = self.dataSource?.ar(self, viewForAnnotation: annotation)
-        annotation.annotationView = av
-        av!.annotation = annotation
-        av!.bindUi()
         
-        self.overlayView.addSubview(annotation.annotationView!)
+        self.araview = (self.dataSource?.ar(self, viewForAnnotation: annotation))!
+        annotation.annotationView = self.araview
+        self.araview?.annotation = annotation
+        //av!.bindUi()
+        
+        self.overlayView.addSubview(self.araview!)
     }
     
     fileprivate func onViewDidLayoutSubviews()
