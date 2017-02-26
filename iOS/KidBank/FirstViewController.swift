@@ -62,8 +62,8 @@ class FirstViewController: UIViewController {
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        locationManager.requestWhenInUseAuthorization()
+        //locationManager.startUpdatingLocation()
+        //ocationManager.requestWhenInUseAuthorization()
         
         // https://www.raywenderlich.com/146436/augmented-reality-ios-tutorial-location-based-2
          var map: MKMapView?

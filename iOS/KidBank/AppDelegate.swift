@@ -36,42 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms")!
-        //let URL: NSURL = NSURL(string: "http://127.0.0.1:3000/api/v1/atms")!
-        let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
-        request.httpMethod = "GET"
-
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        
-        let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
-
-            do {
-                
-                let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                self.listAtms = parsedData["result"] as! NSArray
-                
-                 // let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                //NSLog("\(self.window)")
-                
-                NSLog("1")
-                let first = self.window?.rootViewController?.childViewControllers[0] as! SecondViewController
-                //first.updateAtms(list: self.listAtms)
-                NSLog("2")
-                let second = self.window?.rootViewController?.childViewControllers[1] as! FirstViewController
-                //second.updateAtms(list: self.listAtms)
-                NSLog("3")
-
-                
-            } catch let error as NSError {
-                print(error)
-            }
-            
-            
-            
-        });
-        
-        task.resume()
+ 
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

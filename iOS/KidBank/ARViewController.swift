@@ -18,6 +18,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     fileprivate var displayTimer: CADisplayLink?
     fileprivate var cameraLayer: AVCaptureVideoPreviewLayer?    // Will be set in init
     fileprivate var annotationViews: [ARAnnotationView] = []
+    fileprivate var listOfAtms: [NSDictionary] = []
     fileprivate var didLayoutSubviews: Bool = false
     var currentHeading: Double = 0
     
@@ -329,9 +330,38 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         
     }
     
+    func loadAtms(lat: double, lon: double) {
+        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms?lat=\(lat)&lon=\(lon)")!
+        let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
+        request.httpMethod = "GET"
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
+            
+            do {
+                
+                let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                let list = parsedData["result"] as! NSArray
+              
+                for (thing) in list {
+                  self.listOfAtms.append(thing)
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        });
+        
+        task.resume()
+    }
+    
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateUserLocation: CLLocation?)
     {
         NSLog("didUpdateUserLocation \(trackingManager.userLocation)");
+        if listOfAtms.count == 0 {
+            loadAtms(lat: trackingManager.userLocation?.coordinate.latitude, lon: trackingManager.userLocation?.coordinate.longitude)
+        }
     }
     
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateReloadLocation: CLLocation?)
