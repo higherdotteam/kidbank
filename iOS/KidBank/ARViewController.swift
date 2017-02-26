@@ -253,19 +253,18 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.layoutUi();
         self.startCamera(notifyLocationFailure: true)
         
+        // {"result":[{"lat":33.9888683986235,"lon":-118.403090257308,"h":76.0}]}
+        
         let annotation = ARAnnotation()
         annotation.location = CLLocation(latitude: 34, longitude: -118.3)
         annotation.title = "ATM"
         
         var av: ARAnnotationView? = nil
         av = self.dataSource?.ar(self, viewForAnnotation: annotation)
-        
         annotation.annotationView = av
         av!.annotation = annotation
-        
         av!.bindUi()
         
-        NSLog("addSubview \(annotation.annotationView!)");
         self.overlayView.addSubview(annotation.annotationView!)
     }
     
@@ -317,9 +316,9 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.updateAnnotationsForCurrentHeading()
         //logText("Heading: \(self.trackingManager.heading)")
         
-        NSLog("A \(trackingManager.userLocation?.coordinate.latitude)")
-        NSLog("B \(trackingManager.userLocation?.coordinate.longitude)")
-        NSLog("C \(self.trackingManager.heading) \(currentHeading)")
+        //NSLog("A \(trackingManager.userLocation?.coordinate.latitude)")
+        //NSLog("B \(trackingManager.userLocation?.coordinate.longitude)")
+        //NSLog("C \(self.trackingManager.heading) \(currentHeading)")
         
     }
     

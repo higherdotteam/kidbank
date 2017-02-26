@@ -128,6 +128,7 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
     open func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
     {
         self.heading = fmod(newHeading.trueHeading, 360.0)
+        //NSLog("aaaaa \(acceleration.x) \(self.heading)");
     }
     
     open func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
