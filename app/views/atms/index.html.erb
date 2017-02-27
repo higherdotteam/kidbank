@@ -11,21 +11,18 @@
     </section>
     <section id="features" class="features">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <div class="section-heading">
-              <h2>KidBank was founded on Feb 1, 2017</h2>
-            </div>
-          </div>
-        </div>
+        <% @list.each_with_index do |item, i| %>
         <div class="row">
           <div class="col-lg-3 text-center">
+            <%= i+1 %>
           </div>
           <div class="col-lg-6 text-center">
             <div class="section-heading">
-              <h2>Founders</h2>
+            <%= item.lat.to_f %>,
+            <%= item.lon.to_f %>
             </div>
           </div>
         </div>
+        <% end %>
       </div>
     </section>
