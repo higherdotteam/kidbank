@@ -28,7 +28,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     fileprivate var displayTimer: CADisplayLink?
     fileprivate var cameraLayer: AVCaptureVideoPreviewLayer?    // Will be set in init
     fileprivate var annotationViews: [ARAnnotationView] = []
-    fileprivate var listOfAtms: [NSDictionary] = []
+    var listOfAtms: [NSDictionary] = []
     fileprivate var didLayoutSubviews: Bool = false
     fileprivate var atmIsNear: Bool = false
     

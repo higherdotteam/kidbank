@@ -25,8 +25,7 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func doPost(lat: Double, lon: Double) {
-        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms")!
-        //let URL: NSURL = NSURL(string: "http://127.0.0.1:3000/api/v1/atms")!
+        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms")!        
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
         request.httpMethod = "POST"
         let bodyData = "lat=\(lat)&lon=\(lon)&ifv=\(UIDevice.current.identifierForVendor?.uuidString)"
