@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :accounts do
     resources :activities
   end
+  resources :atms
 
   root 'welcome#index'
 
