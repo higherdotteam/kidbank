@@ -42,16 +42,7 @@
         <!--Review-->
         <scene sceneID="43J-MP-LdC">
             <objects>
-                <viewController id="Xwg-gL-RHO" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gAe-2Y-bbf"/>
-                        <viewControllerLayoutGuide type="bottom" id="mDM-kW-yXx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2kd-ni-zwF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                <viewController id="Xwg-gL-RHO" customClass="ReviewController" customModule="KidBank" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Review" image="review" id="O0n-Vt-MLy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6sc-u0-jnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
