@@ -54,6 +54,8 @@ class SecondViewController: ARViewController, ARDataSource {
     
     fileprivate let locationManager = CLLocationManager()
     
+    @IBOutlet var addNewButton: UIButton!
+    
     func updateAtms(list: NSArray) {
         
         var annotations: [ARAnnotation] = []
@@ -79,8 +81,8 @@ class SecondViewController: ARViewController, ARDataSource {
     
     
     func addAtmLocation(_ sender: UITapGestureRecognizer) {
-        print("addAtmLocation")
-        locationManager.startUpdatingLocation()
+        //NSLog("addAtmLocation \(sender)")
+        //locationManager.startUpdatingLocation()
     }
 
     override func viewDidLoad() {
