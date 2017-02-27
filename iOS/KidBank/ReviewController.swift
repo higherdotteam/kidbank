@@ -41,7 +41,9 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         
-        cell.textLabel?.text = "wfwefwef"
+        let lat = self.list[indexPath.row]["lat"]
+        let lon = self.list[indexPath.row]["lon"]
+        cell.textLabel?.text = "\(lat),\(lon)"
         
         return cell
     }

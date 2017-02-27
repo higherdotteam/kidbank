@@ -88,7 +88,8 @@ class SecondViewController: ARViewController, ARDataSource {
         
         let rc = appDelegate.window?.rootViewController?.childViewControllers[2] as! ReviewController
         
-        let dict : NSDictionary = [ 1 : "abc", 2 : "cde"]
+        
+        let dict : NSDictionary = [ "lat" : 33.333341, "lon" : -118.121]
         rc.list.append(dict)
         tbc.selectedIndex = 2
         rc.tableView.reloadData()
