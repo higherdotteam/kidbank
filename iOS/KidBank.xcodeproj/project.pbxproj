@@ -334,8 +334,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = team.kidbank;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ea445108-9dbb-44a9-a60b-a540c06f9f9f";
-				PROVISIONING_PROFILE_SPECIFIER = kbdist;
+				PROVISIONING_PROFILE = "33e413f7-6f14-4673-b70d-cded78c79dfb";
+				PROVISIONING_PROFILE_SPECIFIER = kbappstore;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -352,8 +352,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = team.kidbank;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ea445108-9dbb-44a9-a60b-a540c06f9f9f";
-				PROVISIONING_PROFILE_SPECIFIER = kbdist;
+				PROVISIONING_PROFILE = "33e413f7-6f14-4673-b70d-cded78c79dfb";
+				PROVISIONING_PROFILE_SPECIFIER = kbappstore;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
