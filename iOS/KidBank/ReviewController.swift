@@ -24,12 +24,12 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return true
     }
     
-    func foo(lat: Double, lon: Double) {
+    func doPost(lat: Double, lon: Double) {
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms")!
         //let URL: NSURL = NSURL(string: "http://127.0.0.1:3000/api/v1/atms")!
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
         request.httpMethod = "POST"
-        let bodyData = "lat=\(lat)&lon=\(lon)"
+        let bodyData = "lat=\(lat)&lon=\(lon)&ifv=\(UIDevice.current.identifierForVendor?.uuidString)"
         NSLog("\(bodyData)")
         
         request.httpBody = bodyData.data(using: String.Encoding.utf8);
@@ -51,6 +51,10 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         let share = UITableViewRowAction(style: .normal, title: "Submit") { (action, indexPath) in
+            let lat = self.list[indexPath.row]["lat"] as! Double
+            let lon = self.list[indexPath.row]["lon"] as! Double
+
+            self.doPost(lat: lat, lon: lon)
             self.list.remove(at: indexPath.row)
             self.tableView.reloadData()
         }
