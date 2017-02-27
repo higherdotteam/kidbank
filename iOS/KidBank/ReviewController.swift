@@ -20,6 +20,24 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            // delete item at indexPath
+        }
+        
+        let share = UITableViewRowAction(style: .normal, title: "Submit") { (action, indexPath) in
+            // share item at indexPath
+        }
+        
+        share.backgroundColor = UIColor.blue
+        
+        return [delete, share]
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         
