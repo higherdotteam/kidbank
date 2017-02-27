@@ -19,6 +19,7 @@
 		008A733F1E5E1709000542ED /* ARConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A733E1E5E1709000542ED /* ARConfiguration.swift */; };
 		008A73411E5E171D000542ED /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A73401E5E171D000542ED /* ARViewController.swift */; };
 		008A73431E5E1734000542ED /* ARTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A73421E5E1734000542ED /* ARTrackingManager.swift */; };
+		008ED4041E648FDC00A6D94D /* Export.plist in Resources */ = {isa = PBXBuildFile; fileRef = 008ED4031E648FDC00A6D94D /* Export.plist */; };
 		00AAB5A01E446F3A00D8D774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB59F1E446F3A00D8D774 /* AppDelegate.swift */; };
 		00AAB5A21E446F3A00D8D774 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB5A11E446F3A00D8D774 /* FirstViewController.swift */; };
 		00AAB5A41E446F3A00D8D774 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AAB5A31E446F3A00D8D774 /* SecondViewController.swift */; };
@@ -40,6 +41,7 @@
 		008A733E1E5E1709000542ED /* ARConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARConfiguration.swift; sourceTree = "<group>"; };
 		008A73401E5E171D000542ED /* ARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		008A73421E5E1734000542ED /* ARTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARTrackingManager.swift; sourceTree = "<group>"; };
+		008ED4031E648FDC00A6D94D /* Export.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Export.plist; sourceTree = "<group>"; };
 		00AAB59C1E446F3A00D8D774 /* KidBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KidBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00AAB59F1E446F3A00D8D774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00AAB5A11E446F3A00D8D774 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				00AAB5A51E446F3A00D8D774 /* Main.storyboard */,
 				00AAB5A81E446F3A00D8D774 /* Assets.xcassets */,
 				00AAB5AA1E446F3A00D8D774 /* LaunchScreen.storyboard */,
+				008ED4031E648FDC00A6D94D /* Export.plist */,
 				00AAB5AD1E446F3A00D8D774 /* Info.plist */,
 				00666C911E5D40E300060DE7 /* PlaceAnnotation.swift */,
 				008A73421E5E1734000542ED /* ARTrackingManager.swift */,
@@ -174,6 +177,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				008ED4041E648FDC00A6D94D /* Export.plist in Resources */,
 				00AAB5AC1E446F3A00D8D774 /* LaunchScreen.storyboard in Resources */,
 				00AAB5A91E446F3A00D8D774 /* Assets.xcassets in Resources */,
 				00AAB5A71E446F3A00D8D774 /* Main.storyboard in Resources */,
@@ -320,6 +324,7 @@
 		00AAB5B11E446F3A00D8D774 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Arrow (755R3VBZ84)";
@@ -338,6 +343,7 @@
 		00AAB5B21E446F3A00D8D774 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Arrow (755R3VBZ84)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Arrow (755R3VBZ84)";

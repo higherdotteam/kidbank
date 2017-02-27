@@ -16,3 +16,18 @@ https://higher.team
 ![](http://kidbank.team/images/mall.jpg)
 
 ![](http://kidbank.team/images/mall2.jpg)
+
+xcodebuild -project "*path/fileName*.xcodeproj" -target "*targetName*" -sdk "*targetSDK*" -configuration *buildConfig* CODE_SIGN_IDENTITY="*NameOfCertificateIdentity*" PROVISIONING_PROFILE="*ProvisioningProfileName" OTHER_CODE_SIGN_FLAGS="--keychain *keyChainName*"
+
+xcodebuild -project <ProjectName.xcodeproj> 
+    -scheme <ProjectName> -sdk iphonesimulator 
+    -configuration Debug 
+    -destination "platform=iOS Simulator,name=<Device>,OS=9.3" 
+    clean build
+
+xcodebuild -exportArchive -exportFormat ipa \
+    -archivePath "/Users/username/Desktop/MyiOSApp.xcarchive" \
+    -exportPath "/Users/username/Desktop/MyiOSApp.ipa" \
+    -exportProvisioningProfile "MyCompany Distribution Profile"
+
+xcodebuild -exportArchive -archivePath "/Users/aa/Library/Developer/Xcode/Archives/2017-02-27/x1" -exportPath ~/KidBank.ipa  -exportOptionsPlist iOS/KidBank/Export.plist 
