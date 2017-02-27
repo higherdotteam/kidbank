@@ -5,6 +5,16 @@ import UIKit
 import AVFoundation
 import CoreLocation
 
+struct Platform {
+    static let isSimulator: Bool = {
+        var isSim = false
+        #if arch(i386) || arch(x86_64)
+            isSim = true
+        #endif
+        return isSim
+    }()
+}
+
 open class ARViewController: UIViewController, ARTrackingManagerDelegate
 {
     open weak var dataSource: ARDataSource?
@@ -142,9 +152,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     fileprivate func loadCamera()
     {
       
-        let device = UIDevice.current
-        let idfv = device.identifierForVendor!.uuidString
-        if idfv == "97C25B1E-3100-4797-8919-3C28BCE176FC" {
+        if Platform.isSimulator {
            return
         }
 
@@ -203,9 +211,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.displayTimer?.invalidate()
         self.displayTimer = nil
 
-        let device = UIDevice.current
-        let idfv = device.identifierForVendor!.uuidString
-        if idfv == "97C25B1E-3100-4797-8919-3C28BCE176FC" {
+        if Platform.isSimulator {
             return
         }
         self.cameraSession.stopRunning()
