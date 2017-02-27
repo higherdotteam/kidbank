@@ -22,14 +22,28 @@ class FirstViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        var map: MKMapView?
+        map = super.view as! MKMapView?
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let svc = appDelegate.window?.rootViewController?.childViewControllers[0] as! SecondViewController
-        
+     
+        var first : Bool
+        first = true
         for (thing) in svc.listOfAtms {
-            let lat = thing["lat"]
-            let lon = thing["lon"]
+            let lat = thing["lat"] as! Double
+            let lon = thing["lon"] as! Double
             
-            NSLog("aaaa1111 \(lat)")
+            let location = CLLocationCoordinate2DMake(lat, lon)
+            let annotation = PlaceAnnotation(location: location, title: "ATM")
+            map!.addAnnotation(annotation)
+            
+            if first {
+              let span = MKCoordinateSpan(latitudeDelta: 0.014, longitudeDelta: 0.014)
+              let region = MKCoordinateRegion(center: location, span: span)
+              map!.region = region
+              first = false
+            }
         }
     }
 
