@@ -141,6 +141,13 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func loadCamera()
     {
+      
+        let device = UIDevice.current
+        let idfv = device.identifierForVendor!.uuidString
+        if idfv == "97C25B1E-3100-4797-8919-3C28BCE176FC" {
+           return
+        }
+
         NSLog("loadCamera");
         self.cameraLayer?.removeFromSuperlayer()
         self.cameraLayer = nil
@@ -192,10 +199,16 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     
     fileprivate func stopCamera()
     {
-        self.cameraSession.stopRunning()
         self.trackingManager.stopTracking()
         self.displayTimer?.invalidate()
         self.displayTimer = nil
+
+        let device = UIDevice.current
+        let idfv = device.identifierForVendor!.uuidString
+        if idfv == "97C25B1E-3100-4797-8919-3C28BCE176FC" {
+            return
+        }
+        self.cameraSession.stopRunning()
     }
     
     open override func viewWillAppear(_ animated: Bool)
