@@ -52,7 +52,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Review" image="first" id="O0n-Vt-MLy"/>
+                    <tabBarItem key="tabBarItem" title="Review" image="review" id="O0n-Vt-MLy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6sc-u0-jnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -66,7 +66,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </mapView>
-                    <tabBarItem key="tabBarItem" title="Map" image="second" id="bQ2-UJ-12E"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="bQ2-UJ-12E"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,6 +95,7 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="map" width="30" height="30"/>
+        <image name="review" width="25" height="25"/>
     </resources>
 </document>
