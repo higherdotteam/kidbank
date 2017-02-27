@@ -24,6 +24,26 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return true
     }
     
+    func foo(lat: Double, lon: Double) {
+        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms")!
+        //let URL: NSURL = NSURL(string: "http://127.0.0.1:3000/api/v1/atms")!
+        let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
+        request.httpMethod = "POST"
+        let bodyData = "lat=\(lat)&lon=\(lon)"
+        NSLog("\(bodyData)")
+        
+        request.httpBody = bodyData.data(using: String.Encoding.utf8);
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
+            
+        });
+        
+        task.resume()
+    }
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             self.list.remove(at: indexPath.row)
