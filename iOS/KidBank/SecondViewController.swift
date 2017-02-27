@@ -85,7 +85,13 @@ class SecondViewController: ARViewController, ARDataSource {
         //locationManager.startUpdatingLocation()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let tbc = appDelegate.window?.rootViewController as! UITabBarController
+        
+        let rc = appDelegate.window?.rootViewController?.childViewControllers[2] as! ReviewController
+        
+        let dict : NSDictionary = [ 1 : "abc", 2 : "cde"]
+        rc.list.append(dict)
         tbc.selectedIndex = 2
+        rc.tableView.reloadData()
     }
 
     override func viewDidLoad() {

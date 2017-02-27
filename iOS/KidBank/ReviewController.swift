@@ -12,6 +12,8 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBOutlet var tableView: UITableView!
     
+    var list: [NSDictionary] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +29,7 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return list.count
     }
     
     private func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
