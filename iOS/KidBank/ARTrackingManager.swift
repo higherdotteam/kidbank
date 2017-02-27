@@ -72,9 +72,8 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
     fileprivate func initialize()
     {
         self.reloadDistanceFilter = 75
-        self.userDistanceFilter = 25
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.distanceFilter = CLLocationDistance(self.userDistanceFilter)
+        self.locationManager.distanceFilter = CLLocationDistance(kCLDistanceFilterNone)
         self.locationManager.headingFilter = 1
         self.locationManager.delegate = self
     }
@@ -133,6 +132,7 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
     
     open func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
+        //NSLog("ddd \(locations)")
         if locations.count > 0
         {
             let location = locations[0]
