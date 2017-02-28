@@ -21,6 +21,7 @@
             <%= item.lat.to_f %>,
             <%= item.lon.to_f %>
             <a target="_blank" href="https://www.google.com/maps/@<%=item.lat.to_f%>,<%=item.lon.to_f%>,15z">map</a>
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center=<%=item.lat.to_f%>,<%=item.lon.to_f%>&zoom=15&size=200x200&markers=color:blue%7Clabel:S%7C11211%7C11206%7C11222&sensor=true_or_false"/>
             </div>
           </div>
         </div>
