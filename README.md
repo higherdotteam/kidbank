@@ -30,4 +30,10 @@ xcodebuild -exportArchive -exportFormat ipa \
     -exportPath "/Users/username/Desktop/MyiOSApp.ipa" \
     -exportProvisioningProfile "MyCompany Distribution Profile"
 
+didFailToFindLocationAfter
+2017-02-28 00:47:58.211200 kidbank[1975:1068018] [LogMessageLogging] 6.1 Unable to retrieve CarrierName. CTError: domain-2, code-5, errStr:((os/kern) failure)
+2017-02-28 00:47:58.232256 kidbank[1975:1067868] Optional(<MKMapView: 0x100c3b7f0; frame = (0 0; 375 667); clipsToBounds = YES; autoresize = RM+BM; layer = <CALayer: 0x17003a3c0>>)
+fatal error: unexpectedly found nil while unwrapping an Optional value
+2017-02-28 00:48:02.737087 kidbank[1975:1068021] fatal error: unexpectedly found nil while unwrapping an Optional value
+
 xcodebuild -exportArchive -archivePath "/Users/aa/Library/Developer/Xcode/Archives/2017-02-27/x1" -exportPath ~/KidBank.ipa  -exportOptionsPlist iOS/KidBank/Export.plist 
