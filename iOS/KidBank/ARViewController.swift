@@ -15,7 +15,7 @@ struct Platform {
     }()
 }
 
-open class ARViewController: UIViewController, ARTrackingManagerDelegate
+open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate
 {
     open weak var dataSource: ARDataSource?
     open var headingSmoothingFactor: Double = 1
@@ -93,7 +93,13 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.stopCamera()
     }
     
-    open class func createCaptureSession() -> (session: AVCaptureSession?, error: NSError?)
+    public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        
+        print("stuff")
+        
+    }
+
+    open class func createCaptureSession(vc: ARViewController!) -> (session: AVCaptureSession?, error: NSError?)
     {
         var error: NSError?
         var captureSession: AVCaptureSession?
@@ -104,8 +110,10 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         if backVideoDevice != nil
         {
             var videoInput: AVCaptureDeviceInput!
+            var videoOutput: AVCaptureVideoDataOutput!
             do {
                 videoInput = try AVCaptureDeviceInput(device: backVideoDevice)
+                videoOutput = AVCaptureVideoDataOutput()
             } catch let error1 as NSError {
                 error = error1
                 videoInput = nil
@@ -118,6 +126,9 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
                 {
 
                     captureSession!.addInput(videoInput)
+                    captureSession!.addOutput(videoOutput)
+                     //let queue = DispatchQueue.global(qos: .background)
+                    videoOutput.setSampleBufferDelegate(vc, queue: DispatchQueue.main)
                 }
                 else
                 {
@@ -149,7 +160,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.cameraLayer?.removeFromSuperlayer()
         self.cameraLayer = nil
         
-        let captureSessionResult = ARViewController.createCaptureSession()
+        let captureSessionResult = ARViewController.createCaptureSession(vc: self)
         guard captureSessionResult.error == nil, let session = captureSessionResult.session else
         {
             print("HDAugmentedReality: Cannot create capture session, use createCaptureSession method to check if device is capable for augmented reality.")
