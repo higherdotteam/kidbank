@@ -98,19 +98,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         var error: NSError?
         var captureSession: AVCaptureSession?
         var backVideoDevice: AVCaptureDevice?
-        let videoDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
         
-        if let videoDevices = videoDevices
-        {
-            for captureDevice in videoDevices
-            {
-                if (captureDevice as AnyObject).position == AVCaptureDevicePosition.back
-                {
-                    backVideoDevice = captureDevice as? AVCaptureDevice
-                    break
-                }
-            }
-        }
+        backVideoDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .back)
         
         if backVideoDevice != nil
         {
