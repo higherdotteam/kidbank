@@ -327,11 +327,14 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         //self.overlayView.addSubview(annotation.annotationView!)
     }
     
-    func foo() {
+    func saveStillImage() {
         if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
             stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
                 (imageDataSampleBuffer, error) -> Void in
                 let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
+                
+                let filename = self.getDocumentsDirectory().appendingPathComponent("copy.png")
+                try? imageData?.write(to: filename)
                 
             }
         }

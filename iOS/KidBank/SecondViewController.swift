@@ -17,6 +17,9 @@ class SecondViewController: ARViewController, ARDataSource {
     func addAtmLocation(_ sender: UITapGestureRecognizer) {
         //NSLog("addAtmLocation \(sender)")
         //locationManager.startUpdatingLocation()
+        
+        saveStillImage()
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let tbc = appDelegate.window?.rootViewController as! UITabBarController
         
