@@ -15,7 +15,7 @@ struct Platform {
     }()
 }
 
-open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate
+open class ARViewController: UIViewController, ARTrackingManagerDelegate
 {
     open weak var dataSource: ARDataSource?
     open var headingSmoothingFactor: Double = 1
@@ -99,39 +99,11 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
         return documentsDirectory
     }
     
-    public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-
-        let randomNum:UInt32 = arc4random_uniform(100)
-        
-        if (randomNum < 10) {
-          print("stuff")
-        
-          //let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: sampleBuffer)
-            
-            let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-            
-            CVPixelBufferLockBaseAddress(imageBuffer!, CVPixelBufferLockFlags(rawValue: 0))
-            let baseAddress = CVPixelBufferGetBaseAddress(imageBuffer!)
-            let bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer!)
-            let width = CVPixelBufferGetWidth(imageBuffer!)
-            let height = CVPixelBufferGetHeight(imageBuffer!)
-            
-            let colorSpace = CGColorSpaceCreateDeviceRGB()
-            
-            let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.noneSkipFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
-            
-            let context = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
-            
-            let quartzImage = context!.makeImage()
-            CVPixelBufferUnlockBaseAddress(imageBuffer!,CVPixelBufferLockFlags(rawValue: 0))
-            
-            let image = UIImage(cgImage: quartzImage!)
-            
-          let filename = getDocumentsDirectory().appendingPathComponent("copy.png")
-          let data = UIImagePNGRepresentation(image)
-          try? data?.write(to: filename)
-        }
-    }
+    /* 
+     let filename = getDocumentsDirectory().appendingPathComponent("copy.png")
+     let data = UIImagePNGRepresentation(image)
+     try? data?.write(to: filename)
+     */
 
     open class func createCaptureSession(vc: ARViewController!) -> (session: AVCaptureSession?, error: NSError?)
     {
@@ -144,10 +116,10 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
         if backVideoDevice != nil
         {
             var videoInput: AVCaptureDeviceInput!
-            var videoOutput: AVCaptureVideoDataOutput!
+            
             do {
                 videoInput = try AVCaptureDeviceInput(device: backVideoDevice)
-                videoOutput = AVCaptureVideoDataOutput()
+            
             } catch let error1 as NSError {
                 error = error1
                 videoInput = nil
@@ -158,11 +130,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
                 
                 if captureSession!.canAddInput(videoInput)
                 {
-
                     captureSession!.addInput(videoInput)
-                    captureSession!.addOutput(videoOutput)
-                     //let queue = DispatchQueue.global(qos: .background)
-                    videoOutput.setSampleBufferDelegate(vc, queue: DispatchQueue.main)
                 }
                 else
                 {
