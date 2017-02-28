@@ -27,6 +27,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     fileprivate var overlayView: OverlayView = OverlayView()
     fileprivate var displayTimer: CADisplayLink?
     fileprivate var cameraLayer: AVCaptureVideoPreviewLayer?    // Will be set in init
+    fileprivate var stillImageOutput = AVCaptureStillImageOutput()
     fileprivate var annotationViews: [ARAnnotationView] = []
     var listOfAtms: [NSDictionary] = []
     fileprivate var didLayoutSubviews: Bool = false
@@ -131,6 +132,10 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
                 if captureSession!.canAddInput(videoInput)
                 {
                     captureSession!.addInput(videoInput)
+                    vc.stillImageOutput.outputSettings = [AVVideoCodecKey:AVVideoCodecJPEG]
+                    if captureSession!.canAddOutput(vc.stillImageOutput) {
+                        captureSession!.addOutput(vc.stillImageOutput)
+                    }
                 }
                 else
                 {
@@ -320,6 +325,16 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         //av!.bindUi()
         
         //self.overlayView.addSubview(annotation.annotationView!)
+    }
+    
+    func foo() {
+        if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
+            stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
+                (imageDataSampleBuffer, error) -> Void in
+                let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
+                
+            }
+        }
     }
     
     internal func displayTimerTick()
