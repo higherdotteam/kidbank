@@ -55,11 +55,18 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         let latlon:String = "\(lat)_\(lon)"
-        
         let name = "kidbank.jpg"
-        let filename = self.getDocumentsDirectory().appendingPathComponent("kb_\(latlon).jpg")
-        let image = UIImage(contentsOfFile: filename.absoluteString)
-        let data = UIImageJPEGRepresentation(image!, 0.9) as Data?
+        
+        let filename = self.getDocumentsDirectory().appendingPathComponent("kb_\(latlon).jpg").path
+        
+    
+        if FileManager.default.fileExists(atPath: filename) == false {
+            NSLog("zzz")
+            return body
+        }
+
+        let image = UIImage(contentsOfFile: filename)
+        let data = UIImageJPEGRepresentation(image!, 90) as Data?
         
         let mimetype = "image/jpg"
         let filePathKey = "image"
@@ -80,14 +87,16 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         request.httpMethod = "POST"
         
         let boundary = generateBoundaryString()
+
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
-        //let path1 = Bundle.main.path(forResource: "image1", ofType: "png")!
         var parameters = Dictionary<String,String>()
         parameters["lat"] = lat
         parameters["lon"] = lon
         parameters["ifv"] = UIDevice.current.identifierForVendor?.uuidString
+        
         request.httpBody = try? createBody(with: parameters, boundary: boundary, lat: lat, lon: lon)
+        
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
