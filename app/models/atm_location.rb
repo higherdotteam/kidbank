@@ -18,4 +18,11 @@ class AtmLocation < ActiveRecord::Base
     end
     r
   end
+
+  def image_name
+    ids = id.to_s
+    p1 = ids[ids.size-1]
+    p2 = ids[ids.size-2]
+    "#{p1}/#{p2}/#{ids}.jpg"
+  end
 end
