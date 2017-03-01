@@ -68,6 +68,7 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let lat = self.list[indexPath.row]["lat"] as! String
         let lon = self.list[indexPath.row]["lon"] as! String
+        
         cell.textLabel?.text = "\(lat),\(lon)"
         
         return cell

@@ -17,13 +17,18 @@ class SecondViewController: ARViewController, ARDataSource {
     func addAtmLocation(_ sender: UITapGestureRecognizer) {
         //NSLog("addAtmLocation \(sender)")
         //locationManager.startUpdatingLocation()
+        let ul = self.trackingManager.userLocation
+        
+        if ul == nil {
+            return
+        }
         
         let lat = self.trackingManager.userLocation?.coordinate.latitude
         let lon = self.trackingManager.userLocation?.coordinate.longitude
         let lats:String = String(format:"%.\(15)f", lat!)
         let lons:String = String(format:"%.\(15)f", lon!)
     
-        saveStillImage(latlon: "\(lats)_\(lons)")
+        saveStillImage(lats: lats, lons: lons)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let tbc = appDelegate.window?.rootViewController as! UITabBarController

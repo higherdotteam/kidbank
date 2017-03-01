@@ -34,6 +34,9 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
     fileprivate var didLayoutSubviews: Bool = false
     fileprivate var atmIsNear: Bool = false
     
+    var lastLat: String?
+    var lastLon: String?
+    
     var currentHeading: Double = 0
     
     init()
@@ -100,12 +103,6 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
-    
-    /* 
-     let filename = getDocumentsDirectory().appendingPathComponent("copy.png")
-     let data = UIImagePNGRepresentation(image)
-     try? data?.write(to: filename)
-     */
 
     open class func createCaptureSession(vc: ARViewController!) -> (session: AVCaptureSession?, error: NSError?)
     {
@@ -328,32 +325,30 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
         //self.overlayView.addSubview(annotation.annotationView!)
     }
     
-    private func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: NSError?) {
-        
-        if let error = error {
-            print(error.localizedDescription)
-        }
-        
-        let lat = self.trackingManager.userLocation?.coordinate.latitude
-        let lon = self.trackingManager.userLocation?.coordinate.longitude
-        let lats:String = String(format:"%.\(15)f", lat!)
-        let lons:String = String(format:"%.\(15)f", lon!)
-        let latlon:String = "\(lats)\(lons)"
-        
-        if let sampleBuffer = photoSampleBuffer, let previewBuffer = previewPhotoSampleBuffer, let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
+    public func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        if let photoSampleBuffer = photoSampleBuffer {
             
+            let photoData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer)
+         
+            let latlon:String = "\(self.lastLat)\(self.lastLon)"
+         
             let filename = self.getDocumentsDirectory().appendingPathComponent("kidbank_\(latlon).jpg")
-            try? imageData.write(to: filename)
+            try? photoData?.write(to: filename)
+            
         }
-        
+        else {
+            print("Error capturing photo: \(error)")
+            return
+        }
     }
-
     
-    func saveStillImage(latlon: String) {
+    func saveStillImage(lats: String, lons: String) {
         if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
             
             let settings = AVCapturePhotoSettings()
             
+            self.lastLat = lats
+            self.lastLon = lons
             stillImageOutput.capturePhoto(with: settings, delegate: self)
         }
     }
@@ -434,6 +429,12 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
     internal func arTrackingManager(_ trackingManager: ARTrackingManager, didUpdateUserLocation: CLLocation?)
     {
         NSLog("didUpdateUserLocation \(trackingManager.userLocation)");
+        
+        let foo = trackingManager.userLocation
+        
+        if foo == nil {
+          return
+        }
         if listOfAtms.count == 0 {
             loadAtms(lat: (trackingManager.userLocation?.coordinate.latitude)!, lon: (trackingManager.userLocation?.coordinate.longitude)!)
         } else {
