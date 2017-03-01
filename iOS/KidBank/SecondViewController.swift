@@ -22,9 +22,7 @@ class SecondViewController: ARViewController, ARDataSource {
         let lon = self.trackingManager.userLocation?.coordinate.longitude
         let lats:String = String(format:"%.\(15)f", lat!)
         let lons:String = String(format:"%.\(15)f", lon!)
-        
-        NSLog("\(lats)_\(lons)")
-        
+    
         saveStillImage(latlon: "\(lats)_\(lons)")
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

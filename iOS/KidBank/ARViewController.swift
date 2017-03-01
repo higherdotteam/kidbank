@@ -15,7 +15,7 @@ struct Platform {
     }()
 }
 
-open class ARViewController: UIViewController, ARTrackingManagerDelegate
+open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapturePhotoCaptureDelegate
 {
     open weak var dataSource: ARDataSource?
     open var headingSmoothingFactor: Double = 1
@@ -27,7 +27,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
     fileprivate var overlayView: OverlayView = OverlayView()
     fileprivate var displayTimer: CADisplayLink?
     fileprivate var cameraLayer: AVCaptureVideoPreviewLayer?    // Will be set in init
-    fileprivate var stillImageOutput = AVCaptureStillImageOutput()
+    //fileprivate var stillImageOutput = AVCaptureStillImageOutput()
+    fileprivate var stillImageOutput = AVCapturePhotoOutput()
     fileprivate var annotationViews: [ARAnnotationView] = []
     var listOfAtms: [NSDictionary] = []
     fileprivate var didLayoutSubviews: Bool = false
@@ -132,7 +133,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
                 if captureSession!.canAddInput(videoInput)
                 {
                     captureSession!.addInput(videoInput)
-                    vc.stillImageOutput.outputSettings = [AVVideoCodecKey:AVVideoCodecJPEG]
+                    //vc.stillImageOutput.outputSettings = [AVVideoCodecKey:AVVideoCodecJPEG]
                     if captureSession!.canAddOutput(vc.stillImageOutput) {
                         captureSession!.addOutput(vc.stillImageOutput)
                     }
@@ -327,20 +328,36 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         //self.overlayView.addSubview(annotation.annotationView!)
     }
     
+    private func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: NSError?) {
+        
+        if let error = error {
+            print(error.localizedDescription)
+        }
+        
+        let lat = self.trackingManager.userLocation?.coordinate.latitude
+        let lon = self.trackingManager.userLocation?.coordinate.longitude
+        let lats:String = String(format:"%.\(15)f", lat!)
+        let lons:String = String(format:"%.\(15)f", lon!)
+        let latlon:String = "\(lats)\(lons)"
+        
+        if let sampleBuffer = photoSampleBuffer, let previewBuffer = previewPhotoSampleBuffer, let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
+            
+            let filename = self.getDocumentsDirectory().appendingPathComponent("kidbank_\(latlon).jpg")
+            try? imageData.write(to: filename)
+        }
+        
+    }
+
+    
     func saveStillImage(latlon: String) {
         if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
-            stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
-                (imageDataSampleBuffer, error) -> Void in
-                let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
-                
-
-                let filename = self.getDocumentsDirectory().appendingPathComponent("kidbank_\(latlon).jpg")
-                try? imageData?.write(to: filename)
-                
-            }
+            
+            let settings = AVCapturePhotoSettings()
+            
+            stillImageOutput.capturePhoto(with: settings, delegate: self)
         }
     }
-    
+
     internal func displayTimerTick()
     {
         let filterFactor: Double = headingSmoothingFactor
