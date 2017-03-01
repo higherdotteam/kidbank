@@ -8,6 +8,15 @@
 
 import UIKit
 
+extension Data {
+
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
+    }
+}
+
 class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
@@ -24,14 +33,61 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return true
     }
     
+    func generateBoundaryString() -> String {
+        return "Boundary-\(NSUUID().uuidString)"
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func createBody(with parameters: [String: String]?, boundary: String, lat: String, lon: String) throws -> Data {
+        var body = Data()
+        
+        if parameters != nil {
+            for (key, value) in parameters! {
+                body.append("--\(boundary)\r\n")
+                body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.append("\(value)\r\n")
+            }
+        }
+        
+        let latlon:String = "\(lat)_\(lon)"
+        
+        let name = "kidbank.jpg"
+        let filename = self.getDocumentsDirectory().appendingPathComponent("kb_\(latlon).jpg")
+        let image = UIImage(contentsOfFile: filename.absoluteString)
+        let data = UIImageJPEGRepresentation(image!, 0.9) as Data?
+        
+        let mimetype = "image/jpg"
+        let filePathKey = "image"
+        
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"\(filePathKey)\"; filename=\"\(name)\"\r\n")
+        body.append("Content-Type: \(mimetype)\r\n\r\n")
+        body.append(data!)
+        body.append("\r\n")
+    
+        body.append("--\(boundary)--\r\n")
+        return body
+    }
+    
     func doPost(lat: String, lon: String) {
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms")!        
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
         request.httpMethod = "POST"
-        let bodyData = "lat=\(lat)&lon=\(lon)&ifv=\(UIDevice.current.identifierForVendor?.uuidString)"
-        NSLog("\(bodyData)")
         
-        request.httpBody = bodyData.data(using: String.Encoding.utf8);
+        let boundary = generateBoundaryString()
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        //let path1 = Bundle.main.path(forResource: "image1", ofType: "png")!
+        var parameters = Dictionary<String,String>()
+        parameters["lat"] = lat
+        parameters["lon"] = lon
+        parameters["ifv"] = UIDevice.current.identifierForVendor?.uuidString
+        request.httpBody = try? createBody(with: parameters, boundary: boundary, lat: lat, lon: lon)
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)

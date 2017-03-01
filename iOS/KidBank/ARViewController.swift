@@ -330,9 +330,9 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
             
             let photoData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer)
          
-            let latlon:String = "\(self.lastLat)\(self.lastLon)"
+            let latlon:String = "\(self.lastLat)_\(self.lastLon)"
          
-            let filename = self.getDocumentsDirectory().appendingPathComponent("kidbank_\(latlon).jpg")
+            let filename = self.getDocumentsDirectory().appendingPathComponent("kb_\(latlon).jpg")
             try? photoData?.write(to: filename)
             
         }
