@@ -327,13 +327,14 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         //self.overlayView.addSubview(annotation.annotationView!)
     }
     
-    func saveStillImage() {
+    func saveStillImage(latlon: String) {
         if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
             stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
                 (imageDataSampleBuffer, error) -> Void in
                 let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
                 
-                let filename = self.getDocumentsDirectory().appendingPathComponent("copy.png")
+
+                let filename = self.getDocumentsDirectory().appendingPathComponent("kidbank_\(latlon).jpg")
                 try? imageData?.write(to: filename)
                 
             }

@@ -24,7 +24,7 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return true
     }
     
-    func doPost(lat: Double, lon: Double) {
+    func doPost(lat: String, lon: String) {
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms")!        
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
         request.httpMethod = "POST"
@@ -50,8 +50,8 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         let share = UITableViewRowAction(style: .normal, title: "Submit") { (action, indexPath) in
-            let lat = self.list[indexPath.row]["lat"] as! Double
-            let lon = self.list[indexPath.row]["lon"] as! Double
+            let lat = self.list[indexPath.row]["lat"] as! String
+            let lon = self.list[indexPath.row]["lon"] as! String
 
             self.doPost(lat: lat, lon: lon)
             self.list.remove(at: indexPath.row)
@@ -66,8 +66,8 @@ class ReviewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         
-        let lat = self.list[indexPath.row]["lat"] as! Double
-        let lon = self.list[indexPath.row]["lon"] as! Double
+        let lat = self.list[indexPath.row]["lat"] as! String
+        let lon = self.list[indexPath.row]["lon"] as! String
         cell.textLabel?.text = "\(lat),\(lon)"
         
         return cell

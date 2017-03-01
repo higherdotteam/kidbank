@@ -18,14 +18,21 @@ class SecondViewController: ARViewController, ARDataSource {
         //NSLog("addAtmLocation \(sender)")
         //locationManager.startUpdatingLocation()
         
-        saveStillImage()
+        let lat = self.trackingManager.userLocation?.coordinate.latitude
+        let lon = self.trackingManager.userLocation?.coordinate.longitude
+        let lats:String = String(format:"%.\(15)f", lat!)
+        let lons:String = String(format:"%.\(15)f", lon!)
+        
+        NSLog("\(lats)_\(lons)")
+        
+        saveStillImage(latlon: "\(lats)_\(lons)")
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let tbc = appDelegate.window?.rootViewController as! UITabBarController
         
         let rc = appDelegate.window?.rootViewController?.childViewControllers[2] as! ReviewController
         
-        let dict : NSDictionary = [ "lat" : self.trackingManager.userLocation?.coordinate.latitude, "lon" : self.trackingManager.userLocation?.coordinate.longitude]
+        let dict : NSDictionary = [ "lat" : lats, "lon" : lons]
         rc.list.append(dict)
         tbc.selectedIndex = 2
         rc.tableView.reloadData()
