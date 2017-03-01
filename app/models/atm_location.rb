@@ -23,6 +23,6 @@ class AtmLocation < ActiveRecord::Base
     ids = id.to_s
     p1 = ids[ids.size-1]
     p2 = ids[ids.size-2]
-    "#{p1}/#{p2}/#{ids}.jpg"
+    "#{p2}/#{p1}/#{ids}.jpg"
   end
 end
