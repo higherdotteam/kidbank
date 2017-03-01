@@ -8,7 +8,8 @@ class Api::V1::AtmsController < ApplicationController
     ids = al.id.to_s
     p1 = ids[ids.size-1]
     p2 = ids[ids.size-2]
-    dir = "/www/kidbank/public/images/atms/#{p1}/#{p2}"
+    # https://kidbank.team/images/atms/2/3/123.jpg
+    dir = "/www/kidbank/public/images/atms/#{p2}/#{p1}"
     FileUtils.mkdir_p dir
     File.open(dir+"/#{ids}.jpg", "wb") { |f| f.write(data) }
     render json: {}, status: 200
