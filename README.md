@@ -37,3 +37,5 @@ fatal error: unexpectedly found nil while unwrapping an Optional value
 2017-02-28 00:48:02.737087 kidbank[1975:1068021] fatal error: unexpectedly found nil while unwrapping an Optional value
 
 xcodebuild -exportArchive -archivePath "/Users/aa/Library/Developer/Xcode/Archives/2017-02-27/x1" -exportPath ~/KidBank.ipa  -exportOptionsPlist iOS/KidBank/Export.plist 
+
+curl "https://api.what3words.com/v2/reverse?coords=33.9859061804033,-118.393136276986&display=full&format=json&key=" | jq

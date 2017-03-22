@@ -1,5 +1,17 @@
 class AtmLocation < ActiveRecord::Base
 
+  def self.words
+    AtmLocation.find_each do |a|
+      url = "https://api.what3words.com/v2/reverse?coords=#{a.lat},#{a.lon}&display=full&format=json&key=#{ENV['W3W']}"
+      uri = URI.parse(url)
+      response = Net::HTTP.get_response(uri)
+      data = JSON.parse(response.body)
+      a.words = data['words']
+      puts a.words
+      a.save
+    end
+  end
+
   def as_json
     r = {}
     r[:lat] = lat.to_f
