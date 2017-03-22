@@ -1,15 +1,21 @@
 class AtmLocation < ActiveRecord::Base
 
+  after_create :lookup_words
+
   def self.words
     AtmLocation.find_each do |a|
-      url = "https://api.what3words.com/v2/reverse?coords=#{a.lat},#{a.lon}&display=full&format=json&key=#{ENV['W3W']}"
-      uri = URI.parse(url)
-      response = Net::HTTP.get_response(uri)
-      data = JSON.parse(response.body)
-      a.words = data['words']
+      a.lookup_words
       puts a.words
       a.save
     end
+  end
+
+  def lookup_words
+    url = "https://api.what3words.com/v2/reverse?coords=#{lat},#{lon}&display=full&format=json&key=#{ENV['W3W']}"
+    uri = URI.parse(url)
+    response = Net::HTTP.get_response(uri)
+    data = JSON.parse(response.body)
+    a.words = data['words']
   end
 
   def as_json
