@@ -15,7 +15,7 @@ class AtmLocation < ActiveRecord::Base
     uri = URI.parse(url)
     response = Net::HTTP.get_response(uri)
     data = JSON.parse(response.body)
-    a.words = data['words']
+    words = data['words']
   end
 
   def as_json
