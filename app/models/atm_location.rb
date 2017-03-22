@@ -1,6 +1,6 @@
 class AtmLocation < ActiveRecord::Base
 
-  after_create :lookup_words
+  before_save :lookup_words
 
   def self.words
     AtmLocation.find_each do |a|
@@ -15,7 +15,7 @@ class AtmLocation < ActiveRecord::Base
     uri = URI.parse(url)
     response = Net::HTTP.get_response(uri)
     data = JSON.parse(response.body)
-    words = data['words']
+    self.words = data['words']
   end
 
   def as_json
