@@ -18,6 +18,9 @@
           </div>
           <div class="col-lg-6 text-center">
             <div class="section-heading">
+            <%= item.words %>
+            <a target="_blank" href="http://w3w.co/<%=item.words%>">w3w</a>
+            <br/>
             <%= item.lat.to_f %>,
             <%= item.lon.to_f %>
             <a target="_blank" href="https://www.google.com/maps/@<%=item.lat.to_f%>,<%=item.lon.to_f%>,15z">map</a>
