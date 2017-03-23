@@ -20,7 +20,7 @@ class Api::V1::AtmsController < ApplicationController
     render json: {}, status: 200
   end
 
-  def rotate?(file)
+  def rotate?(f)
     d = `exiftool #{f}`
     d.split("\n").each do |line|
       next unless line.index('Orientation')
