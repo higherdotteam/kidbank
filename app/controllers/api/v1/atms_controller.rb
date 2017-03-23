@@ -11,8 +11,23 @@ class Api::V1::AtmsController < ApplicationController
     # https://kidbank.team/images/atms/2/3/123.jpg
     dir = "/www/kidbank/public/images/atms/#{p2}/#{p1}"
     FileUtils.mkdir_p dir
-    File.open(dir+"/#{ids}.jpg", "wb") { |f| f.write(data) }
+    fn = dir+"/#{ids}.jpg"
+    File.open(fn, "wb") { |f| f.write(data) }
+    if rotate?(fn) 
+      `exiftool -all= #{fn}`
+      `convert #{fn} -rotate 90 #{fn}`
+    end
     render json: {}, status: 200
+  end
+
+  def rotate?(file)
+    d = `exiftool #{f}`
+    d.split("\n").each do |line|
+      next unless line.index('Orientation')
+      next unless line.index('Rotate 90 CW')
+      return true
+    end
+    false
   end
 
   def index
