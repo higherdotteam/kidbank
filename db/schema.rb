@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323234532) do
+ActiveRecord::Schema.define(version: 20170324181125) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "kid_id",  limit: 4
@@ -62,9 +62,11 @@ ActiveRecord::Schema.define(version: 20170323234532) do
     t.float    "checking",    limit: 24
     t.float    "savings",     limit: 24
     t.float    "loan",        limit: 24
+    t.string   "username",    limit: 50
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
+  add_index "customers", ["username"], name: "index_customers_on_username", unique: true, using: :btree
 
   create_table "kid_grownups", force: :cascade do |t|
     t.integer "kid_id",     limit: 4
