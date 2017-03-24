@@ -93,6 +93,9 @@
                                 <state key="normal" title="Already have account? Login here.">
                                     <color key="titleColor" red="0.050715991539970508" green="0.26057533220331136" blue="0.36067033678756477" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginWithSender:" destination="U5m-Nh-Isg" eventType="touchDown" id="Mjq-KT-EbS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAw-Tz-VNF">
                                 <rect key="frame" x="42" y="134" width="292" height="30"/>
@@ -103,10 +106,43 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.34018624911440892" green="0.38348040803108807" blue="0.14219570182835817" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="signupWithSender:" destination="U5m-Nh-Isg" eventType="touchDown" id="11e-rL-Aos"/>
+                                </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWJ-51-KOE">
+                                <rect key="frame" x="16" y="28" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.20116522189392061" green="0.27599323236128681" blue="0.38348040803108807" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelModalWithSender:" destination="U5m-Nh-Isg" eventType="touchDown" id="ImO-sJ-viC"/>
+                                </connections>
+                            </button>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xK8-7L-OvC">
+                                <rect key="frame" x="68" y="372" width="209" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pYT-tn-r6C">
+                                <rect key="frame" x="68" y="418" width="209" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="zsv-Ho-gBX" id="cdO-k0-6ZG"/>
+                        <outlet property="phone" destination="pYT-tn-r6C" id="jY6-ui-QUH"/>
+                        <outlet property="signupButton" destination="QAw-Tz-VNF" id="j75-zY-HYk"/>
+                        <outlet property="username" destination="xK8-7L-OvC" id="q8O-2D-PC3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bN0-IN-0UC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
