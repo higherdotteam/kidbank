@@ -21,14 +21,15 @@ class SecondViewController: ARViewController, ARDataSource {
         //self.presentViewController(navigationController, animated: true, completion: nil)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if appDelegate.isLoggedIn() == "" {
         
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+          let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let vc = mainStoryboard.instantiateViewController(withIdentifier: "test123") as! CreateViewController
+          let vc = mainStoryboard.instantiateViewController(withIdentifier: "test123") as! CreateViewController
         
-        vc.view.backgroundColor = UIColor.white
-        appDelegate.window?.rootViewController?.present(vc, animated: true, completion: {vc.email.becomeFirstResponder()})
-        
+          vc.view.backgroundColor = UIColor.white
+          appDelegate.window?.rootViewController?.present(vc, animated: true, completion: {vc.email.becomeFirstResponder()})
+        }
         
 
     }
