@@ -75,32 +75,35 @@
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Omp-X7-eK2">
+        <!--Create View Controller-->
+        <scene sceneID="ghi-Vx-Otg">
             <objects>
-                <viewController storyboardIdentifier="test123" useStoryboardIdentifierAsRestorationIdentifier="YES" id="m2n-G1-f0A" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="test123" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U5m-Nh-Isg" customClass="CreateViewController" customModule="KidBank" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ihi-Ac-7iW"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ixd-qZ-KIW"/>
+                        <viewControllerLayoutGuide type="top" id="s2e-fP-8Hz"/>
+                        <viewControllerLayoutGuide type="bottom" id="i26-YJ-hn1"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mDb-Go-Aan">
+                    <view key="view" contentMode="scaleToFill" id="g7O-cm-h4R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IQ-uS-rnP">
-                                <rect key="frame" x="166" y="286" width="42" height="21"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HRQ-U1-nrb">
+                                <rect key="frame" x="41" y="116" width="295" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="HRQ-U1-nrb" id="35t-67-asL"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZSn-e5-Cc9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bN0-IN-0UC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="194" y="1244"/>
+            <point key="canvasLocation" x="708" y="1142.8785607196403"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
