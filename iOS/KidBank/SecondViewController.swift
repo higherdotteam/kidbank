@@ -14,6 +14,23 @@ class SecondViewController: ARViewController, ARDataSource {
     
     @IBOutlet var addNewButton: UIButton!
     
+    func checkSession(_ sender: UITapGestureRecognizer) {
+        //let popup : PopupVC = self.storyboard?.instantiateViewControllerWithIdentifier("PopupVC") as! PopupVC
+        //let navigationController = UINavigationController(rootViewController: popup)
+        //navigationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+        //self.presentViewController(navigationController, animated: true, completion: nil)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let vc = mainStoryboard.instantiateViewController(withIdentifier: "test123")
+        
+        vc.view.backgroundColor = UIColor.white
+        appDelegate.window?.rootViewController?.present(vc, animated: true, completion: nil)
+
+    }
+    
     func addAtmLocation(_ sender: UITapGestureRecognizer) {
         //NSLog("addAtmLocation \(sender)")
         //locationManager.startUpdatingLocation()
@@ -46,7 +63,7 @@ class SecondViewController: ARViewController, ARDataSource {
         
         self.dataSource = self
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.addAtmLocation(_:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.checkSession(_:)))
         self.view.addGestureRecognizer(tapGesture)
     }
     

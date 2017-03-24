@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       get 'coparents', :to => "api#coparents"
 
       resources :atms
+      resources :customers
     end
   end
 
