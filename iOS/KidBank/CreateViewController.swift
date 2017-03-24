@@ -30,6 +30,33 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         username.isEnabled = false
         username.resignFirstResponder()
         //textField.resignFirstResponder()
+        
+        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers")!
+        let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
+        request.httpMethod = "POST"
+        let bodyData = "username=\(username.text)"
+        
+        request.httpBody = bodyData.data(using: String.Encoding.utf8);
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
+            let httpResponse = response as! HTTPURLResponse
+            
+            if httpResponse.statusCode == 200 {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                //appDelegate.saveUsername(username.text)
+                
+
+            } else {
+                
+            }
+            
+        });
+        
+        task.resume()
+        
         return true
     }
 
