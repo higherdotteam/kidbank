@@ -27,7 +27,7 @@ class AtmLocation < ActiveRecord::Base
   end
 
   def self.nearby(lat, lon)
-    sql = "SELECT *, 3956 * 2 * ASIN(SQRT( POWER(SIN((#{lat} - abs( dest.lat)) * pi()/180 / 2),2) + COS(#{lat} * pi()/180 ) * COS( abs (dest.lat) *  pi()/180) * POWER(SIN((#{lon}-dest.lon) *  pi()/180 / 2), 2) )) as distance FROM atm_locations WHERE confirmed=1 dest order by distance limit 100;"
+    sql = "SELECT *, 3956 * 2 * ASIN(SQRT( POWER(SIN((#{lat} - abs( dest.lat)) * pi()/180 / 2),2) + COS(#{lat} * pi()/180 ) * COS( abs (dest.lat) *  pi()/180) * POWER(SIN((#{lon}-dest.lon) *  pi()/180 / 2), 2) )) as distance FROM atm_locations dest WHERE confirmed=1 order by distance limit 100;"
     results = AtmLocation.connection.execute(sql)
     r = []
     results.to_a.each do |item|
