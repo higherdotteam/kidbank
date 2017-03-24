@@ -28,7 +28,7 @@ class SecondViewController: ARViewController, ARDataSource {
           let vc = mainStoryboard.instantiateViewController(withIdentifier: "test123") as! CreateViewController
         
           vc.view.backgroundColor = UIColor.white
-          appDelegate.window?.rootViewController?.present(vc, animated: true, completion: {vc.email.becomeFirstResponder()})
+          appDelegate.window?.rootViewController?.present(vc, animated: true, completion: {})
         }
         
 
