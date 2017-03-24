@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322202521) do
+ActiveRecord::Schema.define(version: 20170323234532) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "kid_id",  limit: 4
@@ -35,10 +35,11 @@ ActiveRecord::Schema.define(version: 20170322202521) do
   end
 
   create_table "atm_locations", force: :cascade do |t|
-    t.decimal "lat",                 precision: 20, scale: 15
-    t.decimal "lon",                 precision: 20, scale: 15
-    t.decimal "heading",             precision: 10
-    t.string  "words",   limit: 255
+    t.decimal "lat",                   precision: 20, scale: 15
+    t.decimal "lon",                   precision: 20, scale: 15
+    t.decimal "heading",               precision: 10
+    t.string  "words",     limit: 255
+    t.boolean "confirmed",                                       default: false
   end
 
   create_table "cards", force: :cascade do |t|
