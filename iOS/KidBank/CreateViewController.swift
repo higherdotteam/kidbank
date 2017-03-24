@@ -47,9 +47,10 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
 
         
             if httpResponse.statusCode == 200 {
-                let username = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
 
-                UserDefaults.standard.setValue(username!, forKey: "kb_username")
+                let username = String(data: data!, encoding: .utf8)
+                
+                UserDefaults.standard.setValue(username, forKey: "kb_username")
                 
                 if let username = UserDefaults.standard.value(forKey: "kb_username")
                 {
