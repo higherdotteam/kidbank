@@ -46,7 +46,9 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
             
             if httpResponse.statusCode == 200 {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                //appDelegate.saveUsername(username.text)
+                
+                let u = String(data: data!, encoding: String.Encoding.utf8)!
+                appDelegate.saveUsername(username: u)
                 
 
             } else {
