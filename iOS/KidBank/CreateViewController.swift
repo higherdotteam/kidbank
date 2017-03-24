@@ -1,6 +1,6 @@
 import UIKit
 
-class CreateViewController: UIViewController {
+class CreateViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var username: UITextField!
     
@@ -9,7 +9,8 @@ class CreateViewController: UIViewController {
     
     
     @IBAction func cancelModal(sender: UIButton) {
-        self.view.endEditing(true)
+        //self.view.endEditing(true)
+        username.resignFirstResponder()
         username.isHidden = true
         self.dismiss(animated: false, completion: nil)
     }
@@ -24,6 +25,13 @@ class CreateViewController: UIViewController {
         Timer.scheduledTimer(timeInterval: 1.0, target: self.username, selector: #selector(becomeFirstResponder), userInfo: nil, repeats: false)
         */
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        username.isEnabled = false
+        username.resignFirstResponder()
+        //textField.resignFirstResponder()
+        return true
+    }
 
     @IBAction func login(sender: UIButton) {
         signupButton.isHidden = true
@@ -33,7 +41,7 @@ class CreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.username.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
