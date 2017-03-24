@@ -42,15 +42,23 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         let session = URLSession(configuration: config)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
-            let httpResponse = response as! HTTPURLResponse
             
-            if httpResponse.statusCode == 200 {
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-                let u = String(data: data!, encoding: String.Encoding.utf8)!
-                appDelegate.saveUsername(username: u)
-                
+            let httpResponse = response as! HTTPURLResponse
 
+        
+            if httpResponse.statusCode == 200 {
+                let username = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+
+                UserDefaults.standard.setValue(username!, forKey: "kb_username")
+                
+                if let username = UserDefaults.standard.value(forKey: "kb_username")
+                {
+                    print("2username is: " + (username as! String))
+                    
+                }
+                
+                UserDefaults.standard.removeObject(forKey: "kb_username")
+                
             } else {
                 
             }

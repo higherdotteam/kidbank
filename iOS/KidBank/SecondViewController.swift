@@ -20,15 +20,19 @@ class SecondViewController: ARViewController, ARDataSource {
         //navigationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
         //self.presentViewController(navigationController, animated: true, completion: nil)
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if appDelegate.isLoggedIn() == "" {
         
-          let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if let username = UserDefaults.standard.value(forKey: "kb_username")
+        {
+          print("username is: " + (username as! String))
         
-          let vc = mainStoryboard.instantiateViewController(withIdentifier: "test123") as! CreateViewController
-        
-          vc.view.backgroundColor = UIColor.white
-          appDelegate.window?.rootViewController?.present(vc, animated: true, completion: {})
+        } else {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let vc = mainStoryboard.instantiateViewController(withIdentifier: "test123") as! CreateViewController
+            
+            vc.view.backgroundColor = UIColor.white
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController?.present(vc, animated: true, completion: {})
         }
         
 
