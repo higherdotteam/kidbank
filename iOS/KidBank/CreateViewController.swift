@@ -3,12 +3,15 @@ import UIKit
 class CreateViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var username: UITextField!
+    @IBOutlet var phone: UITextField!
+    
     @IBOutlet var usernameForLogin: UITextField!
     
     @IBOutlet var signupButton: UIButton!
     @IBOutlet var loginButton: UIButton!
     
-    
+    var state: Int = 0
+
     @IBAction func cancelModal(sender: UIButton) {
         //self.view.endEditing(true)
         username.resignFirstResponder()
@@ -23,15 +26,73 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         usernameForLogin.becomeFirstResponder()
     }
     @IBAction func signup(sender: UIButton) {
-        signupButton.isHidden = true
-        loginButton.isHidden = true
         
-        username.isHidden = false
-        username.becomeFirstResponder()
-        
+        if (state == 0) {
+            //signupButton.isHidden = true
+            self.state = 1
+            loginButton.isHidden = true
+            
+            username.isHidden = false
+            username.becomeFirstResponder()
+            phone.isHidden = false
+        } else if (state == 1) {
+            let u = username.text!.trimmingCharacters(in: .whitespaces)
+            let p = phone.text!.trimmingCharacters(in: .whitespaces)
+            var yeserr = false as Bool
+            
+            if u.characters.count < 2 {
+              yeserr = true
+            }
+            
+            if p.characters.count < 10 {
+              yeserr = true
+            }
+            
+            if yeserr {
+                let alert = UIAlertController(title: "Alert", message: "Please enter username & phone", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+              doPost()
+            }
+        }
         /*
         Timer.scheduledTimer(timeInterval: 1.0, target: self.username, selector: #selector(becomeFirstResponder), userInfo: nil, repeats: false)
         */
+    }
+    
+    func doPost() {
+        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers")!
+        let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
+        request.httpMethod = "POST"
+        let bodyData = "username=\(username.text!)&phone=\(phone.text!)"
+        
+        request.httpBody = bodyData.data(using: String.Encoding.utf8);
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
+            
+            let httpResponse = response as! HTTPURLResponse
+            
+            
+            if httpResponse.statusCode == 200 {
+                
+                let username = String(data: data!, encoding: .utf8)
+                
+                UserDefaults.standard.setValue(username, forKey: "kb_username")
+                
+                self.username.isHidden = true
+                self.dismiss(animated: false, completion: nil)
+                
+            } else {
+                
+            }
+            
+        });
+        
+        task.resume()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -40,37 +101,6 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
             username.resignFirstResponder()
             //textField.resignFirstResponder()
             
-            let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers")!
-            let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
-            request.httpMethod = "POST"
-            let bodyData = "username=\(username.text!)"
-            
-            request.httpBody = bodyData.data(using: String.Encoding.utf8);
-            
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
-            
-            let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
-                
-                let httpResponse = response as! HTTPURLResponse
-                
-                
-                if httpResponse.statusCode == 200 {
-                    
-                    let username = String(data: data!, encoding: .utf8)
-                    
-                    UserDefaults.standard.setValue(username, forKey: "kb_username")
-                    
-                    self.username.isHidden = true
-                    self.dismiss(animated: false, completion: nil)
-                    
-                } else {
-                    
-                }
-                
-            });
-            
-            task.resume()
         } else if textField.tag == 2 {
             UserDefaults.standard.setValue(usernameForLogin.text!, forKey: "kb_username")
             
