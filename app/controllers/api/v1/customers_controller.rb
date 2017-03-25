@@ -10,8 +10,8 @@ class Api::V1::CustomersController < ApplicationController
       return
     end
     email = "bad.email#{rand(99999999999999)}@nowhere.com"
-    Customer.create(fname: "Not", lname: "Provided", email: email, username: u, phone: p, dob: 4.years.ago)
-    render text: u, status: 200
+    c=Customer.create(fname: "Not", lname: "Provided", email: email, username: u, phone: p, dob: 4.years.ago)
+    render json: {result: c.as_json(platform: params[:platform])}, status: 200
   end
 
   def index

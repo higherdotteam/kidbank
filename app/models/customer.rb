@@ -3,6 +3,7 @@ class Customer < ActiveRecord::Base
   has_many :accounts, foreign_key: 'kid_id', :dependent => :destroy
   has_many :cards, foreign_key: 'kid_id', :dependent => :destroy
   has_many :assets, :dependent => :destroy
+  has_many :tokens, :dependent => :destroy
   after_create :make_tokens
 
   validates_presence_of :fname, :lname
@@ -10,10 +11,16 @@ class Customer < ActiveRecord::Base
 
   before_validation :make_pass
 
-  def as_json
+  def as_json(options={})
     r = {}
     r[:id] = id
     r[:name] = name
+    r[:username] = username
+    if options[:platform] == 'android'
+      r[:token] = tokens.where(flavor: 'android').first.token
+    else
+      r[:token] = tokens.where(flavor: 'apple').first.token
+    end
     r
   end
 
