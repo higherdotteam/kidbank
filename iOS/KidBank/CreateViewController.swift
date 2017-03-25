@@ -34,7 +34,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers")!
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
         request.httpMethod = "POST"
-        let bodyData = "username=\(username.text)"
+        let bodyData = "username=\(username.text!)"
         
         request.httpBody = bodyData.data(using: String.Encoding.utf8);
         
@@ -51,14 +51,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
                 let username = String(data: data!, encoding: .utf8)
                 
                 UserDefaults.standard.setValue(username, forKey: "kb_username")
-                
-                if let username = UserDefaults.standard.value(forKey: "kb_username")
-                {
-                    print("2username is: " + (username as! String))
-                    
-                }
-                
-                UserDefaults.standard.removeObject(forKey: "kb_username")
+            
                 
             } else {
                 
