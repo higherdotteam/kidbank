@@ -11,7 +11,14 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var loginButton: UIButton!
     
     var state: Int = 0
-
+    
+    func taken() {
+        let alert = UIAlertController(title: "Alert", message: "That username is already taken", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
     @IBAction func cancelModal(sender: UIButton) {
         //self.view.endEditing(true)
         username.resignFirstResponder()
@@ -87,10 +94,9 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
                 self.dismiss(animated: false, completion: nil)
                 
             } else {
-                let alert = UIAlertController(title: "Alert", message: "That username is already taken", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                  self.taken()
+                }
             }
             
         });
