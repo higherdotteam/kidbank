@@ -13,6 +13,7 @@
 		00666C921E5D40E300060DE7 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00666C911E5D40E300060DE7 /* PlaceAnnotation.swift */; };
 		00666C961E5D445F00060DE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C951E5D445F00060DE7 /* CoreLocation.framework */; };
 		00666C981E5D446700060DE7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C971E5D446700060DE7 /* CoreMotion.framework */; };
+		00841C461E86471700C91C47 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00841C451E86471700C91C47 /* AccountController.swift */; };
 		008A73391E5E16BD000542ED /* DebugMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A73381E5E16BD000542ED /* DebugMapViewController.swift */; };
 		008A733B1E5E16D8000542ED /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A733A1E5E16D8000542ED /* ARAnnotation.swift */; };
 		008A733D1E5E16E8000542ED /* ARAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A733C1E5E16E8000542ED /* ARAnnotationView.swift */; };
@@ -36,6 +37,7 @@
 		00666C911E5D40E300060DE7 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		00666C951E5D445F00060DE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		00666C971E5D446700060DE7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		00841C451E86471700C91C47 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		008A73381E5E16BD000542ED /* DebugMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugMapViewController.swift; sourceTree = "<group>"; };
 		008A733A1E5E16D8000542ED /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotation.swift; sourceTree = "<group>"; };
 		008A733C1E5E16E8000542ED /* ARAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotationView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				008A733A1E5E16D8000542ED /* ARAnnotation.swift */,
 				008A73381E5E16BD000542ED /* DebugMapViewController.swift */,
 				009346711E84A6A000635A00 /* CreateViewController.swift */,
+				00841C451E86471700C91C47 /* AccountController.swift */,
 			);
 			path = KidBank;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				008A73411E5E171D000542ED /* ARViewController.swift in Sources */,
 				0047682D1E5E18DD00E399E6 /* TestAnnotationView.swift in Sources */,
 				008A733F1E5E1709000542ED /* ARConfiguration.swift in Sources */,
+				00841C461E86471700C91C47 /* AccountController.swift in Sources */,
 				003F5CD21E63C0250051AEC8 /* ReviewController.swift in Sources */,
 				00AAB5A01E446F3A00D8D774 /* AppDelegate.swift in Sources */,
 				009346721E84A6A000635A00 /* CreateViewController.swift in Sources */,

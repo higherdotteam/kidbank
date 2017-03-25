@@ -164,24 +164,45 @@
         <!--Account-->
         <scene sceneID="RlK-KT-dfx">
             <objects>
-                <viewController title="Account" id="1mu-6e-FGH" customClass="ReviewController" customModule="KidBank" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="SXR-fm-3Sn">
+                <viewController title="Account" id="1mu-6e-FGH" customClass="AccountController" customModule="KidBank" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3Y-jX-AkU"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qs8-sg-zvF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8im-Zx-6aP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="1mu-6e-FGH" id="xDZ-Xe-hxL"/>
-                            <outlet property="delegate" destination="1mu-6e-FGH" id="iFb-H8-6Z9"/>
-                        </connections>
-                    </tableView>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are logged in as: foo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0a-jV-Pwl">
+                                <rect key="frame" x="16" y="28" width="288" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsu-II-JLF">
+                                <rect key="frame" x="65" y="269" width="189" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="logout">
+                                    <color key="titleColor" red="0.11805976792120222" green="0.16770121897264578" blue="0.29120790155440412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doLogoutWithSender:" destination="1mu-6e-FGH" eventType="touchDown" id="zNB-5c-dbd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <tabBarItem key="tabBarItem" title="Account" image="second" id="bOB-G8-EQq"/>
                     <connections>
-                        <outlet property="tableView" destination="SXR-fm-3Sn" id="1jC-dY-5Pw"/>
+                        <outlet property="display" destination="p0a-jV-Pwl" id="p4H-QX-1lF"/>
+                        <outlet property="logout" destination="qsu-II-JLF" id="dNR-Ei-b4M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BZ5-4K-EcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="0.0"/>
+            <point key="canvasLocation" x="2150.625" y="0.0"/>
         </scene>
     </scenes>
     <resources>
