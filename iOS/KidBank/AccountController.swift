@@ -6,6 +6,7 @@ class AccountController: UIViewController{
     
     @IBAction func doLogout(sender: UIButton) {
        UserDefaults.standard.removeObject(forKey: "kb_username")
+       UserDefaults.standard.removeObject(forKey: "kb_token")
        display.text = "You are not logged in."
         logout.isHidden = true
     }

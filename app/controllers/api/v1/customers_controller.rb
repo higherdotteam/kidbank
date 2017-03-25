@@ -14,6 +14,17 @@ class Api::V1::CustomersController < ApplicationController
     render json: {result: c.as_json(platform: params[:platform])}, status: 200
   end
 
+  def login
+    u = params[:username].downcase.strip
+    p = params[:password].strip
+    c = Customer.where(username: u, phone: p).first
+    if not c
+      render json: {}, status: 406
+      return
+    end
+    render json: {result: c.as_json(platform: params[:platform])}, status: 200
+  end
+
   def index
     render json: {result: []}, status: 200
   end

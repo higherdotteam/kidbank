@@ -46,7 +46,11 @@ Rails.application.routes.draw do
       get 'coparents', :to => "api#coparents"
 
       resources :atms
-      resources :customers
+      resources :customers do
+        collection do
+          post :login
+        end
+      end
     end
   end
 

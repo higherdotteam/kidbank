@@ -19,36 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
-    func saveUsername(username: NSString?) {
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            
-            let path = dir.appendingPathComponent("kb_username.txt")
-            
-            do {
-                
-                if let u = username {
-                    try u.write(to: path, atomically: false, encoding: String.Encoding.utf8.rawValue)
-                }
-                
-            }
-            catch {
-                NSLog("3")
-            }
-        }
-    }
-
     
-    func isLoggedIn() -> String {
-        let filename = self.getDocumentsDirectory().appendingPathComponent("kb_token.dat").path
-        
-        if FileManager.default.fileExists(atPath: filename) == false {
-            return ""
-        }
-        
-        return ""
-    }
-    
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
