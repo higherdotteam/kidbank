@@ -129,18 +129,15 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
                 do {
                     let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
                     let customer = parsedData["result"] as! NSDictionary
-                        print("\(customer)")
+                    
+                    UserDefaults.standard.setValue(customer.value(forKey: "username"), forKey: "kb_username")
+                    UserDefaults.standard.setValue(customer.value(forKey: "token"), forKey: "kb_token")
+
                 } catch let error as NSError {
                     print(error)
                 }
                 
-                /*
-                let username = String(data: data!, encoding: .utf8)
-                
-                UserDefaults.standard.setValue(username, forKey: "kb_username")
-                
-                self.username.isHidden = true
-                self.dismiss(animated: false, completion: nil) */
+                self.dismiss(animated: false, completion: nil)
                 
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
