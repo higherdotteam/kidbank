@@ -6,9 +6,11 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var phone: UITextField!
     
     @IBOutlet var usernameForLogin: UITextField!
+    @IBOutlet var phoneForLogin: UITextField!
     
     @IBOutlet var signupButton: UIButton!
     @IBOutlet var loginButton: UIButton!
+    @IBOutlet var bigLoginButton: UIButton!
     
     var state: Int = 0
     
@@ -16,6 +18,10 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: "Alert", message: "That username is already taken", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        
+    }
+
+    @IBAction func doBigLogin(sender: UIButton) {
         
     }
     
@@ -31,6 +37,8 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         
         usernameForLogin.isHidden = false
         usernameForLogin.becomeFirstResponder()
+        phoneForLogin.isHidden = false
+        bigLoginButton.isHidden = false
     }
     @IBAction func signup(sender: UIButton) {
         
@@ -114,10 +122,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.tag == 1 {
-            username.isEnabled = false
-            username.resignFirstResponder()
-            //textField.resignFirstResponder()
-            
+            phone.becomeFirstResponder()
         } else if textField.tag == 2 {
             UserDefaults.standard.setValue(usernameForLogin.text!, forKey: "kb_username")
             
