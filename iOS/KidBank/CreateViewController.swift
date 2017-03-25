@@ -115,6 +115,8 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         
+        
+        
         let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -123,16 +125,27 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
             
             
             if httpResponse.statusCode == 200 {
+            
+                do {
+                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                    let customer = parsedData["result"] as! NSDictionary
+                        print("\(customer)")
+                } catch let error as NSError {
+                    print(error)
+                }
                 
+                /*
                 let username = String(data: data!, encoding: .utf8)
                 
                 UserDefaults.standard.setValue(username, forKey: "kb_username")
                 
                 self.username.isHidden = true
-                self.dismiss(animated: false, completion: nil)
+                self.dismiss(animated: false, completion: nil) */
                 
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                  self.username.isEnabled = true
+                  self.phone.isEnabled = true
                   self.taken()
                 }
             }
