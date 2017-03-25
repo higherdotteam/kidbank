@@ -4,7 +4,7 @@ class Api::V1::CustomersController < ApplicationController
     u = params[:username].downcase
     u.gsub!(/[^0-9a-z]/i, '')
     c = Customer.where(username: u).first
-    if c
+    if c || u.strip.size < 2
       render json: {}, status: 406
       return
     end
