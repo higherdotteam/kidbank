@@ -147,6 +147,8 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
             phone.becomeFirstResponder()
         } else if textField.tag == 2 {
             phoneForLogin.becomeFirstResponder()
+        } else if textField.tag == 3 {
+            self.doBigLogin(sender: UIButton())
         }
         
         return true
