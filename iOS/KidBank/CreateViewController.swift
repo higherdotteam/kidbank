@@ -87,6 +87,9 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
                 self.dismiss(animated: false, completion: nil)
                 
             } else {
+                let alert = UIAlertController(title: "Alert", message: "That username is already taken", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 
             }
             
