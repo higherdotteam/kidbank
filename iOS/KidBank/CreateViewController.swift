@@ -22,7 +22,29 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func doBigLogin(sender: UIButton) {
+        let u = usernameForLogin.text!.trimmingCharacters(in: .whitespaces)
+        let p = phoneForLogin.text!.trimmingCharacters(in: .whitespaces)
+        var yeserr = false as Bool
         
+        if u.characters.count < 2 {
+            yeserr = true
+        }
+        
+        if p.characters.count < 10 {
+            yeserr = true
+        }
+
+        if yeserr {
+            let alert = UIAlertController(title: "Alert", message: "Login not correct", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else {
+        
+            UserDefaults.standard.setValue(usernameForLogin.text!, forKey: "kb_username")
+            
+            self.username.isHidden = true
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     @IBAction func cancelModal(sender: UIButton) {
@@ -119,21 +141,16 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         
         task.resume()
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.tag == 1 {
             phone.becomeFirstResponder()
         } else if textField.tag == 2 {
-            UserDefaults.standard.setValue(usernameForLogin.text!, forKey: "kb_username")
-            
-            self.username.isHidden = true
-            self.dismiss(animated: false, completion: nil)
+            phoneForLogin.becomeFirstResponder()
         }
         
         return true
     }
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,6 +159,10 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         self.username.tag = 1
         self.usernameForLogin.delegate = self
         self.usernameForLogin.tag = 2
+        
+        self.phoneForLogin.delegate = self
+        self.phoneForLogin.tag = 3
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
