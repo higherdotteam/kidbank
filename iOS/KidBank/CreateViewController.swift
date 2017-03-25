@@ -51,14 +51,9 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
                 let username = String(data: data!, encoding: .utf8)
                 
                 UserDefaults.standard.setValue(username, forKey: "kb_username")
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                let ac = appDelegate.window?.rootViewController?.childViewControllers[3] as! AccountController
-                
-                ac.display.text = "You are logged in as: \(username)"
                 
                 self.username.isHidden = true
                 self.dismiss(animated: false, completion: nil)
-                
                 
             } else {
                 
