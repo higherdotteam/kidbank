@@ -20,6 +20,13 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
         
     }
+    
+    func badLogin() {
+        let alert = UIAlertController(title: "Alert", message: "Login not correct", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
 
     @IBAction func doBigLogin(sender: UIButton) {
         let u = usernameForLogin.text!.trimmingCharacters(in: .whitespaces)
@@ -39,11 +46,12 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }else {
-        
-            UserDefaults.standard.setValue(usernameForLogin.text!, forKey: "kb_username")
-            
-            self.username.isHidden = true
-            self.dismiss(animated: false, completion: nil)
+            usernameForLogin.isEnabled = false
+            phoneForLogin.isEnabled = false
+            usernameForLogin.resignFirstResponder()
+            phoneForLogin.resignFirstResponder()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            doLoginPost()
         }
     }
     
@@ -95,7 +103,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
               username.resignFirstResponder()
               phone.resignFirstResponder()
               UIApplication.shared.isNetworkActivityIndicatorVisible = true
-              doPost()
+              doCreatePost()
                 
             }
         }
@@ -104,7 +112,54 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         */
     }
     
-    func doPost() {
+    func doLoginPost() {
+        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers/login")!
+        let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
+        request.httpMethod = "POST"
+        let bodyData = "username=\(usernameForLogin.text!)&password=\(phoneForLogin.text!)"
+        
+        request.httpBody = bodyData.data(using: String.Encoding.utf8);
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            let httpResponse = response as! HTTPURLResponse
+            
+            
+            if httpResponse.statusCode == 200 {
+                
+                do {
+                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
+                    let customer = parsedData["result"] as! NSDictionary
+                    
+                    UserDefaults.standard.setValue(customer.value(forKey: "username"), forKey: "kb_username")
+                    UserDefaults.standard.setValue(customer.value(forKey: "token"), forKey: "kb_token")
+                    
+                } catch let error as NSError {
+                    print(error)
+                }
+                
+                self.dismiss(animated: false, completion: nil)
+                
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.usernameForLogin.isEnabled = true
+                    self.phoneForLogin.isEnabled = true
+                    self.badLogin()
+                }
+            }
+            
+        });
+        
+        task.resume()
+    }
+
+    
+    func doCreatePost() {
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers")!
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
         request.httpMethod = "POST"
