@@ -60,7 +60,13 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             } else {
+              username.isEnabled = false
+              phone.isEnabled = false
+              username.resignFirstResponder()
+              phone.resignFirstResponder()
+              UIApplication.shared.isNetworkActivityIndicatorVisible = true
               doPost()
+                
             }
         }
         /*
@@ -80,6 +86,8 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         let session = URLSession(configuration: config)
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             let httpResponse = response as! HTTPURLResponse
             
