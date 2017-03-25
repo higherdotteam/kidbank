@@ -1,11 +1,11 @@
 class Api::V1::CustomersController < ApplicationController
 
   def create
-    u = params[:username].downcase
+    u = params[:username].downcase.strip
     p = params[:phone].strip
     u.gsub!(/[^0-9a-z]/i, '')
     c = Customer.where(username: u).first
-    if c || u.strip.size < 2 || p.size < 10
+    if c || u.size < 2 || p.size < 10 || u.size > 25 || p.size > 25
       render json: {}, status: 406
       return
     end
