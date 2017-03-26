@@ -56,10 +56,6 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
-        let username = UserDefaults.standard.value(forKey: "kb_username")
-        if username != nil {
-          loadAtmsForUser()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,8 +63,10 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let username = UserDefaults.standard.value(forKey: "kb_username")
         if username != nil {
+            loadAtmsForUser()
             display.text = "\(username!)"
             logout.isHidden = false
+            
         }
     }
     
