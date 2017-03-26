@@ -79,7 +79,7 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         } else {
           let thing = listOfVisitedAtms[indexPath.row] 
           let words = thing["words"] as! String
-          var happened_at = thing["happened_at"] as! String
+          let happened_at = thing["happened_at"] as! String
           cell.textLabel?.text = "\(words) \(happened_at)"
         }
         
