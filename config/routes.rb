@@ -51,6 +51,9 @@ Rails.application.routes.draw do
         end
       end
       resources :customers do
+        member do
+          get :atms
+        end
         collection do
           post :login
         end

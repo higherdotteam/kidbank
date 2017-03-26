@@ -1,5 +1,15 @@
 class Api::V1::CustomersController < ApplicationController
 
+  def atms
+    c=Customer.where(username: params[:id]).first
+    if not c
+      render json: {}, status: 406
+      return
+    end
+    r=c.atm_events.order('happened_at desc').limit(100).as_json
+    render json: {result: r}, status: 200
+  end
+
   def create
     u = params[:username].downcase.strip
     p = params[:phone].strip
