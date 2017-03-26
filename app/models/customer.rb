@@ -4,7 +4,7 @@ class Customer < ActiveRecord::Base
   has_many :cards, foreign_key: 'kid_id', :dependent => :destroy
   has_many :assets, :dependent => :destroy
   has_many :tokens, :dependent => :destroy
-  hash_many :atm_events, :dependent => :destroy
+  has_many :atm_events, :dependent => :destroy
   after_create :make_tokens
 
   validates_presence_of :fname, :lname
