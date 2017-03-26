@@ -22,6 +22,8 @@ class AtmLocation < ActiveRecord::Base
     r = {}
     r[:lat] = lat.to_f
     r[:lon] = lon.to_f
+    r[:id] = id
+    r[:words] = words
     r[:h] = heading.to_f
     r
   end
