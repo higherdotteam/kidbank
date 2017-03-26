@@ -32,7 +32,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
     fileprivate var annotationViews: [ARAnnotationView] = []
     var listOfAtms: [NSDictionary] = []
     fileprivate var didLayoutSubviews: Bool = false
-    fileprivate var atmIsNear: Bool = false
+    var atmIsNear: Bool = false
+    var nearestAtm: NSDictionary = NSDictionary()
     
     var lastLat: String?
     var lastLon: String?
@@ -396,7 +397,12 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
           if d < 10
           {
             atmIsNear = true
+            nearestAtm = thing
           }
+            
+          atmIsNear = true
+          nearestAtm = thing
+
         }
     }
     
