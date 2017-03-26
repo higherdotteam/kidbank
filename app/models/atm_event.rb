@@ -9,6 +9,7 @@ class AtmEvent < ActiveRecord::Base
     r[:words] = atm.words
     r[:happened_at] = happened_at
     r[:flavor] = flavor
+    r
   end
 
 end
