@@ -23,7 +23,7 @@ class SecondViewController: ARViewController, ARDataSource {
         
         if let username = UserDefaults.standard.value(forKey: "kb_username")
         {
-          print("username is: " + (username as! String))
+          print("\(self.atmIsNear) username is: " + (username as! String) )
         
         } else {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)

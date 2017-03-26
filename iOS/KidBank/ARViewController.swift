@@ -32,7 +32,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
     fileprivate var annotationViews: [ARAnnotationView] = []
     var listOfAtms: [NSDictionary] = []
     fileprivate var didLayoutSubviews: Bool = false
-    fileprivate var atmIsNear: Bool = false
+    var atmIsNear: Bool = false
     
     var lastLat: String?
     var lastLon: String?
@@ -398,6 +398,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
             atmIsNear = true
           }
         }
+         atmIsNear = true
     }
     
     func loadAtms(lat: Double, lon: Double) {
