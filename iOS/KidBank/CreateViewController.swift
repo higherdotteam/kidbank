@@ -112,6 +112,10 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         */
     }
     
+    func getListOfVisitedAtms() {
+    
+    }
+    
     func doLoginPost() {
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers/login")!
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
@@ -138,6 +142,8 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
                     
                     UserDefaults.standard.setValue(customer.value(forKey: "username"), forKey: "kb_username")
                     UserDefaults.standard.setValue(customer.value(forKey: "token"), forKey: "kb_token")
+                    
+                    self.getListOfVisitedAtms()
                     
                 } catch let error as NSError {
                     print(error)
