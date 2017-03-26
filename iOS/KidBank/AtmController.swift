@@ -12,7 +12,7 @@ class AtmController: UIViewController{
     }
     
     func doDepositPost() {
-        let atmid = nearestAtm.value(forKey: "id") as! String?
+        let atmid = nearestAtm.value(forKey: "id") as! Int?
         let t = UserDefaults.standard.value(forKey: "kb_token")
         
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/atms/\(atmid!)/deposit")!
