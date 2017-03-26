@@ -46,6 +46,8 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         UserDefaults.standard.removeObject(forKey: "kb_token")
         display.text = "Go find some ATMs!"
         logout.isHidden = true
+        self.listOfVisitedAtms = []
+        self.table.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
