@@ -12,7 +12,9 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     func loadAtmsForUser() {
         self.listOfVisitedAtms = []
         
-        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers/andrew/atms")!
+        let username = UserDefaults.standard.value(forKey: "kb_username")
+        
+        let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers/\(username!)/atms")!
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
         request.httpMethod = "GET"
         
@@ -77,8 +79,8 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         } else {
           let thing = listOfVisitedAtms[indexPath.row] 
           let words = thing["words"] as! String
-
-          cell.textLabel?.text = words
+          var happened_at = thing["happened_at"] as! String
+          cell.textLabel?.text = "\(words) \(happened_at)"
         }
         
         return cell

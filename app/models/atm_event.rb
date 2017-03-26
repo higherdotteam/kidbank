@@ -7,7 +7,7 @@ class AtmEvent < ActiveRecord::Base
     r = {}
     r[:id] = id
     r[:words] = atm.words
-    r[:happened_at] = happened_at
+    r[:happened_at] = happened_at.strftime("%m-%d-%Y")
     r[:flavor] = flavor
     r
   end
