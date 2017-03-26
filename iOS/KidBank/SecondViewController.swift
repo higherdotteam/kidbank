@@ -20,6 +20,16 @@ class SecondViewController: ARViewController, ARDataSource {
         if let username = UserDefaults.standard.value(forKey: "kb_username")
         {
           print("\(nearestAtm) username is: " + (username as! String))
+            
+            if atmIsNear {
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let ac = mainStoryboard.instantiateViewController(withIdentifier: "atm") as! AtmController
+                ac.nearestAtm = nearestAtm
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController?.present(ac, animated: true, completion: {})
+            }
         
         } else {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)

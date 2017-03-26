@@ -1,6 +1,8 @@
 import UIKit
 
 class AtmController: UIViewController{
+    var nearestAtm: NSDictionary = NSDictionary()
+    
     @IBOutlet var deposit: UIButton!
     @IBOutlet var display: UILabel!
     
@@ -11,6 +13,6 @@ class AtmController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        display.text = "hello"
+        display.text = nearestAtm.value(forKey: "words") as! String?
     }
 }

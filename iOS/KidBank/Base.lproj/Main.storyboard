@@ -264,7 +264,6 @@
                                     <color key="titleColor" red="0.3401862491" green="0.38348040799999999" blue="0.14219570179999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="doBigLoginWithSender:" destination="KlK-XW-oh1" eventType="touchDown" id="JyI-4v-WAF"/>
                                     <action selector="doDepositWithSender:" destination="KlK-XW-oh1" eventType="touchDown" id="mVl-Mu-y0w"/>
                                 </connections>
                             </button>
@@ -279,7 +278,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="bigLoginButton" destination="xas-8a-o3g" id="enx-dD-3UB"/>
                         <outlet property="deposit" destination="xas-8a-o3g" id="x39-kt-t2b"/>
                         <outlet property="display" destination="XwI-F6-z9u" id="qpo-h7-ghj"/>
                     </connections>
