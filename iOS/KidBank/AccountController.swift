@@ -55,6 +55,11 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
         
         self.table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        let username = UserDefaults.standard.value(forKey: "kb_username")
+        if username != nil {
+          loadAtmsForUser()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

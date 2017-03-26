@@ -398,13 +398,8 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
           {
             atmIsNear = true
             nearestAtm = thing
-          }
-            
-          atmIsNear = true
-          nearestAtm = thing
-
+          }            
         }
-         atmIsNear = true
     }
     
     func loadAtms(lat: Double, lon: Double) {
