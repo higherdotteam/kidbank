@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0037287A1E87AA1E00208EB2 /* AtmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003728791E87AA1E00208EB2 /* AtmController.swift */; };
 		003F5CD21E63C0250051AEC8 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003F5CD11E63C0250051AEC8 /* ReviewController.swift */; };
 		0047682D1E5E18DD00E399E6 /* TestAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0047682C1E5E18DD00E399E6 /* TestAnnotationView.swift */; };
 		00666C901E5D1D1100060DE7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C8F1E5D1D1100060DE7 /* MapKit.framework */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		003728791E87AA1E00208EB2 /* AtmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtmController.swift; sourceTree = "<group>"; };
 		003F5CD11E63C0250051AEC8 /* ReviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
 		0047682C1E5E18DD00E399E6 /* TestAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAnnotationView.swift; sourceTree = "<group>"; };
 		00666C8F1E5D1D1100060DE7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -119,6 +121,7 @@
 				008A73381E5E16BD000542ED /* DebugMapViewController.swift */,
 				009346711E84A6A000635A00 /* CreateViewController.swift */,
 				00841C451E86471700C91C47 /* AccountController.swift */,
+				003728791E87AA1E00208EB2 /* AtmController.swift */,
 			);
 			path = KidBank;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			files = (
 				00666C921E5D40E300060DE7 /* PlaceAnnotation.swift in Sources */,
 				008A73431E5E1734000542ED /* ARTrackingManager.swift in Sources */,
+				0037287A1E87AA1E00208EB2 /* AtmController.swift in Sources */,
 				008A733B1E5E16D8000542ED /* ARAnnotation.swift in Sources */,
 				00AAB5A41E446F3A00D8D774 /* SecondViewController.swift in Sources */,
 				008A73411E5E171D000542ED /* ARViewController.swift in Sources */,

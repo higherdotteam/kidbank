@@ -15,15 +15,21 @@ class SecondViewController: ARViewController, ARDataSource {
     @IBOutlet var addNewButton: UIButton!
     
     func checkSession(_ sender: UITapGestureRecognizer) {
-        //let popup : PopupVC = self.storyboard?.instantiateViewControllerWithIdentifier("PopupVC") as! PopupVC
-        //let navigationController = UINavigationController(rootViewController: popup)
-        //navigationController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-        //self.presentViewController(navigationController, animated: true, completion: nil)
-        
+
         
         if let username = UserDefaults.standard.value(forKey: "kb_username")
         {
-          print("\(self.atmIsNear) username is: " + (username as! String) )
+          print("\(nearestAtm) username is: " + (username as! String))
+            
+            if atmIsNear {
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let ac = mainStoryboard.instantiateViewController(withIdentifier: "atm") as! AtmController
+                ac.nearestAtm = nearestAtm
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController?.present(ac, animated: true, completion: {})
+            }
         
         } else {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)

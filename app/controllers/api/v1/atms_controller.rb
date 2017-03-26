@@ -1,6 +1,25 @@
 require 'fileutils'
 class Api::V1::AtmsController < ApplicationController
 
+  def deposit
+    t=Token.where(token: params[:token]).first
+
+    if not t
+      render json: {}, status: 406
+      return
+    end
+
+    ae = AtmEvent.where(customer_id: t.customer_id, atm_id: params[:id].to_i, flavor: 'deposit').first
+
+    if ae and ae.happened_at.strftime("%m/%d/%Y") == Time.now.strftime("%m/%d/%Y")
+      render json: {}, status: 200
+      return
+    end
+
+    AtmEvent.create(customer_id: t.customer_id, atm_id: params[:id].to_i, flavor: 'deposit', happened_at: Time.now)
+    render json: {}, status: 200
+  end
+
   def create
     #params[:image].original_filename
     al=AtmLocation.create(lat: params[:lat].to_f, lon: params[:lon].to_f, heading: params[:h].to_f)
