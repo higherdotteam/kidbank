@@ -1,6 +1,18 @@
 require 'fileutils'
 class Api::V1::AtmsController < ApplicationController
 
+  def deposit
+    t=Token.where(token: params[:token]).first
+
+    if not t
+      render json: {}, status: 406
+      return
+    end
+
+    #t.customer
+    render json: {}, status: 200
+  end
+
   def create
     #params[:image].original_filename
     al=AtmLocation.create(lat: params[:lat].to_f, lon: params[:lon].to_f, heading: params[:h].to_f)
