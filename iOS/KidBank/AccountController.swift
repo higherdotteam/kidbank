@@ -5,6 +5,9 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet var display: UILabel!
     @IBOutlet var table: UITableView!
     
+    var list: [String] = ["","walk around town","look for atms","if atm already in system", "deposit money at it.", "",
+                          "if you found a new one","add it to system please"]
+    
     @IBAction func doLogout(sender: UIButton) {
        UserDefaults.standard.removeObject(forKey: "kb_username")
        UserDefaults.standard.removeObject(forKey: "kb_token")
@@ -33,13 +36,13 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.table.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         
-        cell.textLabel?.text = "hi there"
+        cell.textLabel?.text = list[indexPath.row]
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return list.count
     }
     private func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
