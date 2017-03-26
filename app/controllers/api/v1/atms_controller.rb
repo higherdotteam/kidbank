@@ -9,7 +9,7 @@ class Api::V1::AtmsController < ApplicationController
       return
     end
 
-    #t.customer
+    AtmEvent.create(customer_id: t.customer_id, atm_id: params[:id].to_i, flavor: 'deposit', happened_at: Time.now)
     render json: {}, status: 200
   end
 
