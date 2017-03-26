@@ -29,8 +29,9 @@ class SecondViewController: ARViewController, ARDataSource {
                 
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.window?.rootViewController?.present(ac, animated: true, completion: {})
+            } else {
+                self.addAtmLocation()
             }
-        
         } else {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
@@ -44,7 +45,7 @@ class SecondViewController: ARViewController, ARDataSource {
 
     }
     
-    func addAtmLocation(_ sender: UITapGestureRecognizer) {
+    func addAtmLocation() {
         //NSLog("addAtmLocation \(sender)")
         //locationManager.startUpdatingLocation()
         let ul = self.trackingManager.userLocation
