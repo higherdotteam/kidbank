@@ -34,6 +34,10 @@ class AtmController: UIViewController{
             
             if httpResponse.statusCode == 200 {
           
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let ac = appDelegate.window?.rootViewController?.childViewControllers[3] as! AccountController
+                ac.loadAtmsForUser()
+                
                 
             } else {
                 

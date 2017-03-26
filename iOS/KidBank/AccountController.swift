@@ -10,6 +10,8 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     var list: [String] = ["","walk around town","look for atms","if atm already in system", "deposit money at it.", "", "if you found a new one","add it to system please"]
     
     func loadAtmsForUser() {
+        self.listOfVisitedAtms = []
+        
         let URL: NSURL = NSURL(string: "https://kidbank.team/api/v1/customers/andrew/atms")!
         let request:NSMutableURLRequest = NSMutableURLRequest(url:URL as URL)
         request.httpMethod = "GET"
@@ -26,6 +28,10 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
                 
                 for (thing) in list {
                     self.listOfVisitedAtms.append(thing as! NSDictionary)
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.table.reloadData()
                 }
             } catch let error as NSError {
                 print(error)
