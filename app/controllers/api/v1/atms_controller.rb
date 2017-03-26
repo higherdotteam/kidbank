@@ -9,6 +9,13 @@ class Api::V1::AtmsController < ApplicationController
       return
     end
 
+    ae = AtmEvent.where(customer_id: t.customer_id, atm_id: params[:id].to_i, flavor: 'deposit').first
+
+    if ae and ae.happened_at.strftime("%m/%d/%Y") == Time.now.strftime("%m/%d/%Y")
+      render json: {}, status: 200
+      return
+    end
+
     AtmEvent.create(customer_id: t.customer_id, atm_id: params[:id].to_i, flavor: 'deposit', happened_at: Time.now)
     render json: {}, status: 200
   end
