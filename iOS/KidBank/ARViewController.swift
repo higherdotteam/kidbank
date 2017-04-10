@@ -32,6 +32,9 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
     fileprivate var annotationViews: [ARAnnotationView] = []
     var listOfAtms: [NSDictionary] = []
     fileprivate var didLayoutSubviews: Bool = false
+    
+    fileprivate var debugLabel: UILabel?
+    
     var atmIsNear: Bool = false
     var nearestAtm: NSDictionary = NSDictionary()
     
@@ -296,11 +299,30 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
         self.overlayView.addSubview(self.araview!)
     }
     
+    func addDebugUi()
+    {
+        self.debugLabel?.removeFromSuperview()
+        
+        let debugLabel = UILabel()
+        debugLabel.backgroundColor = UIColor.clear
+        debugLabel.textColor = UIColor.white
+        debugLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        debugLabel.frame = CGRect(x: 50, y: 50, width: 300, height: 300)
+        debugLabel.numberOfLines = 0
+        debugLabel.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin]
+        debugLabel.textAlignment = NSTextAlignment.left
+        debugLabel.text = "testing something much longer lets see what happens"
+        view.addSubview(debugLabel)
+        self.debugLabel = debugLabel
+        
+    }
+    
     fileprivate func onViewDidLayoutSubviews()
     {
         if !self.didLayoutSubviews
         {
             self.didLayoutSubviews = true
+            self.addDebugUi()
             self.layoutUi()
             self.view.layoutIfNeeded()
         }
