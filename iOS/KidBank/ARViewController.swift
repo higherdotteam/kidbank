@@ -391,6 +391,10 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate, AVCapt
             currentHeading = (newHeading * filterFactor) + (currentHeading  * (1.0 - filterFactor))
         }
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.debugLabel?.text = "\(String(describing: self.trackingManager.userLocation))"
+        }
+        
         //self.overlayView.frame = self.overlayFrame()
         self.updateAnnotationsForCurrentHeading()
         //logText("Heading: \(self.trackingManager.heading)")

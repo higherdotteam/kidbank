@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324181125) do
+ActiveRecord::Schema.define(version: 20170326085012) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "kid_id",  limit: 4
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 20170324181125) do
     t.float    "paid",        limit: 24
     t.float    "value",       limit: 24
     t.datetime "aquired_at"
+  end
+
+  create_table "atm_events", force: :cascade do |t|
+    t.string   "flavor",      limit: 255
+    t.datetime "happened_at"
+    t.integer  "customer_id", limit: 4
+    t.integer  "atm_id",      limit: 4
   end
 
   create_table "atm_locations", force: :cascade do |t|
@@ -63,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170324181125) do
     t.float    "savings",     limit: 24
     t.float    "loan",        limit: 24
     t.string   "username",    limit: 50
+    t.string   "phone",       limit: 50
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
