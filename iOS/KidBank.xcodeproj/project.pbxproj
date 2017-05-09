@@ -14,6 +14,7 @@
 		00666C921E5D40E300060DE7 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00666C911E5D40E300060DE7 /* PlaceAnnotation.swift */; };
 		00666C961E5D445F00060DE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C951E5D445F00060DE7 /* CoreLocation.framework */; };
 		00666C981E5D446700060DE7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00666C971E5D446700060DE7 /* CoreMotion.framework */; };
+		0075A3991EC14EEB001B49CB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0075A3981EC14EEB001B49CB /* UserNotifications.framework */; };
 		00841C461E86471700C91C47 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00841C451E86471700C91C47 /* AccountController.swift */; };
 		008A73391E5E16BD000542ED /* DebugMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A73381E5E16BD000542ED /* DebugMapViewController.swift */; };
 		008A733B1E5E16D8000542ED /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008A733A1E5E16D8000542ED /* ARAnnotation.swift */; };
@@ -39,6 +40,7 @@
 		00666C911E5D40E300060DE7 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		00666C951E5D445F00060DE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		00666C971E5D446700060DE7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		0075A3981EC14EEB001B49CB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		00841C451E86471700C91C47 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		008A73381E5E16BD000542ED /* DebugMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugMapViewController.swift; sourceTree = "<group>"; };
 		008A733A1E5E16D8000542ED /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotation.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0075A3991EC14EEB001B49CB /* UserNotifications.framework in Frameworks */,
 				00666C981E5D446700060DE7 /* CoreMotion.framework in Frameworks */,
 				00666C961E5D445F00060DE7 /* CoreLocation.framework in Frameworks */,
 				00666C901E5D1D1100060DE7 /* MapKit.framework in Frameworks */,
@@ -75,6 +78,7 @@
 		00666C8E1E5D1D1100060DE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0075A3981EC14EEB001B49CB /* UserNotifications.framework */,
 				00666C971E5D446700060DE7 /* CoreMotion.framework */,
 				00666C951E5D445F00060DE7 /* CoreLocation.framework */,
 				00666C8F1E5D1D1100060DE7 /* MapKit.framework */,
